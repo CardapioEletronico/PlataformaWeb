@@ -41,7 +41,6 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc2);
                 Table1.Rows.Add(tRow);
-
             }
         
         }
