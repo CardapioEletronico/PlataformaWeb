@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProjetoCardapio" Class="CardapioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=valera;Initial Catalog=ProjetoCardapio;User ID=ProjetoCardapio" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ProjetoCardapioConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cardapio" Member="Cardapios">
+    <Type Name="Cardapio">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Restaurante_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Cardapio_Categoria" Member="Categorias" ThisKey="Id" OtherKey="Cardapio_id" Type="Categoria" />
+      <Association Name="Restaurante_Cardapio" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categoria" Member="Categorias">
+    <Type Name="Categoria">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cardapio_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Categoria_Produto" Member="Produtos" ThisKey="Id" OtherKey="Categoria_id" Type="Produto" />
+      <Association Name="Cardapio_Categoria" Member="Cardapio" ThisKey="Cardapio_id" OtherKey="Id" Type="Cardapio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fila" Member="Filas">
+    <Type Name="Fila">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Restaurante_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Restaurante_Fila" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemPedido" Member="ItemPedidos">
+    <Type Name="ItemPedido">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantidade" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Hora" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Situacao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Produto_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pedido_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Pedido_ItemPedido" Member="Pedido" ThisKey="Pedido_Id" OtherKey="Id" Type="Pedido" IsForeignKey="true" />
+      <Association Name="Produto_ItemPedido" Member="Produto" ThisKey="Produto_Id" OtherKey="Id" Type="Produto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mesa" Member="Mesas">
+    <Type Name="Mesa">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Numero" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Disponivel" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Mesa_Pedido" Member="Pedidos" ThisKey="Id" OtherKey="Mesa_Id" Type="Pedido" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pedido" Member="Pedidos">
+    <Type Name="Pedido">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ValorTotal" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Mesa_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Pedido_ItemPedido" Member="ItemPedidos" ThisKey="Id" OtherKey="Pedido_Id" Type="ItemPedido" />
+      <Association Name="Mesa_Pedido" Member="Mesa" ThisKey="Mesa_Id" OtherKey="Id" Type="Mesa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produto" Member="Produtos">
+    <Type Name="Produto">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(5,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NomeDescricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Categoria_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fila_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Produto_ItemPedido" Member="ItemPedidos" ThisKey="Id" OtherKey="Produto_Id" Type="ItemPedido" />
+      <Association Name="Categoria_Produto" Member="Categoria" ThisKey="Categoria_id" OtherKey="Id" Type="Categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Restaurante" Member="Restaurantes">
+    <Type Name="Restaurante">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Restaurante_Cardapio" Member="Cardapios" ThisKey="Id" OtherKey="Restaurante_id" Type="Cardapio" />
+      <Association Name="Restaurante_Fila" Member="Filas" ThisKey="Id" OtherKey="Restaurante_id" Type="Fila" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,45 @@
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.App.config
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.csprojResolveAssemblyReference.cache
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\MainWindow.g.cs
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\App.g.cs
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.cache
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.lref
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\ClienteCardapio.exe
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\ClienteCardapio.pdb
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\MainWindow.baml
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.g.resources
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.Properties.Resources.resources
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.GenerateResource.Cache
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\Cardapio\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\ClienteCardapio.exe
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\ClienteCardapio.pdb
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.App.config
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.csprojResolveAssemblyReference.cache
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\MainWindow.g.cs
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\App.g.cs
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.cache
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.lref
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\MainWindow.baml
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.g.resources
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.Properties.Resources.resources
+C:\Users\20131011110029\Downloads\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.GenerateResource.Cache
+C:\Users\gilson\Desktop\ClienteCRUDRestaurante-master\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\Users\gilson\Desktop\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\Users\gilson\Desktop\ClienteCRUDRestaurante-master\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
