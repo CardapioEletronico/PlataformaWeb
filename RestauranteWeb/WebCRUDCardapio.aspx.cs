@@ -14,32 +14,24 @@ namespace RestauranteWeb
         private string ip = "http://10.21.0.137";
         protected async void Page_Load(object sender, EventArgs e)
         {
+            DropRest();
+        }
+
+        public async void DropRest()
+        {
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
-
+            var response = await httpClient.GetAsync("/20131011110029/api/restaurante");
             var str = response.Content.ReadAsStringAsync().Result;
 
-            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
-            //GridView1.AutoGenerateColumns = true;
-            //GridView1.DataSource = obj.ToList();
             Label1.Text = "<h3>Cardapio</h3>";
-            foreach (Models.Cardapio x in obj)
+            foreach (Models.Restaurante x in obj)
             {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                Table1.Rows.Add(tRow);
+                Restaurantes.Items.Add(x.Descricao.ToString());
             }
         }
 

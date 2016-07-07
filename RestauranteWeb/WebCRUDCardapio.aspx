@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebCRUDCardapio.aspx.cs" Inherits="RestauranteWeb.WebCRUDCardapio" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="WebCRUDCardapio.aspx.cs" Inherits="RestauranteWeb.WebCRUDCardapio" %>
 
 <!DOCTYPE html>
 
@@ -25,6 +25,7 @@
         <asp:TextBox ID="textBoxDesc" runat="server" style="margin-top: 0px">Descrição</asp:TextBox>
                     <asp:DropDownList ID="Restaurantes" runat="server">
                     </asp:DropDownList>
+                    <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
                 </td>
             </tr>
             <tr>
