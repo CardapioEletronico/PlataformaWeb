@@ -21,20 +21,19 @@
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
-        <asp:TextBox ID="textBoxId" runat="server" style="margin-top: 0px">Id</asp:TextBox>
-        <asp:TextBox ID="textBoxDesc" runat="server" style="margin-top: 0px">Descrição</asp:TextBox>
+        <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
+        <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
                     <asp:DropDownList ID="Restaurantes" runat="server">
                     </asp:DropDownList>
-                    <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
         <asp:Button ID="btnSelect" runat="server" Text="Select" OnClick="btnSelect_Click" />
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" />
-        <asp:Button ID="btnUpdate" runat="server" Text="Update" />
-        <asp:Button ID="btnDelete" runat="server" Text="Delete" />
+        <asp:Button ID="btnInsert" runat="server" Text="Insert" OnClick="btnInsert_Click" />
+        <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+        <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
                 </td>
             </tr>
             <tr>

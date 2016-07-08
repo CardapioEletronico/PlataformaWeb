@@ -130,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Cardapio.cs" />
+    <Compile Include="Models\Fila.cs" />
+    <Compile Include="Models\Mesa.cs" />
     <Compile Include="Models\Restaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebCRUDCardapio.aspx.cs">

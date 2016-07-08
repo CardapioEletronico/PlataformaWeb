@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RestauranteWeb.Models
 {
-    public class Cardapio
+    public class Fila
     {
         public int Id { get; set; }
         public string Descricao { get; set; }

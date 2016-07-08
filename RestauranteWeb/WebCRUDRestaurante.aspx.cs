@@ -42,7 +42,6 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc2);
                 Table1.Rows.Add(tRow);
             }
-        
         }
 
         protected async void Button1_Click(object sender, EventArgs e)
@@ -50,7 +49,6 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var response = await httpClient.GetAsync("/20131011110029/api/restaurante");
 
             var str = response.Content.ReadAsStringAsync().Result;
