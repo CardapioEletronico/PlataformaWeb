@@ -43,8 +43,8 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc3);
                 Table1.Rows.Add(tRow);
             }
-            DropRest();
 
+            if (!IsPostBack) DropRest();
         }
 
         public async void DropRest()
@@ -59,10 +59,11 @@ namespace RestauranteWeb
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
             Label1.Text = "<h3>Fila</h3>";
-            foreach (Models.Restaurante x in obj)
-            {
-                Restaurantes.Items.Add(x.Id.ToString());
-            }
+            Restaurantes.DataSource = obj;
+            Restaurantes.DataTextField = "Descricao";
+            Restaurantes.DataValueField = "Id";
+            Restaurantes.DataBind();
+
         }
 
         protected async void btnSelect_Click(object sender, EventArgs e)

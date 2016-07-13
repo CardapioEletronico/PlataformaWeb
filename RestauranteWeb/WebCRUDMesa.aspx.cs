@@ -49,7 +49,7 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc4);
                 Table1.Rows.Add(tRow);
             }
-            DropRest();
+           if(!IsPostBack) DropRest();
 
         }
 
@@ -65,10 +65,16 @@ namespace RestauranteWeb
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
             Label1.Text = "<h3>Mesa</h3>";
-            foreach (Models.Restaurante x in obj)
+            /*foreach (Models.Restaurante x in obj)
             {
-                Restaurantes.Items.Add(x.Id.ToString());
-            }
+                //ID
+                //Restaurantes.Items.Add(x.Id.ToString());
+                Restaurantes.Items.Add(x.Descricao.ToString());
+            }*/
+            Restaurantes.DataSource = obj;
+            Restaurantes.DataTextField = "Descricao";
+            Restaurantes.DataValueField = "Id";
+            Restaurantes.DataBind();
 
 
         }
@@ -114,7 +120,7 @@ namespace RestauranteWeb
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
-
+          
             httpClient.BaseAddress = new Uri(ip);
             Models.Mesa f = new Models.Mesa
             {

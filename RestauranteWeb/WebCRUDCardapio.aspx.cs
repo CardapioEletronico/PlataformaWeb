@@ -43,7 +43,7 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc3);
                 Table1.Rows.Add(tRow);
             }
-            DropRest();
+            if(!IsPostBack) DropRest();
         }
 
         public async void DropRest()
@@ -57,11 +57,11 @@ namespace RestauranteWeb
 
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
-            Label1.Text = "<h3>Cardapio</h3>";
-            foreach (Models.Restaurante x in obj)
-            {
-                Restaurantes.Items.Add(x.Id.ToString());
-            }
+            Restaurantes.DataSource = obj;
+            Restaurantes.DataTextField = "Descricao";
+            Restaurantes.DataValueField = "Id";
+            Restaurantes.DataBind();
+
         }
 
         protected async void btnSelect_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace RestauranteWeb
             {
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
-                Restaurante_id = int.Parse(Restaurantes.SelectedValue)
+                Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
 
             List<Models.Cardapio> fl = new List<Models.Cardapio>();
@@ -120,7 +120,7 @@ namespace RestauranteWeb
 
             await httpClient.PostAsync("/20131011110029/api/cardapio", content);
 
-
+            
             var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
@@ -222,5 +222,7 @@ namespace RestauranteWeb
                 Table1.Rows.Add(tRow);
             }
         }
+
+
     }
 }

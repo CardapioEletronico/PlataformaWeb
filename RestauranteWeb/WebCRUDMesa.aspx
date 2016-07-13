@@ -18,7 +18,7 @@
                 <td>
         <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px">Id</asp:TextBox>
         <asp:TextBox ID="textBoxNum" runat="server" PlaceHolder="Descrição" style="margin-top: 0px">Número</asp:TextBox>
-                    <asp:DropDownList ID="Restaurantes" runat="server">
+                    <asp:DropDownList ID="Restaurantes" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                     <br />
                     <asp:Label ID="Label2" runat="server" Text="Disponível"></asp:Label>
