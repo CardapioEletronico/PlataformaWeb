@@ -69,7 +69,7 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
 
             var str = response.Content.ReadAsStringAsync().Result;
 
@@ -118,10 +118,10 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            await httpClient.PostAsync("/20131011110029/api/cardapio", content);
+            await httpClient.PostAsync("/20131011110061/api/cardapio", content);
 
             
-            var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
             Table1.Rows.Clear();
@@ -163,10 +163,10 @@ namespace RestauranteWeb
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
             //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
-            await httpClient.PutAsync("/20131011110029/api/cardapio/" + f.Id, content);
+            await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
 
 
-            var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
             Table1.Rows.Clear();
@@ -196,11 +196,11 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
 
             //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
-            await httpClient.DeleteAsync("/20131011110029/api/cardapio/" + textBoxId.Text);
+            await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
 
 
 
-            var response = await httpClient.GetAsync("/20131011110029/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
             Table1.Rows.Clear();

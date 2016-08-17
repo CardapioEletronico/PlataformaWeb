@@ -67,3 +67,6 @@ C:\POS\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\MainWindow.baml
 C:\POS\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.g.resources
 C:\POS\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.Properties.Resources.resources
 C:\POS\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.GenerateResource.Cache
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
