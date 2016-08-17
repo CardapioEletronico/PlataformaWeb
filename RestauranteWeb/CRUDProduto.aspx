@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="CRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
 
 <!DOCTYPE html>
 
@@ -20,10 +20,17 @@
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
-        <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
-        <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
-                    <asp:DropDownList ID="Restaurantes" runat="server" AutoPostBack="True">
-                    </asp:DropDownList>
+                    <asp:Label ID="Label2" runat="server" Text="Id"></asp:Label>
+                <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
+                    <asp:Label ID="Label3" runat="server" Text="Preco"></asp:Label>
+                    <asp:TextBox ID="textBoxPreco" runat="server"></asp:TextBox>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <asp:Label ID="Label4" runat="server" Text="Nome"></asp:Label>
+                    <asp:TextBox ID="textBoxNomeDescr" runat="server"></asp:TextBox>
+                    <asp:Label ID="Label5" runat="server" Text="Descricao"></asp:Label>
+                <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
+                 <asp:DropDownList ID="Cardapios" runat="server" AutoPostBack="True">
+                  </asp:DropDownList>
                 </td>
             </tr>
             <tr>

@@ -108,6 +108,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CRUDProduto.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -129,9 +130,17 @@
     <Content Include="WebCRUDRestaurante.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUDProduto.aspx.cs">
+      <DependentUpon>CRUDProduto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CRUDProduto.aspx.designer.cs">
+      <DependentUpon>CRUDProduto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cardapio.cs" />
     <Compile Include="Models\Fila.cs" />
     <Compile Include="Models\Mesa.cs" />
+    <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Restaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebCRUDCardapio.aspx.cs">

@@ -158,3 +158,43 @@ C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante-mas
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante-master\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante-master\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante-master\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\ApplicationInsights.config
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\csc.exe
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\vbc.exe
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\VBCSCompiler.exe
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\RestauranteWeb.dll.config
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\RestauranteWeb.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\RestauranteWeb.pdb
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.Agent.Intercept.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.Web.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.WindowsServer.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.ApplicationInsights.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Newtonsoft.Json.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\System.Net.Http.Extensions.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\System.Net.Http.Primitives.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.Web.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.AI.WindowsServer.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.ApplicationInsights.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\Newtonsoft.Json.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\System.Net.Http.Extensions.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\bin\System.Net.Http.Primitives.xml
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\obj\Debug\RestauranteWeb.dll
+C:\POS\ClienteCRUDRestaurante\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
