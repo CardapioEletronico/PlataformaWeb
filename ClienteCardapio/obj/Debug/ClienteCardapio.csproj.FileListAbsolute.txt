@@ -70,3 +70,6 @@ C:\POS\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.G
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.exe
 C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
+C:\ClienteCRUDRestaurante\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.pdb

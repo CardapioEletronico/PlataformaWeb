@@ -19,7 +19,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("20131011110029/api/cardapio");
+            var response = await httpClient.GetAsync("20131011110061/api/cardapio");
 
             var str = response.Content.ReadAsStringAsync().Result;
             //ERROOOORR
@@ -52,7 +52,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110029/api/restaurante");
+            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str = response.Content.ReadAsStringAsync().Result;
 
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
