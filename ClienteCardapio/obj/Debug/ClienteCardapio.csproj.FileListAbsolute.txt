@@ -73,3 +73,24 @@ C:\Users\gilson\Documents\Visual Studio 2015\Projects\ClienteCRUDRestaurante\Cli
 C:\ClienteCRUDRestaurante\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
 C:\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.exe
 C:\ClienteCRUDRestaurante\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\ClienteCardapio.exe.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.exe
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\ClienteCardapio.exe
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\ClienteCardapio.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.App.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.csprojResolveAssemblyReference.cache
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\MainWindow.g.cs
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\App.g.cs
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.cache
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio_MarkupCompile.lref
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\MainWindow.baml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.g.resources
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.Properties.Resources.resources
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\ClienteCardapio\obj\Debug\ClienteCardapio.csproj.GenerateResource.Cache

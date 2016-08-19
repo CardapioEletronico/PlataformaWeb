@@ -19,10 +19,9 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("20131011110061/api/produto");
+            var response = await httpClient.GetAsync("/20131011110061/api/produto");
 
             var str = response.Content.ReadAsStringAsync().Result;
-            //ERROOOORR
             List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
 
             Label1.Text = "<h3>Produtos</h3>";

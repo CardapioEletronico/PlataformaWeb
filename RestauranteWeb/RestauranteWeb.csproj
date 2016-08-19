@@ -124,6 +124,7 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config" />
+    <Content Include="WebCRUDAdminRest.aspx" />
     <Content Include="WebCRUDCardapio.aspx" />
     <Content Include="WebCRUDFila.aspx" />
     <Content Include="WebCRUDMesa.aspx" />
@@ -137,12 +138,20 @@
     <Compile Include="CRUDProduto.aspx.designer.cs">
       <DependentUpon>CRUDProduto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminRest.cs" />
     <Compile Include="Models\Cardapio.cs" />
     <Compile Include="Models\Fila.cs" />
     <Compile Include="Models\Mesa.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Restaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebCRUDAdminRest.aspx.cs">
+      <DependentUpon>WebCRUDAdminRest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCRUDAdminRest.aspx.designer.cs">
+      <DependentUpon>WebCRUDAdminRest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebCRUDCardapio.aspx.cs">
       <DependentUpon>WebCRUDCardapio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

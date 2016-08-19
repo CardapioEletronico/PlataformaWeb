@@ -10,34 +10,34 @@ using System.Web.UI.WebControls;
 
 namespace RestauranteWeb
 {
-    public partial class WebCRUDCardapio : System.Web.UI.Page
+    public partial class WebCRUDAdminRest : System.Web.UI.Page
     {
         private string ip = "http://10.21.0.137";
+
         protected async void Page_Load(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/adminrest");
 
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            List<Models.AdminRest> obj = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str);
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
 
-            Label1.Text = "<h3>Cardapio</h3>";
-            foreach (Models.Cardapio x in obj)
+            Label1.Text = "<h3>Administradores</h3>";
+            foreach (Models.AdminRest x in obj)
             {
+                TableRow tRow = new TableRow();
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Usuario + "  -";
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao + "  -";
+                tc2.Text = x.Senha + "  -";
                 TableCell tc3 = new TableCell();
 
                 foreach (Models.Restaurante y in obj2)
@@ -50,7 +50,7 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc3);
                 Table1.Rows.Add(tRow);
             }
-            if(!IsPostBack) DropRest();
+            if (!IsPostBack) DropRest();
         }
 
         public async void DropRest()
@@ -81,14 +81,14 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            Models.Cardapio f = new Models.Cardapio
+            Models.AdminRest f = new Models.AdminRest
             {
-                Id = int.Parse(textBoxId.Text),
-                Descricao = textBoxDesc.Text,
+                Usuario = Convert.ToString(textBoxUsuario.Text),
+                Senha = textBoxSenha.Text,
                 Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
 
-            List<Models.Cardapio> fl = new List<Models.Cardapio>();
+            List<Models.AdminRest> fl = new List<Models.AdminRest>();
 
             fl.Add(f);
 
@@ -96,7 +96,8 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            await httpClient.PostAsync("/20131011110061/api/cardapio", content);
+            await httpClient.PostAsync("/20131011110061/api/adminrest", content);
+
 
             Reload();
         }
@@ -107,20 +108,18 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            Models.Cardapio f = new Models.Cardapio
+            Models.AdminRest f = new Models.AdminRest
             {
-                Id = int.Parse(textBoxId.Text),
-                Descricao = textBoxDesc.Text,
+                Usuario = textBoxUsuario.Text,
+                Senha = textBoxSenha.Text,
                 Restaurante_id = int.Parse(Restaurantes.SelectedValue)
-                
             };
 
             string s = "=" + JsonConvert.SerializeObject(f);
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
-            await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
+            
+            await httpClient.PutAsync("/20131011110061/api/adminrest/" + f.Usuario, content);
 
             Reload();
         }
@@ -131,47 +130,47 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
-            await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
-
+            await httpClient.DeleteAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text);
             Reload();
+
         }
 
         public async void Reload()
         {
             HttpClient httpClient = new HttpClient();
-
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
+
+            var response = await httpClient.GetAsync("/20131011110061/api/adminrest");
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            List<Models.AdminRest> obj = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str);
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
+
             Table1.Rows.Clear();
-            foreach (Models.Cardapio x in obj)
+            foreach (Models.AdminRest x in obj)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
                 TableRow tRow = new TableRow();
 
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Usuario + "  -";
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao;
+                tc2.Text = x.Senha + "  -";
+
                 TableCell tc3 = new TableCell();
-                foreach (Models.Restaurante y in obj2)
-                {
-                    if (y.Id == x.Restaurante_id)
-                        tc3.Text = y.Descricao.ToString();
+                foreach (Models.Restaurante y in obj2) {
+                     if(y.Id == x.Restaurante_id)
+                        tc3.Text = y.Descricao;
                 }
+
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc2);
                 tRow.Cells.Add(tc3);
                 Table1.Rows.Add(tRow);
             }
         }
-
     }
 }
