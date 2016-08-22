@@ -80,6 +80,7 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -108,10 +109,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CRUDProduto.aspx" />
+    <Content Include="WebCRUDProduto.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Banco1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Banco1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -131,12 +137,17 @@
     <Content Include="WebCRUDRestaurante.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUDProduto.aspx.cs">
-      <DependentUpon>CRUDProduto.aspx</DependentUpon>
+    <Compile Include="Banco1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Banco1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="WebCRUDProduto.aspx.cs">
+      <DependentUpon>WebCRUDProduto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CRUDProduto.aspx.designer.cs">
-      <DependentUpon>CRUDProduto.aspx</DependentUpon>
+    <Compile Include="WebCRUDProduto.aspx.designer.cs">
+      <DependentUpon>WebCRUDProduto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminRest.cs" />
     <Compile Include="Models\Cardapio.cs" />
@@ -180,6 +191,14 @@
     <Compile Include="WebCRUDRestaurante.aspx.designer.cs">
       <DependentUpon>WebCRUDRestaurante.aspx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Banco1.dbml.layout">
+      <DependentUpon>Banco1.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

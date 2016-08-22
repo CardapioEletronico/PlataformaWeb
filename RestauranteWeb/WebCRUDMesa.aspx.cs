@@ -20,7 +20,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("20131011110029/api/mesa");
+            var response = await httpClient.GetAsync("20131011110061/api/mesa");
 
             var str = response.Content.ReadAsStringAsync().Result;
             //ERROOOORR
@@ -59,7 +59,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110029/api/restaurante");
+            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str = response.Content.ReadAsStringAsync().Result;
 
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
@@ -84,7 +84,7 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110029/api/mesa");
+            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
 
             var str = response.Content.ReadAsStringAsync().Result;
 
@@ -148,10 +148,10 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            await httpClient.PostAsync("/20131011110029/api/mesa", content);
+            await httpClient.PostAsync("/20131011110061/api/mesa", content);
 
 
-            var response = await httpClient.GetAsync("/20131011110029/api/mesa");
+            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
             Table1.Rows.Clear();
@@ -210,7 +210,7 @@ namespace RestauranteWeb
             await httpClient.PutAsync("/20131011110029/api/mesa/" + f.Id, content);
 
 
-            var response = await httpClient.GetAsync("/20131011110029/api/mesa");
+            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
             Table1.Rows.Clear();
@@ -250,7 +250,7 @@ namespace RestauranteWeb
 
 
 
-            var response = await httpClient.GetAsync("/20131011110029/api/mesa");
+            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
             Table1.Rows.Clear();

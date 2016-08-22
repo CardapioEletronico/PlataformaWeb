@@ -11,7 +11,7 @@ namespace RestauranteWeb.Models
         public string Descricao { get; set; }
         public double Preco { get; set; }
         public int Cardapio_id { get; set; }
-        public byte[] Foto { get; set; }
+        public string Foto { get; set; }
         public string NomeDescricao { get; set; }
     }
 }

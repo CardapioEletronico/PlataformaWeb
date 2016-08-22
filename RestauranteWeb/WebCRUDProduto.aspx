@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="CRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="WebCRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
 
 <!DOCTYPE html>
 
