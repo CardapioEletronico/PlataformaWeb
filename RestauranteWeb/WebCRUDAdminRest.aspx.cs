@@ -23,6 +23,8 @@ namespace RestauranteWeb
 
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.AdminRest> obj = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str);
+
+
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
@@ -34,7 +36,7 @@ namespace RestauranteWeb
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Usuario.ToString() + "  -";
                 TableCell tc2 = new TableCell();
                 tc2.Text = x.Senha + "  -";
                 TableCell tc3 = new TableCell();
@@ -82,7 +84,7 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             Models.AdminRest f = new Models.AdminRest
             {
-                Id = int.Parse(textBoxId.Text),
+                Usuario = textBoxUsuario.Text,
                 Senha = textBoxSenha.Text,
                 Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
@@ -112,7 +114,7 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             Models.AdminRest f = new Models.AdminRest
             {
-                Id  = int.Parse(textBoxId.Text),
+                Usuario  = textBoxUsuario.Text,
                 Senha = textBoxSenha.Text,
                 Restaurante_id = int.Parse(Restaurantes.SelectedValue)
             };
@@ -121,7 +123,7 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             
-            await httpClient.PutAsync("/20131011110061/api/adminrest/" + f.Id, content);
+            await httpClient.PutAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text, content);
 
             Reload();
         }
@@ -132,7 +134,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            await httpClient.DeleteAsync("/20131011110061/api/adminrest/" + textBoxId.Text);
+            await httpClient.DeleteAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text);
             Reload();
 
         }
@@ -158,7 +160,7 @@ namespace RestauranteWeb
                 TableRow tRow = new TableRow();
 
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Usuario.ToString() + "  -";
                 TableCell tc2 = new TableCell();
                 tc2.Text = x.Senha + "  -";
 

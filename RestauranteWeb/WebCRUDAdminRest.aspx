@@ -16,7 +16,7 @@
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
+                    <asp:TextBox ID="textBoxUsuario" runat="server" PlaceHolder="Usuario" style="margin-top: 0px"></asp:TextBox>
                     <asp:TextBox ID="textBoxSenha" runat="server" PlaceHolder="Senha" style="margin-top: 0px" TextMode="Password"></asp:TextBox>
                     <asp:DropDownList ID="Restaurantes" runat="server" AutoPostBack="True">
                     </asp:DropDownList>

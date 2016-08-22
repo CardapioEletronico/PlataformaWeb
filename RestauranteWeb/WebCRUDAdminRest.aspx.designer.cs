@@ -31,13 +31,13 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// textBoxId control.
+        /// textBoxUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxId;
+        protected global::System.Web.UI.WebControls.TextBox textBoxUsuario;
         
         /// <summary>
         /// textBoxSenha control.
