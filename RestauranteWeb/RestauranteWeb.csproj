@@ -117,6 +117,10 @@
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\npm.js" />
+    <Content Include="css\locastyle.css" />
+    <Content Include="css\StyleSheet1.css" />
+    <Content Include="js\jquery-2.0.3.js" />
+    <Content Include="js\locastyle.js" />
     <Content Include="WebCRUDProduto.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -135,6 +139,8 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="RestAdm.Master" />
+    <Content Include="WebForm2.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -157,6 +163,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Banco1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="RestAdm.Master.cs">
+      <DependentUpon>RestAdm.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RestAdm.Master.designer.cs">
+      <DependentUpon>RestAdm.Master</DependentUpon>
     </Compile>
     <Compile Include="WebCRUDProduto.aspx.cs">
       <DependentUpon>WebCRUDProduto.aspx</DependentUpon>
@@ -207,6 +220,13 @@
     <Compile Include="WebCRUDRestaurante.aspx.designer.cs">
       <DependentUpon>WebCRUDRestaurante.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -216,7 +236,9 @@
       <DependentUpon>Banco1.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="3.8.2\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

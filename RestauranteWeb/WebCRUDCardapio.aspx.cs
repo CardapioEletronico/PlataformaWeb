@@ -13,8 +13,16 @@ namespace RestauranteWeb
     public partial class WebCRUDCardapio : System.Web.UI.Page
     {
         private string ip = "http://10.21.0.137";
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            Label titulo = Master.FindControl("titulo") as Label;
+            titulo.Text = "Gerenciamento de Cardápios";
+        }
+
         protected async void Page_Load(object sender, EventArgs e)
         {
+           
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
@@ -27,7 +35,6 @@ namespace RestauranteWeb
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
 
-            Label1.Text = "<h3>Cardapio</h3>";
             foreach (Models.Cardapio x in obj)
             {
                 Label lb2 = new Label();
