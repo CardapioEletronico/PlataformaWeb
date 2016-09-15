@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProjetoCardapio" Class="Banco1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=valera;Initial Catalog=ProjetoCardapio;User ID=ProjetoCardapio" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ProjetoCardapioConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.AdminRest" Member="AdminRests">
-    <Type Name="AdminRest">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Senha" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Restaurante_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Restaurante_AdminRest" Member="Restaurante" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Cardapio" Member="Cardapios">
     <Type Name="Cardapio">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -78,9 +70,17 @@
     <Type Name="Restaurante">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Restaurante_AdminRest" Member="AdminRests" ThisKey="Id" OtherKey="Restaurante_Id" Type="AdminRest" />
       <Association Name="Restaurante_Cardapio" Member="Cardapios" ThisKey="Id" OtherKey="Restaurante_id" Type="Cardapio" />
       <Association Name="Restaurante_Mesa" Member="Mesas" ThisKey="Id" OtherKey="Restaurante_Id" Type="Mesa" />
+      <Association Name="Restaurante_AdminRest" Member="AdminRests" AccessModifier="Internal" ThisKey="Id" OtherKey="Restaurante_Id" Type="AdminRest" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdminRest" Member="AdminRests">
+    <Type Name="AdminRest">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Senha" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Restaurante_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Restaurante_AdminRest" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

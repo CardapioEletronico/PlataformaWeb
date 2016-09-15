@@ -9,16 +9,7 @@
                             <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                             <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
                             <asp:DropDownList CssClass="ls-dropdown-nav" ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>
-                            <div data-ls-module="dropdown" class="ls-dropdown">
-                              <a href="#" class="ls-btn-primary">Users</a>
-                              <ul class="ls-dropdown-nav">
-                                  <li><a href="#">Kieran Whitaker</a></li>
-                                  <li><a href="#">Casey Hoyle</a></li>
-                                  <li><a href="#">Nadia Baker</a></li>
-                                  <li><a href="#">Calum Perkins</a></li>
-                                  <li><a href="#">Harrison McAllister</a></li>
-                              </ul>
-                            </div>
+                            
                         </td>
                     
                         <td class="auto-style1">&nbsp;</td>

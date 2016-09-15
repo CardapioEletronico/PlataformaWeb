@@ -109,6 +109,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LoginAdmRest.aspx" />
     <Content Include="assets\css\bootstrap-theme.css" />
     <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap.css" />
@@ -141,6 +142,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="RestAdm.Master" />
     <Content Include="WebForm2.aspx" />
+    <Content Include="WebFormSair.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,6 +161,13 @@
     <Content Include="WebCRUDRestaurante.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginAdmRest.aspx.cs">
+      <DependentUpon>LoginAdmRest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginAdmRest.aspx.designer.cs">
+      <DependentUpon>LoginAdmRest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Banco1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +236,13 @@
     <Compile Include="WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebFormSair.aspx.cs">
+      <DependentUpon>WebFormSair.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormSair.aspx.designer.cs">
+      <DependentUpon>WebFormSair.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -238,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="3.8.2\" />
+    <Folder Include="AdmRest\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

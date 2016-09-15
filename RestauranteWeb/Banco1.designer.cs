@@ -30,9 +30,6 @@ namespace RestauranteWeb
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAdminRest(AdminRest instance);
-    partial void UpdateAdminRest(AdminRest instance);
-    partial void DeleteAdminRest(AdminRest instance);
     partial void InsertCardapio(Cardapio instance);
     partial void UpdateCardapio(Cardapio instance);
     partial void DeleteCardapio(Cardapio instance);
@@ -54,6 +51,9 @@ namespace RestauranteWeb
     partial void InsertRestaurante(Restaurante instance);
     partial void UpdateRestaurante(Restaurante instance);
     partial void DeleteRestaurante(Restaurante instance);
+    partial void InsertAdminRest(AdminRest instance);
+    partial void UpdateAdminRest(AdminRest instance);
+    partial void DeleteAdminRest(AdminRest instance);
     #endregion
 		
 		public Banco1DataContext() : 
@@ -84,14 +84,6 @@ namespace RestauranteWeb
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<AdminRest> AdminRests
-		{
-			get
-			{
-				return this.GetTable<AdminRest>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Cardapio> Cardapios
@@ -149,155 +141,12 @@ namespace RestauranteWeb
 				return this.GetTable<Restaurante>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AdminRest")]
-	public partial class AdminRest : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Senha;
-		
-		private int _Restaurante_Id;
-		
-		private EntityRef<Restaurante> _Restaurante;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnSenhaChanging(string value);
-    partial void OnSenhaChanged();
-    partial void OnRestaurante_IdChanging(int value);
-    partial void OnRestaurante_IdChanged();
-    #endregion
-		
-		public AdminRest()
-		{
-			this._Restaurante = default(EntityRef<Restaurante>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
+		public System.Data.Linq.Table<AdminRest> AdminRests
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Senha", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Senha
-		{
-			get
-			{
-				return this._Senha;
-			}
-			set
-			{
-				if ((this._Senha != value))
-				{
-					this.OnSenhaChanging(value);
-					this.SendPropertyChanging();
-					this._Senha = value;
-					this.SendPropertyChanged("Senha");
-					this.OnSenhaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Restaurante_Id", DbType="Int NOT NULL")]
-		public int Restaurante_Id
-		{
-			get
-			{
-				return this._Restaurante_Id;
-			}
-			set
-			{
-				if ((this._Restaurante_Id != value))
-				{
-					if (this._Restaurante.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRestaurante_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Restaurante_Id = value;
-					this.SendPropertyChanged("Restaurante_Id");
-					this.OnRestaurante_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurante_AdminRest", Storage="_Restaurante", ThisKey="Restaurante_Id", OtherKey="Id", IsForeignKey=true)]
-		public Restaurante Restaurante
-		{
-			get
-			{
-				return this._Restaurante.Entity;
-			}
-			set
-			{
-				Restaurante previousValue = this._Restaurante.Entity;
-				if (((previousValue != value) 
-							|| (this._Restaurante.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Restaurante.Entity = null;
-						previousValue.AdminRests.Remove(this);
-					}
-					this._Restaurante.Entity = value;
-					if ((value != null))
-					{
-						value.AdminRests.Add(this);
-						this._Restaurante_Id = value.Id;
-					}
-					else
-					{
-						this._Restaurante_Id = default(int);
-					}
-					this.SendPropertyChanged("Restaurante");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<AdminRest>();
 			}
 		}
 	}
@@ -1708,11 +1557,11 @@ namespace RestauranteWeb
 		
 		private string _Descricao;
 		
-		private EntitySet<AdminRest> _AdminRests;
-		
 		private EntitySet<Cardapio> _Cardapios;
 		
 		private EntitySet<Mesa> _Mesas;
+		
+		private EntitySet<AdminRest> _AdminRests;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1726,9 +1575,9 @@ namespace RestauranteWeb
 		
 		public Restaurante()
 		{
-			this._AdminRests = new EntitySet<AdminRest>(new Action<AdminRest>(this.attach_AdminRests), new Action<AdminRest>(this.detach_AdminRests));
 			this._Cardapios = new EntitySet<Cardapio>(new Action<Cardapio>(this.attach_Cardapios), new Action<Cardapio>(this.detach_Cardapios));
 			this._Mesas = new EntitySet<Mesa>(new Action<Mesa>(this.attach_Mesas), new Action<Mesa>(this.detach_Mesas));
+			this._AdminRests = new EntitySet<AdminRest>(new Action<AdminRest>(this.attach_AdminRests), new Action<AdminRest>(this.detach_AdminRests));
 			OnCreated();
 		}
 		
@@ -1772,19 +1621,6 @@ namespace RestauranteWeb
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurante_AdminRest", Storage="_AdminRests", ThisKey="Id", OtherKey="Restaurante_Id")]
-		public EntitySet<AdminRest> AdminRests
-		{
-			get
-			{
-				return this._AdminRests;
-			}
-			set
-			{
-				this._AdminRests.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurante_Cardapio", Storage="_Cardapios", ThisKey="Id", OtherKey="Restaurante_id")]
 		public EntitySet<Cardapio> Cardapios
 		{
@@ -1811,6 +1647,19 @@ namespace RestauranteWeb
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurante_AdminRest", Storage="_AdminRests", ThisKey="Id", OtherKey="Restaurante_Id")]
+		internal EntitySet<AdminRest> AdminRests
+		{
+			get
+			{
+				return this._AdminRests;
+			}
+			set
+			{
+				this._AdminRests.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1829,18 +1678,6 @@ namespace RestauranteWeb
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AdminRests(AdminRest entity)
-		{
-			this.SendPropertyChanging();
-			entity.Restaurante = this;
-		}
-		
-		private void detach_AdminRests(AdminRest entity)
-		{
-			this.SendPropertyChanging();
-			entity.Restaurante = null;
 		}
 		
 		private void attach_Cardapios(Cardapio entity)
@@ -1865,6 +1702,169 @@ namespace RestauranteWeb
 		{
 			this.SendPropertyChanging();
 			entity.Restaurante = null;
+		}
+		
+		private void attach_AdminRests(AdminRest entity)
+		{
+			this.SendPropertyChanging();
+			entity.Restaurante = this;
+		}
+		
+		private void detach_AdminRests(AdminRest entity)
+		{
+			this.SendPropertyChanging();
+			entity.Restaurante = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AdminRest")]
+	public partial class AdminRest : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Usuario;
+		
+		private string _Senha;
+		
+		private int _Restaurante_Id;
+		
+		private EntityRef<Restaurante> _Restaurante;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUsuarioChanging(string value);
+    partial void OnUsuarioChanged();
+    partial void OnSenhaChanging(string value);
+    partial void OnSenhaChanged();
+    partial void OnRestaurante_IdChanging(int value);
+    partial void OnRestaurante_IdChanged();
+    #endregion
+		
+		public AdminRest()
+		{
+			this._Restaurante = default(EntityRef<Restaurante>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this.OnUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario = value;
+					this.SendPropertyChanged("Usuario");
+					this.OnUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Senha", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Senha
+		{
+			get
+			{
+				return this._Senha;
+			}
+			set
+			{
+				if ((this._Senha != value))
+				{
+					this.OnSenhaChanging(value);
+					this.SendPropertyChanging();
+					this._Senha = value;
+					this.SendPropertyChanged("Senha");
+					this.OnSenhaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Restaurante_Id", DbType="Int NOT NULL")]
+		public int Restaurante_Id
+		{
+			get
+			{
+				return this._Restaurante_Id;
+			}
+			set
+			{
+				if ((this._Restaurante_Id != value))
+				{
+					if (this._Restaurante.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRestaurante_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Restaurante_Id = value;
+					this.SendPropertyChanged("Restaurante_Id");
+					this.OnRestaurante_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurante_AdminRest", Storage="_Restaurante", ThisKey="Restaurante_Id", OtherKey="Id", IsForeignKey=true)]
+		internal Restaurante Restaurante
+		{
+			get
+			{
+				return this._Restaurante.Entity;
+			}
+			set
+			{
+				Restaurante previousValue = this._Restaurante.Entity;
+				if (((previousValue != value) 
+							|| (this._Restaurante.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Restaurante.Entity = null;
+						previousValue.AdminRests.Remove(this);
+					}
+					this._Restaurante.Entity = value;
+					if ((value != null))
+					{
+						value.AdminRests.Add(this);
+						this._Restaurante_Id = value.Id;
+					}
+					else
+					{
+						this._Restaurante_Id = default(int);
+					}
+					this.SendPropertyChanged("Restaurante");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
