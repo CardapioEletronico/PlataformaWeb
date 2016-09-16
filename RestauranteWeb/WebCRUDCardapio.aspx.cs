@@ -35,15 +35,17 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
 
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
-            
+
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+
             List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
             foreach (Models.Cardapio x in obj)
             {
@@ -52,6 +54,7 @@ namespace RestauranteWeb
                     obj3.Add(x);
                 }
             }
+
             foreach (Models.Cardapio x in obj3)
             {   
                     Label lb2 = new Label();

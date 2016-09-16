@@ -69,7 +69,7 @@
               <nav class="ls-menu">
                 <ul>
                     <li><a href="WebCRUDCardapio.aspx" class="ls-ico-list">Gerenciamento de Cardápios</a></li>
-                    <li><a href="#" class="ls-ico-list">Gerenciamento de Filas</a></li>
+                    <li><a href="WebCRUDFila.aspx" class="ls-ico-list">Gerenciamento de Filas</a></li>
                 </ul>
               </nav>
             </aside>

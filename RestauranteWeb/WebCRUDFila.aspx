@@ -1,19 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebCRUDFila.aspx.cs" Inherits="RestauranteWeb.WebCRUDFila" Async="true" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/RestAdm.Master" AutoEventWireup="true" CodeBehind="WebCRUDFila.aspx.cs" Inherits="RestauranteWeb.WebCRUDFila" Async="true" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
     <div>
     <br /><br />
         <table style="width:100%;">
             <tr>
                 <td class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
         <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
@@ -40,6 +34,11 @@
             </tr>
         </table>
     </div>
-    </form>
-</body>
-</html>
+     <link href="css/locastyle.css" rel="stylesheet" type="text/css"/>
+            <link href="css/style.css" rel="stylesheet" type="text/css" />
+            <link href="css/StyleSheet1.css" rel="stylesheet" />
+            <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png"/>
+            <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png"/>
+    </asp:Content>
+
+
