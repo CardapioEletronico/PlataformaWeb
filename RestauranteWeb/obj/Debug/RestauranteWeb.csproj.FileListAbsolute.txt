@@ -317,3 +317,4 @@ C:\Users\Isaac Medeiros\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\Restaurant
 C:\Users\Isaac Medeiros\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
 C:\Users\Isaac Medeiros\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\Isaac Medeiros\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Users\Isaac Medeiros\Desktop\Projeto Cardápio - Arquivos\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache

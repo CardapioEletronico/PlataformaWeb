@@ -1,37 +1,14 @@
-﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="WebCRUDAdminRest.aspx.cs" Inherits="RestauranteWeb.WebCRUDAdminRest" %>
+﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/RestAdm.Master" AutoEventWireup="true" CodeBehind="WebCRUDAdminRest.aspx.cs" Inherits="RestauranteWeb.WebCRUDAdminRest" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>CRUD Administrador Restaurante</title>
-    <style type="text/css">
-        body{
-            background-color: cadetblue;
-        }
-        .textbox{
-            width: 500px;
-        }
-        .auto-style1{
-            padding-left:100px;
-        }
-        </style>
-
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css"/>
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap-theme.min.css"/>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="~/assets/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <form id="formCRUDAdminRest" runat="server">
-    <div>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <div>
     <br /><br />
         <table style="width:100%;">
                 <tr class="formulario">
                 <td class="auto-style1">
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Editar Admins"></asp:Label>
                 </td>
                     <td class="input-group">
                         <asp:TextBox ID="textBoxUsuario" runat="server" PlaceHolder="Usuario" style="margin-top: 0px" CssClass="textbox"></asp:TextBox>
@@ -64,6 +41,10 @@
 
         </table>
     </div>
-    </form>
-</body>
-</html>
+    <link href="css/locastyle.css" rel="stylesheet" type="text/css"/>
+            <link href="css/style.css" rel="stylesheet" type="text/css" />
+            <link href="css/StyleSheet1.css" rel="stylesheet" />
+            <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png"/>
+            <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png"/>
+</asp:Content>
+

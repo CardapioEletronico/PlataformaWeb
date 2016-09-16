@@ -70,6 +70,8 @@
                 <ul>
                     <li><a href="WebCRUDCardapio.aspx" class="ls-ico-list">Gerenciamento de Cardápios</a></li>
                     <li><a href="WebCRUDFila.aspx" class="ls-ico-list">Gerenciamento de Filas</a></li>
+                    <li><a href="WebCRUDMesa.aspx" class="ls-ico-list">Gerenciamento de Mesas</a></li>
+                    <li><a href="WebCRUDProduto.aspx" class="ls-ico-list">Gerenciamento de Produtos</a></li>
                 </ul>
               </nav>
             </aside>
