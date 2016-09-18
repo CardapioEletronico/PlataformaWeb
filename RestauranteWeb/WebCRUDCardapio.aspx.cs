@@ -36,8 +36,6 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            
-
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);

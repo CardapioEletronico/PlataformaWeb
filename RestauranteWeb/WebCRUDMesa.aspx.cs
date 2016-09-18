@@ -14,43 +14,24 @@ namespace RestauranteWeb
     {
         private string ip = "http://10.21.0.137";
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Login"] == null)
+            {
+                Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginAdmRest.aspx';</script>)");
+            }
+            else
+            {
+                Label titulo = Master.FindControl("titulo") as Label;
+                titulo.Text = "Gerenciamento de Mesas";
+                Label labelu = Master.FindControl("LabelUsuario") as Label;
+                if (Session["Login"] != null) labelu.Text = Session["Login"].ToString();
+            }
+        }
+
         protected async void Page_Load(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("20131011110061/api/mesa");
-
-            var str = response.Content.ReadAsStringAsync().Result;
-            //ERROOOORR
-            List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
-
-            Label1.Text = "<h3>Mesa</h3>";
-            foreach (Models.Mesa x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString() + "  -";
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Restaurante_id.ToString();
-                TableCell tc4 = new TableCell();
-                //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
-                tc4.Text = x.Disponivel.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                tRow.Cells.Add(tc4);
-                Table1.Rows.Add(tRow);
-            }
-           if(!IsPostBack) DropRest();
-
+            Carregar();
         }
 
         public async void DropRest()
@@ -76,45 +57,11 @@ namespace RestauranteWeb
             Restaurantes.DataValueField = "Id";
             Restaurantes.DataBind();
 
-
         }
 
-        protected async void btnSelect_Click(object sender, EventArgs e)
+        protected void btnSelect_Click(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
-
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
-            Table1.Rows.Clear();
-            //GridView1.AutoGenerateColumns = true;
-            //GridView1.DataSource = obj;
-            //Label1.Text = str;
-            foreach (Models.Mesa x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Restaurante_id.ToString();
-                TableCell tc4 = new TableCell();
-                //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
-                tc4.Text = x.Disponivel.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                tRow.Cells.Add(tc4);
-                Table1.Rows.Add(tRow);
-            }
+            Carregar();
         }
 
         protected async void btnInsert_Click(object sender, EventArgs e)
@@ -151,32 +98,7 @@ namespace RestauranteWeb
             await httpClient.PostAsync("/20131011110061/api/mesa", content);
 
 
-            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
-            Table1.Rows.Clear();
-            foreach (Models.Mesa x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Restaurante_id.ToString();
-                TableCell tc4 = new TableCell();
-                //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
-                tc4.Text = x.Disponivel.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                tRow.Cells.Add(tc4);
-                Table1.Rows.Add(tRow);
-            }
+            Carregar();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
@@ -193,14 +115,10 @@ namespace RestauranteWeb
             };
 
             if (CheckBoxList1.SelectedItem.Text == "Sim")
-            {
                 f.Disponivel = true;
-            }
 
             else
-            {
                 f.Disponivel = false;
-            }
 
             string s = "=" + JsonConvert.SerializeObject(f);
 
@@ -209,34 +127,7 @@ namespace RestauranteWeb
             //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
             await httpClient.PutAsync("/20131011110029/api/mesa/" + f.Id, content);
 
-
-            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
-            Table1.Rows.Clear();
-
-            foreach (Models.Mesa x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Restaurante_id.ToString();
-                TableCell tc4 = new TableCell();
-                //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
-                tc4.Text = x.Disponivel.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                tRow.Cells.Add(tc4);
-                Table1.Rows.Add(tRow);
-            }
+            Carregar();
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
@@ -248,13 +139,23 @@ namespace RestauranteWeb
             //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
             await httpClient.DeleteAsync("/20131011110029/api/mesa/" + textBoxId.Text);
 
+            Carregar();
+        }
 
+        protected async void Carregar()
+        {
+            int idRest = Convert.ToInt16(Session["idRest"]);
+            HttpClient httpClient = new HttpClient();
 
-            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("20131011110061/api/mesa");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
-            Table1.Rows.Clear();
-            foreach (Models.Mesa x in obj)
+
+            var ListMesas = from mesa in obj where mesa.Restaurante_id == idRest select mesa;
+
+            Label1.Text = "<h3>Mesa</h3>";
+            foreach (Models.Mesa x in ListMesas)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
@@ -263,7 +164,7 @@ namespace RestauranteWeb
                 TableCell tc = new TableCell();
                 tc.Text = x.Id.ToString() + "  -";
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString();
+                tc2.Text = x.Numero.ToString() + "  -";
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Restaurante_id.ToString();
                 TableCell tc4 = new TableCell();
@@ -276,6 +177,8 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc4);
                 Table1.Rows.Add(tRow);
             }
+            if (!IsPostBack) DropRest();
+
         }
     }
 }

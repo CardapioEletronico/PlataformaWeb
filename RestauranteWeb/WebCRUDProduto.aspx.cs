@@ -13,36 +13,25 @@ namespace RestauranteWeb
     public partial class CRUDProduto : System.Web.UI.Page
     {
         private string ip = "http://10.21.0.137";
-        protected async void Page_Load(object sender, EventArgs e)
+
+        protected void Page_PreInit(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/produto");
-
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
-
-            Label1.Text = "<h3>Produtos</h3>";
-            foreach (Models.Produto x in obj)
+            if (Session["Login"] == null)
             {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString() + "  -";
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Cardapio_id.ToString();
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                Table1.Rows.Add(tRow);
+                Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginAdmRest.aspx';</script>)");
             }
-            if (!IsPostBack) DropRest();
+            else
+            {
+                Label titulo = Master.FindControl("titulo") as Label;
+                titulo.Text = "Gerenciamento de Produtos";
+                Label labelu = Master.FindControl("LabelUsuario") as Label;
+                if (Session["Login"] != null) labelu.Text = Session["Login"].ToString();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Carregar();
         }
 
         public async void DropRest()
@@ -63,38 +52,9 @@ namespace RestauranteWeb
 
         }
 
-        protected async void btnSelect_Click(object sender, EventArgs e)
+        protected void btnSelect_Click(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/produto");
-
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
-            Table1.Rows.Clear();
-            //GridView1.AutoGenerateColumns = true;
-            //GridView1.DataSource = obj;
-            //Label1.Text = str;
-            foreach (Models.Produto x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Cardapio_id.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                Table1.Rows.Add(tRow);
-            }
+            Carregar();
         }
 
         protected async void btnInsert_Click(object sender, EventArgs e)
@@ -121,28 +81,7 @@ namespace RestauranteWeb
 
             await httpClient.PostAsync("/20131011110061/api/cardapio", content);
 
-
-            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
-            Table1.Rows.Clear();
-            foreach (Models.Produto x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Cardapio_id.ToString();
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                Table1.Rows.Add(tRow);
-            }
+            Carregar();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
@@ -174,6 +113,64 @@ namespace RestauranteWeb
 
             //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
             await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
+        }
+
+        protected async void Carregar()
+        {
+            int idRest = Convert.ToInt16(Session["idRest"]);
+            HttpClient httpClient = new HttpClient();
+
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/20131011110061/api/produto");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+
+            var response2 = await httpClient.GetAsync("/20131011110061/api/cardapio");
+            var str2 = response.Content.ReadAsStringAsync().Result;
+            List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+
+            /*List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
+            foreach (Models.Cardapio x in obj2)
+            {
+                if (x.Restaurante_id == idRest)
+                {
+                    obj3.Add(x);
+                }
+            }*/
+
+            var ListaCardapios = from cardapio in obj2 where cardapio.Restaurante_id == idRest select cardapio;
+
+            List<Models.Produto> Produtos = new List<Models.Produto>();
+            foreach (Models.Produto prod in obj)
+            {
+                foreach(Models.Cardapio card in ListaCardapios)
+                {
+                    if(prod.Cardapio_id == card.Id)
+                    {
+                        Produtos.Add(prod);
+                    }
+                }
+            }
+
+            Label1.Text = "<h3>Produtos</h3>";
+            foreach (Models.Produto x in Produtos)
+            {
+                Label lb2 = new Label();
+                lb2.Text = x.ToString();
+                TableRow tRow = new TableRow();
+
+                TableCell tc = new TableCell();
+                tc.Text = x.Id.ToString() + "  -";
+                TableCell tc2 = new TableCell();
+                tc2.Text = x.Descricao.ToString() + "  -";
+                TableCell tc3 = new TableCell();
+                tc3.Text = x.Cardapio_id.ToString();
+                tRow.Cells.Add(tc);
+                tRow.Cells.Add(tc2);
+                tRow.Cells.Add(tc3);
+                Table1.Rows.Add(tRow);
+            }
+            if (!IsPostBack) DropRest();
         }
     }
 }
