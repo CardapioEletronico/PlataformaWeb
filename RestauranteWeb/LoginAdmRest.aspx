@@ -102,6 +102,10 @@
               -webkit-font-smoothing: antialiased;
               -moz-osx-font-smoothing: grayscale;      
             }
+
+            #logo{
+                margin-bottom:100px;
+            }
     </style>
 </head>
 <body>
@@ -109,6 +113,7 @@
 
         <div class="login-page">
           <div class="form">
+                <asp:Label ID="Label1" CssClass="logo" runat="server" Text="LOGO" Font-Names="verdana"></asp:Label>
                 <asp:TextBox ID="TextBoxUsuario" placeholder="Usuário" runat="server" CssClass="ls-login-bg-user ls-field-lg"></asp:TextBox>
                 <asp:TextBox ID="TextBoxSenha"  placeholder="Senha" runat="server" CssClass="ls-login-bg-password ls-field-lg" TextMode="Password"></asp:TextBox>
                 <button runat="server" onServerClick="login_click">login</button>

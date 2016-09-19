@@ -39,7 +39,6 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
 
@@ -94,15 +93,14 @@ namespace RestauranteWeb
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedValue)
-
             };
 
             string s = "=" + JsonConvert.SerializeObject(f);
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
             await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
+
+            Carregar();
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
@@ -113,6 +111,8 @@ namespace RestauranteWeb
 
             //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
             await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
+
+            Carregar();
         }
 
         protected async void Carregar()
@@ -123,46 +123,62 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/produto");
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+            List<Models.Produto> ListaProdutos = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str2 = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
 
-            /*List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
+            List<Models.Cardapio> ListaCardapios = new List<Models.Cardapio>();
             foreach (Models.Cardapio x in obj2)
             {
                 if (x.Restaurante_id == idRest)
                 {
-                    obj3.Add(x);
+                    ListaCardapios.Add(x);
                 }
-            }*/
+            }
 
-            var ListaCardapios = from cardapio in obj2 where cardapio.Restaurante_id == idRest select cardapio;
+            //var ListaCardapios = from cardapio in obj2 where cardapio.Restaurante_id == idRest select cardapio;
 
             List<Models.Produto> Produtos = new List<Models.Produto>();
-            foreach (Models.Produto prod in obj)
+            foreach (Models.Produto prod in ListaProdutos)
             {
                 foreach(Models.Cardapio card in ListaCardapios)
                 {
                     if(prod.Cardapio_id == card.Id)
                     {
-                        Produtos.Add(prod);
+                        ListaProdutos.Add(prod);
                     }
                 }
             }
 
+            /*TableHeaderRow th = new TableHeaderRow();
+            TableHeaderCell thc = new TableHeaderCell();
+            thc.Text = "ID";
+
+            TableHeaderCell thc1 = new TableHeaderCell();
+            thc1.Text = "Descricao";
+
+            TableHeaderCell thc2 = new TableHeaderCell();
+            thc2.Text = "Cardapio";
+
+            th.Cells.Add(thc);
+            th.Cells.Add(thc1);
+            th.Cells.Add(thc2);
+
+            Table1.Rows.Add(th);*/
+
             Label1.Text = "<h3>Produtos</h3>";
-            foreach (Models.Produto x in Produtos)
+            foreach (Models.Produto x in ListaProdutos)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
                 TableRow tRow = new TableRow();
 
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Id.ToString();
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString() + "  -";
+                tc2.Text = x.Descricao.ToString();
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Cardapio_id.ToString();
                 tRow.Cells.Add(tc);

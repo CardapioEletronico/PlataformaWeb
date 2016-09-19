@@ -155,6 +155,28 @@ namespace RestauranteWeb
             var ListMesas = from mesa in obj where mesa.Restaurante_id == idRest select mesa;
 
             Label1.Text = "<h3>Mesa</h3>";
+
+
+            TableHeaderRow th = new TableHeaderRow();
+            TableHeaderCell thc = new TableHeaderCell();
+            thc.Text = "ID";
+
+            TableHeaderCell thc1 = new TableHeaderCell();
+            thc1.Text = "Numero";
+
+            TableHeaderCell thc2 = new TableHeaderCell();
+            thc2.Text = "Restaurante";
+
+            TableHeaderCell thc3 = new TableHeaderCell();
+            thc3.Text = "Disponível";
+
+            th.Cells.Add(thc);
+            th.Cells.Add(thc1);
+            th.Cells.Add(thc2);
+            th.Cells.Add(thc3);
+
+            Table1.Rows.Add(th);
+
             foreach (Models.Mesa x in ListMesas)
             {
                 Label lb2 = new Label();
@@ -162,9 +184,9 @@ namespace RestauranteWeb
                 TableRow tRow = new TableRow();
 
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Id.ToString();
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString() + "  -";
+                tc2.Text = x.Numero.ToString();
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Restaurante_id.ToString();
                 TableCell tc4 = new TableCell();

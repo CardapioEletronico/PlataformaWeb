@@ -147,15 +147,32 @@ namespace RestauranteWeb
                         obj4.Add(y);
             }
 
+
+            TableHeaderRow th = new TableHeaderRow();
+            TableHeaderCell thc = new TableHeaderCell();
+            thc.Text = "ID";
+
+            TableHeaderCell thc1 = new TableHeaderCell();
+            thc1.Text = "Cardapio_ID";
+
+            TableHeaderCell thc2 = new TableHeaderCell();
+            thc2.Text = "Descricao";
+
+            th.Cells.Add(thc);
+            th.Cells.Add(thc1);
+            th.Cells.Add(thc2);
+
+            Table1.Rows.Add(th);
+
             foreach (Models.Fila x in obj4)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
                 TableRow tRow = new TableRow();
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Id.ToString();
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString() + "  -";
+                tc2.Text = x.Descricao.ToString();
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Cardapio_id.ToString();
                 tRow.Cells.Add(tc);

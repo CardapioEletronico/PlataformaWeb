@@ -358,3 +358,43 @@ C:\POS\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
 C:\POS\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\POS\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\POS\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\ApplicationInsights.config
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\csc.exe
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\vbc.exe
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\RestauranteWeb.dll.config
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\RestauranteWeb.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\RestauranteWeb.pdb
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.Web.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Newtonsoft.Json.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\System.Net.Http.Extensions.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\System.Net.Http.Primitives.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.Web.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\Newtonsoft.Json.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\System.Net.Http.Extensions.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\bin\System.Net.Http.Primitives.xml
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
+C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb

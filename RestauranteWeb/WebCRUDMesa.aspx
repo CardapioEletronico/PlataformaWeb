@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-        <asp:Table ID="Table1" runat="server" style="margin-left: 0px">
+        <asp:Table ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
         </asp:Table>
                 </td>
                 <td>&nbsp;</td>
