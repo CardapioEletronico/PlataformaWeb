@@ -8,16 +8,15 @@
                         <td>
                             <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                             <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
-                            <asp:DropDownList CssClass="ls-dropdown-nav" ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>
-                            
+                            <!--<asp:DropDownList CssClass="ls-dropdown-nav" ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>-->
                         </td>
                     
                         <td class="auto-style1">&nbsp;</td>
                         <td>
-                            <asp:Button ID="btnSelect" runat="server" Text="Select" OnClick="btnSelect_Click" />
-                            <asp:Button ID="btnInsert" runat="server" Text="Insert" OnClick="btnInsert_Click" />
-                            <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
+                            <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
+                            <asp:Button ID="btnInsert"  CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
+                            <asp:Button ID="btnUpdate"  CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
+                            <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
                         </td>
                     </tr>
 

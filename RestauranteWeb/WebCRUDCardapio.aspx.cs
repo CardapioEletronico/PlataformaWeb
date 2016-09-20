@@ -13,6 +13,7 @@ namespace RestauranteWeb
 {
     public partial class WebCRUDCardapio : System.Web.UI.Page
     {
+        
         private string ip = "http://10.21.0.137";
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace RestauranteWeb
             Reload();
         }
 
-        public async void DropRest()
+        /*public async void DropRest()
         {
             HttpClient httpClient = new HttpClient();
 
@@ -50,8 +51,7 @@ namespace RestauranteWeb
             Restaurantes.DataTextField = "Descricao";
             Restaurantes.DataValueField = "Id";
             Restaurantes.DataBind();
-
-        }
+        }*/
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
@@ -61,34 +61,33 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
+            int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
-            httpClient.BaseAddress = new Uri(ip);
-            Models.Cardapio f = new Models.Cardapio
-            {
-                Id = int.Parse(textBoxId.Text),
-                Descricao = textBoxDesc.Text,
-                Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
-            };
+            if(textBoxDesc.Text != "") { 
 
-            List<Models.Cardapio> fl = new List<Models.Cardapio>();
+                httpClient.BaseAddress = new Uri(ip);
+                Models.Cardapio f = new Models.Cardapio
+                {
+                    Descricao = textBoxDesc.Text,
+                    Restaurante_id = idRest
+                };
 
-            fl.Add(f);
+                string s = JsonConvert.SerializeObject(f);
 
-            string s = "=" + JsonConvert.SerializeObject(fl);
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                await httpClient.PostAsync("/20131011110061/api/cardapio", content);
 
-            await httpClient.PostAsync("/20131011110061/api/cardapio", content);
-
-            Table1.Rows.Clear();
+                Table1.Rows.Clear();
+            }
 
             Reload();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
@@ -96,15 +95,11 @@ namespace RestauranteWeb
             {
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
-                Restaurante_id = int.Parse(Restaurantes.SelectedValue)
-                
+                Restaurante_id = idRest
             };
 
-            string s = "=" + JsonConvert.SerializeObject(f);
+            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
 
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
             await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
 
             Table1.Rows.Clear();
@@ -153,6 +148,7 @@ namespace RestauranteWeb
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
             thc.Text = "ID";
+            thc.Width = 150;
 
             TableHeaderCell thc1 = new TableHeaderCell();
             thc1.Text = "Descricao";
@@ -165,7 +161,6 @@ namespace RestauranteWeb
             th.Cells.Add(thc2);
 
             Table1.Rows.Add(th);
-
 
             foreach (Models.Cardapio x in obj3)
             {
@@ -194,7 +189,7 @@ namespace RestauranteWeb
 
                 Table1.Rows.Add(tRow);
             }
-            if (!IsPostBack) DropRest();
+            //if (!IsPostBack) DropRest();
         }
     }
 }

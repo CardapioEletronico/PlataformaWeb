@@ -63,22 +63,17 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
             {
-                Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
                 NomeDescricao = textBoxNomeDescr.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedItem.Value),
                 Preco = double.Parse(textBoxPreco.Text),
             };
 
-            List<Models.Produto> fl = new List<Models.Produto>();
+            string s = JsonConvert.SerializeObject(f);
 
-            fl.Add(f);
+            var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            string s = "=" + JsonConvert.SerializeObject(fl);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            await httpClient.PostAsync("/20131011110061/api/cardapio", content);
+            await httpClient.PostAsync("/20131011110061/api/produto", content);
 
             Carregar();
         }
@@ -90,15 +85,12 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
             {
-                Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedValue)
             };
 
-            string s = "=" + JsonConvert.SerializeObject(f);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
+            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/produto/" + f.Id, content);
 
             Carregar();
         }
@@ -109,8 +101,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
-            await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
+            await httpClient.DeleteAsync("/20131011110061/api/produto/" + textBoxId.Text);
 
             Carregar();
         }
@@ -123,36 +114,36 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/produto");
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Produto> ListaProdutos = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/cardapio");
-            var str2 = response.Content.ReadAsStringAsync().Result;
-            List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str2);
 
-            List<Models.Cardapio> ListaCardapios = new List<Models.Cardapio>();
-            foreach (Models.Cardapio x in obj2)
+            List<Models.Cardapio> Cardapios = new List<Models.Cardapio>();
+            foreach (Models.Cardapio car in obj2)
             {
-                if (x.Restaurante_id == idRest)
+                if (car.Restaurante_id == idRest)
                 {
-                    ListaCardapios.Add(x);
+                    Cardapios.Add(car);
                 }
             }
 
-            //var ListaCardapios = from cardapio in obj2 where cardapio.Restaurante_id == idRest select cardapio;
-
             List<Models.Produto> Produtos = new List<Models.Produto>();
-            foreach (Models.Produto prod in ListaProdutos)
+            foreach (Models.Produto prod in obj)
             {
-                foreach(Models.Cardapio card in ListaCardapios)
+                foreach(Models.Cardapio card in Cardapios)
                 {
                     if(prod.Cardapio_id == card.Id)
                     {
-                        ListaProdutos.Add(prod);
+                        Produtos.Add(prod);
                     }
                 }
             }
 
-            /*TableHeaderRow th = new TableHeaderRow();
+            Table1.Rows.Clear();
+
+            TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
             thc.Text = "ID";
 
@@ -165,11 +156,9 @@ namespace RestauranteWeb
             th.Cells.Add(thc);
             th.Cells.Add(thc1);
             th.Cells.Add(thc2);
+            Table1.Rows.Add(th);
 
-            Table1.Rows.Add(th);*/
-
-            Label1.Text = "<h3>Produtos</h3>";
-            foreach (Models.Produto x in ListaProdutos)
+            foreach (Models.Produto x in Produtos)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();

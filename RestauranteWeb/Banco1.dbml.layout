@@ -80,36 +80,36 @@
         <classShapeMoniker Id="7777383e-8987-4d76-8f5e-4bfb32dda03b" />
       </nodes>
     </associationConnector>
-    <classShape Id="b29928fd-ed36-4909-96a6-b3368f79a5ec" absoluteBounds="2, 0.5, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/Banco1DataContext/Restaurante" />
-      <nestedChildShapes>
-        <elementListCompartment Id="06b8552d-9115-4675-b9f7-576bbf260632" absoluteBounds="2.0149999999999997, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(4 : 1.09699625651042); (7.875 : 1.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/Banco1DataContext/Restaurante/Restaurante_Cardapio" />
-      <nodes>
-        <classShapeMoniker Id="b29928fd-ed36-4909-96a6-b3368f79a5ec" />
-        <classShapeMoniker Id="10010da9-fc56-489e-ad6e-4f5feb13c122" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 1.69399251302083); (3.75 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/Banco1DataContext/Restaurante/Restaurante_Mesa" />
-      <nodes>
-        <classShapeMoniker Id="b29928fd-ed36-4909-96a6-b3368f79a5ec" />
-        <classShapeMoniker Id="0532fd83-3649-4374-8ba1-c607df5b562b" />
-      </nodes>
-    </associationConnector>
     <classShape Id="3012d912-7f47-4976-87ff-651d34b843a9" absoluteBounds="1, 2.875, 2, 1.3862939453125">
       <DataClassMoniker Name="/Banco1DataContext/AdminRest" />
       <nestedChildShapes>
         <elementListCompartment Id="a048228d-dede-4834-9f24-1075188c4c7d" absoluteBounds="1.0150000000000001, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 1.69399251302083); (2.5 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="cd2b8afb-afc2-41a1-801d-0d6d1c4825c0" absoluteBounds="1.5, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/Banco1DataContext/Restaurante" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3efcb200-4768-463a-87a4-46ff155a51f5" absoluteBounds="1.5150000000000001, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.5 : 1.09699625651042); (7.875 : 1.09699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Banco1DataContext/Restaurante/Restaurante_Cardapio" />
+      <nodes>
+        <classShapeMoniker Id="cd2b8afb-afc2-41a1-801d-0d6d1c4825c0" />
+        <classShapeMoniker Id="10010da9-fc56-489e-ad6e-4f5feb13c122" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 1.69399251302083); (2.5 : 2); (4.5 : 2); (4.5 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Banco1DataContext/Restaurante/Restaurante_Mesa" />
+      <nodes>
+        <classShapeMoniker Id="cd2b8afb-afc2-41a1-801d-0d6d1c4825c0" />
+        <classShapeMoniker Id="0532fd83-3649-4374-8ba1-c607df5b562b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.9375 : 1.69399251302083); (1.9375 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/Banco1DataContext/Restaurante/Restaurante_AdminRest" />
       <nodes>
-        <classShapeMoniker Id="b29928fd-ed36-4909-96a6-b3368f79a5ec" />
+        <classShapeMoniker Id="cd2b8afb-afc2-41a1-801d-0d6d1c4825c0" />
         <classShapeMoniker Id="3012d912-7f47-4976-87ff-651d34b843a9" />
       </nodes>
     </associationConnector>

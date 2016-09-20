@@ -20,7 +20,7 @@
         <table style="width:100%;">
             <tr>
                 <td class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
         <asp:TextBox ID="textBoxId" runat="server" style="margin-top: 0px">Id</asp:TextBox>
@@ -30,10 +30,10 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Select" />
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Insert" />
-        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Update" />
-        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Delete" />
+                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Select" />
+                    <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Insert" />
+                    <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Update" />
+                    <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Delete" />
                 </td>
             </tr>
             <tr>

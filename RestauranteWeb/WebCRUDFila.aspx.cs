@@ -39,16 +39,15 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
 
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
-            Restaurantes.DataSource = obj;
-            Restaurantes.DataTextField = "Descricao";
-            Restaurantes.DataValueField = "Id";
-            Restaurantes.DataBind();
+            Cardapios.DataSource = obj;
+            Cardapios.DataTextField = "Descricao";
+            Cardapios.DataValueField = "Id";
+            Cardapios.DataBind();
 
         }
 
@@ -66,7 +65,7 @@ namespace RestauranteWeb
             {
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
-                Cardapio_id = int.Parse(Restaurantes.SelectedValue)
+                Cardapio_id = int.Parse(Cardapios.SelectedValue)
             };
 
             List<Models.Fila> fl = new List<Models.Fila>();
@@ -92,7 +91,7 @@ namespace RestauranteWeb
             {
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
-                Cardapio_id = int.Parse(Restaurantes.SelectedValue)
+                Cardapio_id = int.Parse(Cardapios.SelectedValue)
 
             };
 
@@ -151,12 +150,13 @@ namespace RestauranteWeb
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
             thc.Text = "ID";
+            thc.Width = 150;
 
             TableHeaderCell thc1 = new TableHeaderCell();
-            thc1.Text = "Cardapio_ID";
+            thc1.Text = "Descricao";
 
             TableHeaderCell thc2 = new TableHeaderCell();
-            thc2.Text = "Descricao";
+            thc2.Text = "Id Cardapio";
 
             th.Cells.Add(thc);
             th.Cells.Add(thc1);

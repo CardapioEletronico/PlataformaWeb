@@ -7,7 +7,7 @@
       <Column Name="Restaurante_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Cardapio_Fila" Member="Filas" ThisKey="Id" OtherKey="Cardapio_id" Type="Fila" />
       <Association Name="Cardapio_Produto" Member="Produtos" ThisKey="Id" OtherKey="Cardapio_id" Type="Produto" />
-      <Association Name="Restaurante_Cardapio" Member="Restaurante" ThisKey="Restaurante_id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
+      <Association Name="Restaurante_Cardapio" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Fila" Member="Filas">
@@ -38,7 +38,7 @@
       <Column Name="Disponivel" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Restaurante_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Mesa_Pedido" Member="Pedidos" ThisKey="Id" OtherKey="Mesa_Id" Type="Pedido" />
-      <Association Name="Restaurante_Mesa" Member="Restaurante" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
+      <Association Name="Restaurante_Mesa" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Pedido" Member="Pedidos">
@@ -66,21 +66,21 @@
       <Association Name="Fila_Produto" Member="Fila" ThisKey="Fila_id" OtherKey="Id" Type="Fila" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Restaurante" Member="Restaurantes">
-    <Type Name="Restaurante">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Restaurante_Cardapio" Member="Cardapios" ThisKey="Id" OtherKey="Restaurante_id" Type="Cardapio" />
-      <Association Name="Restaurante_Mesa" Member="Mesas" ThisKey="Id" OtherKey="Restaurante_Id" Type="Mesa" />
-      <Association Name="Restaurante_AdminRest" Member="AdminRests" AccessModifier="Internal" ThisKey="Id" OtherKey="Restaurante_Id" Type="AdminRest" />
-    </Type>
-  </Table>
   <Table Name="dbo.AdminRest" Member="AdminRests">
     <Type Name="AdminRest">
       <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Senha" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Restaurante_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Restaurante_AdminRest" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" />
+      <Association Name="Restaurante_AdminRest" Member="Restaurante" AccessModifier="Internal" ThisKey="Restaurante_Id" OtherKey="Id" Type="Restaurante" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Restaurante" Member="Restaurantes">
+    <Type Name="Restaurante">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Restaurante_Cardapio" Member="Cardapios" AccessModifier="Internal" ThisKey="Id" OtherKey="Restaurante_id" Type="Cardapio" />
+      <Association Name="Restaurante_Mesa" Member="Mesas" AccessModifier="Internal" ThisKey="Id" OtherKey="Restaurante_Id" Type="Mesa" />
+      <Association Name="Restaurante_AdminRest" Member="AdminRests" AccessModifier="Internal" ThisKey="Id" OtherKey="Restaurante_Id" Type="AdminRest" />
     </Type>
   </Table>
 </Database>

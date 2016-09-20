@@ -2,33 +2,35 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div>
-    <br /><br />
         <table style="width:100%;">
-            <tr>
+            <tr style="float:left">
                 <td class="auto-style1">
                 </td>
                 <td>
-        <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
-        <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
-                    <asp:DropDownList ID="Restaurantes" runat="server" AutoPostBack="True">
+                    <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
+                    <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
+                    <asp:DropDownList cssClass="ls-dropdown" style="height: 33px;" ID="Cardapios" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
                 </td>
-            </tr>
-            <tr>
+            
                 <td class="auto-style1">&nbsp;</td>
                 <td>
-        <asp:Button ID="btnSelect" runat="server" Text="Select" OnClick="btnSelect_Click" />
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" OnClick="btnInsert_Click" />
-        <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
-        <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
+                    <asp:Button ID="btnSelect" CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
+                 </td>
+                <td>
+                    <asp:Button ID="btnInsert" CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
+                    </td>
+                <td>
+                    <asp:Button ID="btnUpdate" CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
+                    </td><td>
+                    <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
                 </td>
             </tr>
             <tr>
                 <td class="auto-style1">
-        <asp:Table ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
-        </asp:Table>
+                    <asp:Table ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
+                    </asp:Table>
                 </td>
                 <td>&nbsp;</td>
             </tr>
