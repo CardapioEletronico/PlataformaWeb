@@ -63,18 +63,13 @@ namespace RestauranteWeb
             httpClient.BaseAddress = new Uri(ip);
             Models.Fila f = new Models.Fila
             {
-                Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedValue)
             };
 
-            List<Models.Fila> fl = new List<Models.Fila>();
+            string s = JsonConvert.SerializeObject(f);
 
-            fl.Add(f);
-
-            string s = "=" + JsonConvert.SerializeObject(fl);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var content = new StringContent(s, Encoding.UTF8, "application/json");
 
             await httpClient.PostAsync("/20131011110061/api/fila", content);
 
@@ -92,12 +87,9 @@ namespace RestauranteWeb
                 Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedValue)
-
             };
 
-            string s = "=" + JsonConvert.SerializeObject(f);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
 
             await httpClient.PutAsync("/20131011110061/api/fila/" + f.Id, content);
 

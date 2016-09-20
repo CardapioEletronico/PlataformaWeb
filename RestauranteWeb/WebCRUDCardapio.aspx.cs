@@ -64,6 +64,7 @@ namespace RestauranteWeb
             int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
+
             if(textBoxDesc.Text != "") { 
 
                 httpClient.BaseAddress = new Uri(ip);

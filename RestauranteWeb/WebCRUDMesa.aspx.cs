@@ -45,7 +45,6 @@ namespace RestauranteWeb
 
             List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
 
-            Label1.Text = "<h3>Mesa</h3>";
             /*foreach (Models.Restaurante x in obj)
             {
                 //ID
@@ -75,7 +74,7 @@ namespace RestauranteWeb
                 Numero = textBoxNum.Text,
                 Restaurante_id = int.Parse(Restaurantes.SelectedValue),
                 Disponivel = true        
-                };
+             };
 
             if (CheckBoxList1.SelectedItem.Text == "Sim")
             {
@@ -154,12 +153,10 @@ namespace RestauranteWeb
 
             var ListMesas = from mesa in obj where mesa.Restaurante_id == idRest select mesa;
 
-            Label1.Text = "<h3>Mesa</h3>";
-
-
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
             thc.Text = "ID";
+            thc.Width = 100;
 
             TableHeaderCell thc1 = new TableHeaderCell();
             thc1.Text = "Numero";

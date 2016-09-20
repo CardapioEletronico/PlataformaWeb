@@ -21,9 +21,10 @@
                 <td>
                     <asp:Button ID="btnInsert" CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
                     </td>
-                <td>
+                    <td>
                     <asp:Button ID="btnUpdate" CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
-                    </td><td>
+                    </td>
+                <td>
                     <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
                 </td>
             </tr>
