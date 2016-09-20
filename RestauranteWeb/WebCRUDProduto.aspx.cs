@@ -34,23 +34,6 @@ namespace RestauranteWeb
             Carregar();
         }
 
-        public async void DropRest()
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
-
-            Cardapios.DataSource = obj;
-            Cardapios.DataTextField = "Descricao";
-            Cardapios.DataValueField = "Id";
-            Cardapios.DataBind();
-
-        }
-
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             Carregar();
@@ -122,30 +105,21 @@ namespace RestauranteWeb
 
             List<Models.Cardapio> Cardapios = new List<Models.Cardapio>();
             foreach (Models.Cardapio car in obj2)
-            {
                 if (car.Restaurante_id == idRest)
-                {
                     Cardapios.Add(car);
-                }
-            }
 
             List<Models.Produto> Produtos = new List<Models.Produto>();
             foreach (Models.Produto prod in obj)
-            {
                 foreach(Models.Cardapio card in Cardapios)
-                {
                     if(prod.Cardapio_id == card.Id)
-                    {
                         Produtos.Add(prod);
-                    }
-                }
-            }
 
             Table1.Rows.Clear();
 
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
             thc.Text = "ID";
+            thc.Width = 100;
 
             TableHeaderCell thc1 = new TableHeaderCell();
             thc1.Text = "Descricao";
@@ -176,6 +150,23 @@ namespace RestauranteWeb
                 Table1.Rows.Add(tRow);
             }
             if (!IsPostBack) DropRest();
+        }
+
+        public async void DropRest()
+        {
+            HttpClient httpClient = new HttpClient();
+
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
+            var str = response.Content.ReadAsStringAsync().Result;
+
+            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+
+            Cardapios.DataSource = obj;
+            Cardapios.DataTextField = "Descricao";
+            Cardapios.DataValueField = "Id";
+            Cardapios.DataBind();
+
         }
     }
 }
