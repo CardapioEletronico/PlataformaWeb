@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -155,6 +156,27 @@ namespace RestauranteWeb
             th.Cells.Add(thc1);
             th.Cells.Add(thc2);
             th.Cells.Add(thc3);
+
+
+            //DataTable dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
+
+            //var table = JsonConvert.DeserializeObject<DataTable>(str);
+            GridView1.DataSource = ListMesas;
+            GridView1.DataBind();
+
+
+            /*string json = data; //"data" should contain your JSON 
+            var table = JsonConvert.DeserializeObject<DataTable>(json);
+            return table;
+            }
+            now use the function as a datasource to your gridview
+
+            protected void btn1_Click(object sender, EventArgs e)
+                {
+                    GridView1.DataSource = DerializeDataTable();
+                    GridView1.DataBind();
+                }*/
+
 
             Table1.Rows.Add(th);
 

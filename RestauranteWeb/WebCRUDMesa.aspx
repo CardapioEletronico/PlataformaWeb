@@ -32,6 +32,16 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
+                <tr>
+                    <asp:GridView cssClass="ls-table ls-bg-header" ID="GridView1" runat="server" AutoGenerateColumns="false" AutoGenerateSelectButton="true">
+                        <Columns>
+                          <asp:Boundfield datafield="Id" headertext="Id"><ItemStyle Width="40"></ItemStyle></asp:Boundfield>
+                          <asp:Boundfield datafield="Numero" headertext="Número"/>
+                          <asp:Boundfield datafield="Disponivel" headertext="Disponível"/>
+                        </Columns>
+
+                    </asp:GridView>
+                </tr>
             </table>
         </div>
         <link href="css/locastyle.css" rel="stylesheet" type="text/css" />
