@@ -33,11 +33,47 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                     <!--AutoGenerateSelectButton="true"-->
                     <asp:GridView cssClass="ls-table ls-bg-header" ID="GridView1" runat="server" AutoGenerateColumns="false" AutoGenerateSelectButton="true">
                         <Columns>
-                          <asp:Boundfield datafield="Id" headertext="Id"><ItemStyle Width="40"></ItemStyle></asp:Boundfield>
-                          <asp:Boundfield datafield="Numero" headertext="Número"/>
-                          <asp:Boundfield datafield="Disponivel" headertext="Disponível"/>
+                            <asp:TemplateField HeaderText="Id" SortExpression="Id">
+                                <HeaderStyle Width="100" />
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox1" runat="server" 
+                                    Text='<%# Bind("Id") %>'></asp:TextBox>
+                                </EditItemTemplate>
+
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("Id") %>'></asp:Label>
+                                </ItemTemplate>
+                           </asp:TemplateField>
+
+                           <asp:TemplateField HeaderText="Disponível" SortExpression="Disponivel">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox1" runat="server" 
+                                    Text='<%# Bind("Disponivel") %>'></asp:TextBox>
+                                </EditItemTemplate>
+
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("Disponivel") %>'></asp:Label>
+                                </ItemTemplate>
+                           </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="Número" SortExpression="Numero">
+                                <HeaderStyle Width="100" />
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox1" runat="server" 
+                                    Text='<%# Bind("Numero") %>'></asp:TextBox>
+                                </EditItemTemplate>
+
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("Numero") %>'></asp:Label>
+                                </ItemTemplate>
+                           </asp:TemplateField>
+
                         </Columns>
 
                     </asp:GridView>
