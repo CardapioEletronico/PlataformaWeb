@@ -29,12 +29,12 @@ namespace RestauranteWeb
             }
         }
 
-        protected async void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             Carregar();
         }
 
-        public async void DropRest()
+        /*public async void DropRest()
         {
             HttpClient httpClient = new HttpClient();
 
@@ -50,13 +50,13 @@ namespace RestauranteWeb
                 //ID
                 //Restaurantes.Items.Add(x.Id.ToString());
                 Restaurantes.Items.Add(x.Descricao.ToString());
-            }*/
+            }
             Restaurantes.DataSource = obj;
             Restaurantes.DataTextField = "Descricao";
             Restaurantes.DataValueField = "Id";
             Restaurantes.DataBind();
 
-        }
+        }*/
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
@@ -65,38 +65,26 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
+            int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
           
             httpClient.BaseAddress = new Uri(ip);
             Models.Mesa f = new Models.Mesa
             {
-                Id = int.Parse(textBoxId.Text),
                 Numero = textBoxNum.Text,
-                Restaurante_id = int.Parse(Restaurantes.SelectedValue),
+                Restaurante_id = idRest,
                 Disponivel = true        
              };
 
             if (CheckBoxList1.SelectedItem.Text == "Sim")
-            {
                 f.Disponivel = true;
-            }
 
             else
-            {
                 f.Disponivel = false;
-            }
 
-            List<Models.Mesa> fl = new List<Models.Mesa>();
-
-            fl.Add(f);
-
-            string s = "=" + JsonConvert.SerializeObject(fl);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
+            string s = JsonConvert.SerializeObject(f);
+            var content = new StringContent(s, Encoding.UTF8, "application/json");
             await httpClient.PostAsync("/20131011110061/api/mesa", content);
-
-
             Carregar();
         }
 
@@ -119,13 +107,9 @@ namespace RestauranteWeb
             else
                 f.Disponivel = false;
 
-            string s = "=" + JsonConvert.SerializeObject(f);
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            //await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
-            await httpClient.PutAsync("/20131011110029/api/mesa/" + f.Id, content);
-
+            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/mesa/" + f.Id, content);
+      
             Carregar();
         }
 
@@ -135,14 +119,14 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            //await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
-            await httpClient.DeleteAsync("/20131011110029/api/mesa/" + textBoxId.Text);
+            await httpClient.DeleteAsync("/20131011110061/api/mesa/" + textBoxId.Text);
 
             Carregar();
         }
 
         protected async void Carregar()
         {
+            Table1.Rows.Clear();
             int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
@@ -196,7 +180,7 @@ namespace RestauranteWeb
                 tRow.Cells.Add(tc4);
                 Table1.Rows.Add(tRow);
             }
-            if (!IsPostBack) DropRest();
+            //if (!IsPostBack) DropRest();
 
         }
     }

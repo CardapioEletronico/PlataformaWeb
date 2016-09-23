@@ -9,7 +9,7 @@
                     <td>
                         <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px">Id</asp:TextBox>
                         <asp:TextBox ID="textBoxNum" runat="server" PlaceHolder="Descrição" style="margin-top: 0px">Número</asp:TextBox>
-                        <asp:DropDownList ID="Restaurantes" style="height: 33px;" runat="server" AutoPostBack="True"></asp:DropDownList>
+                        <!--<asp:DropDownList ID="Restaurantes" style="height: 33px;" runat="server" AutoPostBack="True"></asp:DropDownList>-->
                         <asp:Label ID="Label2" runat="server" Text="Disponível"></asp:Label>
                         <asp:RadioButtonList style="float:right" ID="CheckBoxList1" runat="server">
                             <asp:ListItem>Sim</asp:ListItem>
