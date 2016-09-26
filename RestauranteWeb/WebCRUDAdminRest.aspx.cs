@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -77,15 +78,43 @@ namespace RestauranteWeb
             Reload();
         }
 
-        protected async void btnInsert_Click(object sender, EventArgs e)
+        public const int SaltByteSize = 24;
+        public const int HashByteSize = 20; // to match the size of the PBKDF2-HMAC-SHA-1 hash 
+        public const int Pbkdf2Iterations = 1000;
+        public const int IterationIndex = 0;
+        public const int SaltIndex = 1;
+        public const int Pbkdf2Index = 2;
+
+        public static string HashPassword(string password)
+        {
+            var cryptoProvider = new RNGCryptoServiceProvider();
+            byte[] salt = new byte[SaltByteSize];
+            cryptoProvider.GetBytes(salt);
+
+            var hash = GetPbkdf2Bytes(password, salt, Pbkdf2Iterations, HashByteSize);
+            return Pbkdf2Iterations + ":" + Convert.ToBase64String(salt) + ":" + Convert.ToBase64String(hash);
+            //return Convert.ToBase64String(hash);
+        }
+
+        private static byte[] GetPbkdf2Bytes(string password, byte[] salt, int iterations, int outputBytes)
+        {
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt);
+            pbkdf2.IterationCount = iterations;
+            return pbkdf2.GetBytes(outputBytes);
+        }
+
+
+    protected async void btnInsert_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
+
+            string cu = HashPassword(textBoxSenha.Text);
 
             httpClient.BaseAddress = new Uri(ip);
             Models.AdminRest f = new Models.AdminRest
             {
                 Usuario = textBoxUsuario.Text,
-                Senha = textBoxSenha.Text,
+                Senha = cu,
                 Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
 
