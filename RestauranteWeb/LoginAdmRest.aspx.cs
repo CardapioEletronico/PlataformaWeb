@@ -19,6 +19,9 @@ namespace RestauranteWeb.AdmRest
             
             
         }
+
+        //https://gist.github.com/cmatskas/faee04c7b78afae065e1
+
         protected async void login_click(object Source, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
