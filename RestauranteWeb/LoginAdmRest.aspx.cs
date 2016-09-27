@@ -37,7 +37,6 @@ namespace RestauranteWeb.AdmRest
                 if(x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha))
                 {
                     Session["Login"] = TextBoxUsuario.Text;
-                    Session["s"] = TextBoxSenha.Text;
                     Session["idRest"] = x.Restaurante_id;
                     Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebCRUDCardapio.aspx'; </script>");
                     return;
