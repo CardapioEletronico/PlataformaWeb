@@ -13,42 +13,20 @@ namespace RestauranteWeb
     public partial class WebForm1 : System.Web.UI.Page
     {
         private string ip = "http://10.21.0.137";
-        protected async void Page_Load(object sender, EventArgs e)
+
+
+        protected void Page_Load(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
-
-            //GridView1.AutoGenerateColumns = true;
-            //GridView1.DataSource = obj.ToList();
-            Label1.Text = "<h3>Restaurantes</h3>";
-            foreach (Models.Restaurante x in obj)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-                
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                Table1.Rows.Add(tRow);
-            }
+            Table1.Rows.Clear();
+            Reload();
         }
 
-        protected async void Button1_Click(object sender, EventArgs e)
+        protected void btnSelect_Click(object sender, EventArgs e)
         {
-            Carregar();
+            Reload();
         }
 
-        protected async void Button2_Click(object sender, EventArgs e)
+        protected async void btnInsert_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
@@ -64,10 +42,10 @@ namespace RestauranteWeb
 
             await httpClient.PostAsync("/20131011110061/api/restaurante", content);
 
-            Carregar();
+            Reload();
         }
 
-        protected async void Button3_Click(object sender, EventArgs e)
+        protected async void btnUpdate_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
@@ -82,10 +60,10 @@ namespace RestauranteWeb
 
             await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
 
-            Carregar();
+            Reload();
         }
 
-        protected async void Button4_Click(object sender, EventArgs e)
+        protected async void btnDelete_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
@@ -93,34 +71,54 @@ namespace RestauranteWeb
 
             await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
 
-            Carregar();
+            Reload();
         }
 
-        protected async void Carregar()
+        protected async void Reload()
         {
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
 
-            var str = response.Content.ReadAsStringAsync().Result;
+            var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
 
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
             Table1.Rows.Clear();
-            foreach (Models.Restaurante x in obj)
+
+            TableHeaderRow th = new TableHeaderRow();
+            TableHeaderCell thc = new TableHeaderCell();
+            thc.Text = "ID";
+            thc.Width = 150;
+
+            TableHeaderCell thc1 = new TableHeaderCell();
+            thc1.Text = "Descricao";
+
+            th.Cells.Add(thc);
+            th.Cells.Add(thc1);
+
+            Table1.Rows.Add(th);
+
+            foreach (Models.Restaurante x in obj2)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
                 TableRow tRow = new TableRow();
 
                 TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString() + "  -";
+                tc.Text = x.Id.ToString();
                 TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
+                tc2.Text = x.Descricao;
+
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc2);
+
+                tRow.BorderStyle = BorderStyle.Ridge;
+                tRow.BorderWidth = 1;
+
                 Table1.Rows.Add(tRow);
             }
+            //if (!IsPostBack) DropRest();
         }
     }
 }

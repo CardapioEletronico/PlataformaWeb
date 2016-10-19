@@ -10,34 +10,34 @@
 namespace RestauranteWeb {
     
     
-    public partial class WebForm1 {
+    public partial class WebCRUDGerentePedidos {
         
         /// <summary>
-        /// textBoxId control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxId;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// textBoxDesc control.
+        /// textBoxUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxDesc;
+        protected global::System.Web.UI.WebControls.TextBox textBoxUsuario;
         
         /// <summary>
-        /// Restaurantes control.
+        /// textBoxSenha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Restaurantes;
+        protected global::System.Web.UI.WebControls.TextBox textBoxSenha;
         
         /// <summary>
         /// btnSelect control.

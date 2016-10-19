@@ -109,6 +109,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LoginAdminSist.aspx" />
     <Content Include="LoginAdmRest.aspx" />
     <Content Include="assets\css\bootstrap-theme.css" />
     <Content Include="assets\css\bootstrap-theme.min.css" />
@@ -122,6 +123,8 @@
     <Content Include="css\StyleSheet1.css" />
     <Content Include="js\jquery-2.0.3.js" />
     <Content Include="js\locastyle.js" />
+    <Content Include="LoginGerentePedido.aspx" />
+    <Content Include="WebCRUDGerentePedidos.aspx" />
     <Content Include="WebCRUDProduto.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -143,6 +146,8 @@
     <Content Include="RestAdm.Master" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebFormSair.aspx" />
+    <Content Include="AdminSistema.Master" />
+    <Content Include="GerentePedidos.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -161,6 +166,27 @@
     <Content Include="WebCRUDRestaurante.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSistema.Master.cs">
+      <DependentUpon>AdminSistema.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSistema.Master.designer.cs">
+      <DependentUpon>AdminSistema.Master</DependentUpon>
+    </Compile>
+    <Compile Include="GerentePedidos.Master.cs">
+      <DependentUpon>GerentePedidos.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerentePedidos.Master.designer.cs">
+      <DependentUpon>GerentePedidos.Master</DependentUpon>
+    </Compile>
+    <Compile Include="LoginAdminSist.aspx.cs">
+      <DependentUpon>LoginAdminSist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginAdminSist.aspx.designer.cs">
+      <DependentUpon>LoginAdminSist.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginAdmRest.aspx.cs">
       <DependentUpon>LoginAdmRest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -173,12 +199,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Banco1.dbml</DependentUpon>
     </Compile>
+    <Compile Include="LoginGerentePedido.aspx.cs">
+      <DependentUpon>LoginGerentePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginGerentePedido.aspx.designer.cs">
+      <DependentUpon>LoginGerentePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminSistema.cs" />
+    <Compile Include="Models\GerentePedido.cs" />
     <Compile Include="RestAdm.Master.cs">
       <DependentUpon>RestAdm.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RestAdm.Master.designer.cs">
       <DependentUpon>RestAdm.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebCRUDGerentePedidos.aspx.cs">
+      <DependentUpon>WebCRUDGerentePedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCRUDGerentePedidos.aspx.designer.cs">
+      <DependentUpon>WebCRUDGerentePedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebCRUDProduto.aspx.cs">
       <DependentUpon>WebCRUDProduto.aspx</DependentUpon>

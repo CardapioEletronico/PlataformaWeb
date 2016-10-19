@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RestAdm.master.cs" Inherits="RestauranteWeb.RestAdm" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminSistema.master.cs" Inherits="RestauranteWeb.AdminSistema" %>
 
 <!DOCTYPE html>
 
@@ -68,11 +68,8 @@
 
               <nav class="ls-menu">
                 <ul>
-                    <li><a href="WebCRUDCardapio.aspx" class="ls-ico-list">Gerenciamento de Cardápios</a></li>
-                    <li><a href="WebCRUDFila.aspx" class="ls-ico-list">Gerenciamento de Filas</a></li>
-                    <li><a href="WebCRUDMesa.aspx" class="ls-ico-list">Gerenciamento de Mesas</a></li>
-                    <li><a href="WebCRUDProduto.aspx" class="ls-ico-list">Gerenciamento de Produtos</a></li>
-                    <li><a href="WebCRUDGerentePedidos.aspx" class="ls-ico-list">Gerenciamento de Pedidos</a></li>
+                    <li><a href="WebCRUDAdminRest.aspx" class="ls-ico-list">Gerenciamento de Admin Restaurante</a></li>
+                    <li><a href="WebCRUDRestaurante.aspx" class="ls-ico-list">Gerenciamento de Restaurantes</a></li>
                 </ul>
               </nav>
             </aside>
