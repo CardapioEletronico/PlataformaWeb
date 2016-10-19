@@ -11,32 +11,14 @@ using System.Web.UI.WebControls;
 
 namespace RestauranteWeb
 {
-    public partial class WebCRUDAdminRest : System.Web.UI.Page
+    public partial class WebCRUDAdminSistema : System.Web.UI.Page
     {
         private string ip = "http://10.21.0.137";
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
             Table1.Rows.Clear();
             Reload();
-        }
-
-        public async void DropRest()
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
-
-            Restaurantes.DataSource = obj;
-            Restaurantes.DataTextField = "Descricao";
-            Restaurantes.DataValueField = "Id";
-            Restaurantes.DataBind();
-
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
@@ -70,21 +52,20 @@ namespace RestauranteWeb
         }
 
 
-    protected async void btnInsert_Click(object sender, EventArgs e)
+        protected async void btnInsert_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
             string cu = HashPassword(textBoxSenha.Text);
 
             httpClient.BaseAddress = new Uri(ip);
-            Models.AdminRest f = new Models.AdminRest
+            Models.AdminSistema f = new Models.AdminSistema
             {
                 Usuario = textBoxUsuario.Text,
                 Senha = cu,
-                Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
 
-            List<Models.AdminRest> fl = new List<Models.AdminRest>();
+            List<Models.AdminSistema> fl = new List<Models.AdminSistema>();
 
             fl.Add(f);
 
@@ -96,9 +77,9 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/adminrest", content);
+            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/adminsistema", content);
 
-            Reload();
+            
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
@@ -107,20 +88,18 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            Models.AdminRest f = new Models.AdminRest
+            Models.AdminSistema f = new Models.AdminSistema
             {
-                Usuario  = textBoxUsuario.Text,
+                Usuario = textBoxUsuario.Text,
                 Senha = textBoxSenha.Text,
-                Restaurante_id = int.Parse(Restaurantes.SelectedValue)
             };
 
             string s = "=" + JsonConvert.SerializeObject(f);
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            
-            await httpClient.PutAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text, content);
 
-            Reload();
+            await httpClient.PutAsync("/20131011110061/api/adminsistema/" + textBoxUsuario.Text, content);
+
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
@@ -129,9 +108,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            await httpClient.DeleteAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text);
-            Reload();
-
+            await httpClient.DeleteAsync("/20131011110061/api/adminsistema/" + textBoxUsuario.Text);
         }
 
         public async void Reload()
@@ -140,21 +117,21 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            var response2 = await httpClient.GetAsync("/20131011110061/api/adminrest");
+            var response2 = await httpClient.GetAsync("/20131011110061/api/adminsistema");
             var str2 = response2.Content.ReadAsStringAsync().Result;
-            List<Models.AdminRest> obj2 = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str2);
+            List<Models.AdminSistema> obj2 = JsonConvert.DeserializeObject<List<Models.AdminSistema>>(str2);
 
             Table1.Rows.Clear();
 
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "Gerentes de Restaurantes";
+            thc.Text = "Gerentes do Sistema";
 
             th.Cells.Add(thc);
 
             Table1.Rows.Add(th);
 
-            foreach (Models.AdminRest x in obj2)
+            foreach (Models.AdminSistema x in obj2)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
@@ -170,7 +147,6 @@ namespace RestauranteWeb
 
                 Table1.Rows.Add(tRow);
             }
-            if (!IsPostBack) DropRest();
         }
     }
 }

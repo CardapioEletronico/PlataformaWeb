@@ -45,7 +45,6 @@ namespace RestauranteWeb.AdmRest
             Response.Write("<script>window.alert('Usuário não encontrado'); </script>");
         }
 
-
         public const int SaltByteSize = 24;
         public const int HashByteSize = 20; // to match the size of the PBKDF2-HMAC-SHA-1 hash 
         public const int Pbkdf2Iterations = 1000;

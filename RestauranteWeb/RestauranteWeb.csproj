@@ -124,6 +124,7 @@
     <Content Include="js\jquery-2.0.3.js" />
     <Content Include="js\locastyle.js" />
     <Content Include="LoginGerentePedido.aspx" />
+    <Content Include="WebCRUDAdminSistema.aspx" />
     <Content Include="WebCRUDGerentePedidos.aspx" />
     <Content Include="WebCRUDProduto.aspx" />
     <Content Include="packages.config" />
@@ -214,6 +215,13 @@
     </Compile>
     <Compile Include="RestAdm.Master.designer.cs">
       <DependentUpon>RestAdm.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebCRUDAdminSistema.aspx.cs">
+      <DependentUpon>WebCRUDAdminSistema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCRUDAdminSistema.aspx.designer.cs">
+      <DependentUpon>WebCRUDAdminSistema.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebCRUDGerentePedidos.aspx.cs">
       <DependentUpon>WebCRUDGerentePedidos.aspx</DependentUpon>

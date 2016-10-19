@@ -398,3 +398,43 @@ C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb
 C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\Isaac Medeiros\Desktop\CRUDsWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Git\PlataformaWeb\RestauranteWeb\bin\ApplicationInsights.config
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\csc.exe
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\vbc.exe
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe
+C:\Git\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Git\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll.config
+C:\Git\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.pdb
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.dll
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.xml
+C:\Git\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.xml
+C:\Git\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
+C:\Git\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\Git\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
+C:\Git\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb

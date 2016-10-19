@@ -10,7 +10,7 @@
 namespace RestauranteWeb {
     
     
-    public partial class WebCRUDAdminRest {
+    public partial class WebCRUDAdminSistema {
         
         /// <summary>
         /// textBoxUsuario control.
@@ -29,15 +29,6 @@ namespace RestauranteWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxSenha;
-        
-        /// <summary>
-        /// Restaurantes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Restaurantes;
         
         /// <summary>
         /// btnSelect control.
