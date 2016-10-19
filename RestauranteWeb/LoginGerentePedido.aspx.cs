@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
 
 namespace RestauranteWeb
 {
