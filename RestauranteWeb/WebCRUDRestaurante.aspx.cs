@@ -15,6 +15,26 @@ namespace RestauranteWeb
         private string ip = "http://10.21.0.137";
 
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Login"] == null)
+            {
+                Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginAdminSistema.aspx';</script>)");
+            }
+            else if ("AdminSistema" == Session["Permissao"])
+            {
+                Label titulo = Master.FindControl("titulo") as Label;
+                titulo.Text = "Gerenciamento de Restaurantes";
+                Label labelu = Master.FindControl("LabelUsuario") as Label;
+                if (Session["Login"] != null) labelu.Text = Session["Login"].ToString();
+            }
+            else
+            {
+                Session["Login"] = null;
+                Response.Write("<script>window.alert('Você não tem permissão para acessar esse link.'); self.location = 'LoginAdminSistema.aspx';</script>)");
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Table1.Rows.Clear();

@@ -34,6 +34,7 @@ namespace RestauranteWeb
                 if (x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha))
                 {
                     Session["Login"] = TextBoxUsuario.Text;
+                    Session["Permissao"] = "AdminSistema";
                     Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebCRUDRestaurante.aspx'; </script>");
                     return;
                 }

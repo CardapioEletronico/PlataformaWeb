@@ -20,12 +20,17 @@ namespace RestauranteWeb
             {
                 Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginAdmRest.aspx';</script>)");
             }
-            else
+            else if ("AdmRest" == Session["Permissao"])
             {
                 Label titulo = Master.FindControl("titulo") as Label;
                 titulo.Text = "Gerenciamento de Produtos";
                 Label labelu = Master.FindControl("LabelUsuario") as Label;
                 if (Session["Login"] != null) labelu.Text = Session["Login"].ToString();
+            }
+
+            else
+            {
+                Response.Write("<script>window.alert('Você não tem permissão para acessar esse link.'); self.location = 'LoginAdmRest.aspx';</script>)");
             }
         }
 

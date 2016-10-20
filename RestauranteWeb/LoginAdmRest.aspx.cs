@@ -38,6 +38,7 @@ namespace RestauranteWeb.AdmRest
                 {
                     Session["Login"] = TextBoxUsuario.Text;
                     Session["idRest"] = x.Restaurante_id;
+                    Session["Permissao"] = "AdmRest";
                     Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebCRUDCardapio.aspx'; </script>");
                     return;
                 }
