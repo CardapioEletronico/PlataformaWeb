@@ -109,6 +109,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagens\carne.jpg" />
     <Content Include="LoginAdminSist.aspx" />
     <Content Include="LoginAdmRest.aspx" />
     <Content Include="assets\css\bootstrap-theme.css" />
@@ -153,6 +154,7 @@
     <Content Include="WebFormSair.aspx" />
     <Content Include="AdminSistema.Master" />
     <Content Include="GerentePedidos.Master" />
+    <Content Include="PaginaLogin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -227,6 +229,13 @@
     </Compile>
     <Compile Include="Models\AdminSistema.cs" />
     <Compile Include="Models\GerentePedido.cs" />
+    <Compile Include="PaginaLogin.Master.cs">
+      <DependentUpon>PaginaLogin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaLogin.Master.designer.cs">
+      <DependentUpon>PaginaLogin.Master</DependentUpon>
+    </Compile>
     <Compile Include="RestAdm.Master.cs">
       <DependentUpon>RestAdm.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
