@@ -123,6 +123,8 @@
     <Content Include="css\StyleSheet1.css" />
     <Content Include="js\jquery-2.0.3.js" />
     <Content Include="js\locastyle.js" />
+    <Content Include="LoginCaixa.aspx" />
+    <Content Include="LoginGarcom.aspx" />
     <Content Include="LoginGerentePedido.aspx" />
     <Content Include="WebCRUDAdminSistema.aspx" />
     <Content Include="WebCRUDGerentePedidos.aspx" />
@@ -145,6 +147,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="RestAdm.Master" />
+    <Content Include="WebCRUDUsuarioSistAdmRest.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebFormLogins.aspx" />
     <Content Include="WebFormSair.aspx" />
@@ -200,6 +203,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Banco1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginCaixa.aspx.cs">
+      <DependentUpon>LoginCaixa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginCaixa.aspx.designer.cs">
+      <DependentUpon>LoginCaixa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginGarcom.aspx.cs">
+      <DependentUpon>LoginGarcom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginGarcom.aspx.designer.cs">
+      <DependentUpon>LoginGarcom.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginGerentePedido.aspx.cs">
       <DependentUpon>LoginGerentePedido.aspx</DependentUpon>
@@ -279,6 +296,13 @@
     </Compile>
     <Compile Include="WebCRUDRestaurante.aspx.designer.cs">
       <DependentUpon>WebCRUDRestaurante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebCRUDUsuarioSistAdmRest.aspx.cs">
+      <DependentUpon>WebCRUDUsuarioSistAdmRest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCRUDUsuarioSistAdmRest.aspx.designer.cs">
+      <DependentUpon>WebCRUDUsuarioSistAdmRest.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>

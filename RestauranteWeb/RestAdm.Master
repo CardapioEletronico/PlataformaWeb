@@ -72,7 +72,7 @@
                     <li><a href="WebCRUDFila.aspx" class="ls-ico-list">Gerenciamento de Filas</a></li>
                     <li><a href="WebCRUDMesa.aspx" class="ls-ico-list">Gerenciamento de Mesas</a></li>
                     <li><a href="WebCRUDProduto.aspx" class="ls-ico-list">Gerenciamento de Produtos</a></li>
-                    <li><a href="WebCRUDGerentePedidos.aspx" class="ls-ico-list">Gerenciamento de Pedidos</a></li>
+                    <li><a href="WebCRUDUsuarioSistAdmRest.aspx" class="ls-ico-list">Gerenciamento de Usuários</a></li>
                 </ul>
               </nav>
             </aside>
