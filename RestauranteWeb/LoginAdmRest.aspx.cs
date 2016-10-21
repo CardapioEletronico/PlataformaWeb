@@ -27,14 +27,14 @@ namespace RestauranteWeb.AdmRest
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/adminrest");
+            var response = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
 
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.UsuarioSistema> obj = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str);
 
             foreach (Models.UsuarioSistema x in obj)
             {
-                if(x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha))
+                if(x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha) && x.AdminRest == true)
                 {
                     Session["Login"] = TextBoxUsuario.Text;
                     Session["idRest"] = x.Restaurante_id;

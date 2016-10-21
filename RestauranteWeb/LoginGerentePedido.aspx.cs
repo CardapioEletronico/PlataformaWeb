@@ -24,17 +24,18 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/20131011110061/api/gerentepedido");
+            var response = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
 
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.GerentePedido> obj = JsonConvert.DeserializeObject<List<Models.GerentePedido>>(str);
+            List<Models.UsuarioSistema> obj = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str);
 
-            foreach (Models.GerentePedido x in obj)
+            foreach (Models.UsuarioSistema x in obj)
             {
-                if (x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha))
+                if (x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha) && x.GerentePedidos == true)
                 {
                     Session["Login"] = TextBoxUsuario.Text;
                     Session["idRest"] = x.Restaurante_id;
+                    Session["Permissao"] = "GerentePedidos";
                     Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebCRUDPedidos.aspx'; </script>");
                     return;
                 }

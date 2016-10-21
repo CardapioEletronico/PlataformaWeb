@@ -146,6 +146,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="RestAdm.Master" />
     <Content Include="WebForm2.aspx" />
+    <Content Include="WebFormLogins.aspx" />
     <Content Include="WebFormSair.aspx" />
     <Content Include="AdminSistema.Master" />
     <Content Include="GerentePedidos.Master" />
@@ -285,6 +286,13 @@
     </Compile>
     <Compile Include="WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormLogins.aspx.cs">
+      <DependentUpon>WebFormLogins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormLogins.aspx.designer.cs">
+      <DependentUpon>WebFormLogins.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFormSair.aspx.cs">
       <DependentUpon>WebFormSair.aspx</DependentUpon>

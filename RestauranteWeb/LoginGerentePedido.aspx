@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginGerentePedido.aspx.cs" Inherits="RestauranteWeb.LoginGerentePedido" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="LoginGerentePedido.aspx.cs" Inherits="RestauranteWeb.LoginGerentePedido" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
