@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/AdminSistema.Master" AutoEventWireup="true" CodeBehind="WebCRUDAdminRest.aspx.cs" Inherits="RestauranteWeb.WebCRUDAdminRest" %>
+﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/AdminSistema.Master" AutoEventWireup="true" CodeBehind="WebCRUDUsuarioSist.aspx.cs" Inherits="RestauranteWeb.WebCRUDAdminRest" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -11,6 +11,10 @@
                         <asp:TextBox ID="textBoxUsuario" runat="server" PlaceHolder="Usuario" style="margin-top: 0px" CssClass="textbox"></asp:TextBox>
                         <asp:TextBox ID="textBoxSenha" runat="server" PlaceHolder="Senha" style="margin-top: 0px" TextMode="Password"></asp:TextBox>
                         <asp:DropDownList ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>
+                        Administrador Restaurante: <asp:CheckBox CssClass="AdminRest" ID="AdminRest" runat="server" />
+                        Garçom: <asp:CheckBox CssClass="checkbox" ID="Garçom" runat="server" />
+                        Caixa: <asp:CheckBox CssClass="checkbox" ID="Caixa" runat="server" />
+                        Gerente Pedidos: <asp:CheckBox CssClass="checkbox" ID="GerentePedidos" runat="server" />
                     </td>
                 
                     <td class="auto-style1">&nbsp;</td>

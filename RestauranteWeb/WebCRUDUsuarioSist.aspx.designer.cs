@@ -40,6 +40,42 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.DropDownList Restaurantes;
         
         /// <summary>
+        /// AdminRest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox AdminRest;
+        
+        /// <summary>
+        /// Garçom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Garçom;
+        
+        /// <summary>
+        /// Caixa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Caixa;
+        
+        /// <summary>
+        /// GerentePedidos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox GerentePedidos;
+        
+        /// <summary>
         /// btnSelect control.
         /// </summary>
         /// <remarks>

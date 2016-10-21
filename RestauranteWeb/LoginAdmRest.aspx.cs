@@ -30,9 +30,9 @@ namespace RestauranteWeb.AdmRest
             var response = await httpClient.GetAsync("/20131011110061/api/adminrest");
 
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.AdminRest> obj = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str);
+            List<Models.UsuarioSistema> obj = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str);
 
-            foreach (Models.AdminRest x in obj)
+            foreach (Models.UsuarioSistema x in obj)
             {
                 if(x.Usuario == TextBoxUsuario.Text && ValidatePassword(TextBoxSenha.Text, x.Senha))
                 {

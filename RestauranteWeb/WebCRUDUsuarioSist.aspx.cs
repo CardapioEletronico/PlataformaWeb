@@ -46,7 +46,6 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str = response.Content.ReadAsStringAsync().Result;
 
@@ -93,18 +92,21 @@ namespace RestauranteWeb
     protected async void btnInsert_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
-
             string cu = HashPassword(textBoxSenha.Text);
-
             httpClient.BaseAddress = new Uri(ip);
-            Models.AdminRest f = new Models.AdminRest
+
+            Models.UsuarioSistema f = new Models.UsuarioSistema
             {
-                Usuario = textBoxUsuario.Text,
+                Usuario = textBoxUsuario.Text.ToString(),
                 Senha = cu,
+                Garcom = Convert.ToBoolean(Garçom.Checked),
+                AdminRest = Convert.ToBoolean(AdminRest.Checked),
+                GerentePedidos = Convert.ToBoolean(GerentePedidos.Checked),
+                Caixa = Convert.ToBoolean(Caixa.Checked),
                 Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
             };
 
-            List<Models.AdminRest> fl = new List<Models.AdminRest>();
+            List<Models.UsuarioSistema> fl = new List<Models.UsuarioSistema>();
 
             fl.Add(f);
 
@@ -116,21 +118,25 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/adminrest", content);
+            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/usuariosistema", content);
 
             Reload();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
         {
-
+     
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
-            Models.AdminRest f = new Models.AdminRest
+            Models.UsuarioSistema f = new Models.UsuarioSistema
             {
                 Usuario  = textBoxUsuario.Text,
                 Senha = textBoxSenha.Text,
+                Garcom = Convert.ToBoolean(Garçom.Checked),
+                AdminRest = Convert.ToBoolean(AdminRest.Checked),
+                GerentePedidos = Convert.ToBoolean(GerentePedidos.Checked),
+                Caixa = Convert.ToBoolean(Caixa.Checked),
                 Restaurante_id = int.Parse(Restaurantes.SelectedValue)
             };
 
@@ -138,7 +144,7 @@ namespace RestauranteWeb
 
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             
-            await httpClient.PutAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text, content);
+            await httpClient.PutAsync("/20131011110061/api/usuariosistema/" + textBoxUsuario.Text, content);
 
             Reload();
         }
@@ -149,7 +155,7 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            await httpClient.DeleteAsync("/20131011110061/api/adminrest/" + textBoxUsuario.Text);
+            await httpClient.DeleteAsync("/20131011110061/api/usuariosistema/" + textBoxUsuario.Text);
             Reload();
 
         }
@@ -160,21 +166,34 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
 
-            var response2 = await httpClient.GetAsync("/20131011110061/api/adminrest");
+            var response2 = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
             var str2 = response2.Content.ReadAsStringAsync().Result;
-            List<Models.AdminRest> obj2 = JsonConvert.DeserializeObject<List<Models.AdminRest>>(str2);
+            List<Models.UsuarioSistema> obj2 = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str2);
 
             Table1.Rows.Clear();
 
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "Gerentes de Restaurantes";
+            thc.Text = "Usuários do Sistema";
+            TableHeaderCell thc1 = new TableHeaderCell();
+            thc1.Text = "Garçom";
+            TableHeaderCell thc2 = new TableHeaderCell();
+            thc2.Text = "Administrador Restaurante";
+            TableHeaderCell thc3 = new TableHeaderCell();
+            thc3.Text = "Caixa";
+            TableHeaderCell thc4 = new TableHeaderCell();
+            thc4.Text = "Gerente de Pedidos";
+
 
             th.Cells.Add(thc);
+            th.Cells.Add(thc1);
+            th.Cells.Add(thc2);
+            th.Cells.Add(thc3);
+            th.Cells.Add(thc4);
 
             Table1.Rows.Add(th);
 
-            foreach (Models.AdminRest x in obj2)
+            foreach (Models.UsuarioSistema x in obj2)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
@@ -183,7 +202,23 @@ namespace RestauranteWeb
                 TableCell tc = new TableCell();
                 tc.Text = x.Usuario.ToString();
 
+                TableCell tc1 = new TableCell();
+                tc1.Text = x.Garcom.ToString();
+
+                TableCell tc2 = new TableCell();
+                tc2.Text = x.AdminRest.ToString();
+
+                TableCell tc3 = new TableCell();
+                tc3.Text = x.Caixa.ToString();
+
+                TableCell tc4 = new TableCell();
+                tc4.Text = x.GerentePedidos.ToString();
+
                 tRow.Cells.Add(tc);
+                tRow.Cells.Add(tc1);
+                tRow.Cells.Add(tc2);
+                tRow.Cells.Add(tc3);
+                tRow.Cells.Add(tc4);
 
                 tRow.BorderStyle = BorderStyle.Ridge;
                 tRow.BorderWidth = 1;

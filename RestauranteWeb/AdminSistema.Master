@@ -68,7 +68,7 @@
 
               <nav class="ls-menu">
                 <ul>
-                    <li><a href="WebCRUDAdminRest.aspx" class="ls-ico-list">Gerenciamento de Admin Restaurante</a></li>
+                    <li><a href="WebCRUDUsuarioSist.aspx" class="ls-ico-list">Gerenciamento de Usuários Sistema</a></li>
                     <li><a href="WebCRUDAdminSistema.aspx" class="ls-ico-list">Gerenciamento de Admin Sistema</a></li>
                     <li><a href="WebCRUDRestaurante.aspx" class="ls-ico-list">Gerenciamento de Restaurantes</a></li>
                 </ul>
