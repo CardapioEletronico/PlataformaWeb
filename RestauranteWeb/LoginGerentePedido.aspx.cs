@@ -25,7 +25,6 @@ namespace RestauranteWeb
 
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
-
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.UsuarioSistema> obj = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str);
 
@@ -35,8 +34,31 @@ namespace RestauranteWeb
                 {
                     Session["Login"] = TextBoxUsuario.Text;
                     Session["idRest"] = x.Restaurante_id;
+
+                    var response3 = await httpClient.GetAsync("/20131011110061/api/cardapio");
+                    var str3 = response3.Content.ReadAsStringAsync().Result;
+                    List<Models.Cardapio> c = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str3);
+                    var listaCardapio = from Models.Cardapio card in c where card.Restaurante_id == x.Restaurante_id select card;
+                    var response2 = await httpClient.GetAsync("/20131011110061/api/fila");
+                    var str2 = response2.Content.ReadAsStringAsync().Result;
+                    List<Models.Fila> fil = JsonConvert.DeserializeObject<List<Models.Fila>>(str2);
+
+                    List<Models.Fila> listafila = new List<Models.Fila>();
+                    foreach (Models.Cardapio c1 in listaCardapio) { 
+                         listafila = (from Models.Fila f in fil where f.Cardapio_id == c1.Id select f).ToList();
+                    }
+
+                    if (listafila != null)
+                    {
+                        Models.Fila fila = (from Models.Fila f in listafila select f).First();
+                        Session["Fila"] = fila.Id;
+                    }
+                    else
+                        Session["Fila"] = null;
+
+
                     Session["Permissao"] = "GerentePedidos";
-                    Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebCRUDPedidos.aspx'; </script>");
+                    Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebAlterarFila.aspx'; </script>");
                     return;
                 }
             }
