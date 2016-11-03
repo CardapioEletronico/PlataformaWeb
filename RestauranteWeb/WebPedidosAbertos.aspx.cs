@@ -53,8 +53,8 @@ namespace RestauranteWeb
             List<Models.Cardapio> listaCardapios = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
 
             var response2 = await httpClient.GetAsync("/20131011110061/api/produto");
-            var str2 = response.Content.ReadAsStringAsync().Result;
-            List<Models.Produto> obj2 = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.Produto> obj2 = JsonConvert.DeserializeObject<List<Models.Produto>>(str2);
 
             List<Models.Produto> listaProdutos = new List<Models.Produto>();
 
@@ -64,7 +64,6 @@ namespace RestauranteWeb
                 {
                     if (p.Cardapio_id == c.Id)
                     {
-                        string cu = p.Descricao;
                         listaProdutos.Add(p);  
                     }
                 }
@@ -73,21 +72,19 @@ namespace RestauranteWeb
             List<Models.Produto> listaProdutoFila = new List<Models.Produto>();
             foreach(Models.Produto p in listaProdutos)
             {
-                int x = p.Id;
-                string c = p.Descricao;
                 if(p.Fila_id == idFila)
                 {
                     listaProdutoFila.Add(p);
                 }
             }
-                //(from Models.Produto prod in listaProdutos where prod.Fila_id == idFila select prod).ToList();
-
+            //(from Models.Produto prod in listaProdutos where prod.Fila_id == idFila select prod).ToList();
+            int xablau = listaProdutoFila.Count;
             var response3 = await httpClient.GetAsync("/20131011110061/api/itempedido");
-            var str3 = response.Content.ReadAsStringAsync().Result;
+            var str3 = response3.Content.ReadAsStringAsync().Result;
             List<Models.ItemPedido> obj3 = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str3);
 
             //Condicao de estar aberto
-            obj3 = (from Models.ItemPedido ip in obj3 where ip.Situacao == false select ip).ToList();
+            obj3 = (from Models.ItemPedido ip in obj3 where ip.Situacao == true select ip).ToList();
 
             List<Models.ItemPedido> listaItemPedidos = new List<Models.ItemPedido>();
             foreach (Models.Produto p in listaProdutoFila)
