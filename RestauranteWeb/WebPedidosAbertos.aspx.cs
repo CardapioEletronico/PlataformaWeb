@@ -47,32 +47,42 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
 
-            var response = await httpClient.GetAsync("20131011110061/api/cardapio");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
-            var listaCardapios = from Models.Cardapio c in obj where c.Restaurante_id == idRest select c;
+            List<Models.Cardapio> listaCardapios = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
 
-            var response2 = await httpClient.GetAsync("20131011110061/api/produto");
+            var response2 = await httpClient.GetAsync("/20131011110061/api/produto");
             var str2 = response.Content.ReadAsStringAsync().Result;
             List<Models.Produto> obj2 = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
 
             List<Models.Produto> listaProdutos = new List<Models.Produto>();
+
             foreach (Models.Cardapio c in listaCardapios)
             {
                 foreach(Models.Produto p in obj2)
                 {
                     if (p.Cardapio_id == c.Id)
                     {
-                        listaProdutos.Add(p);
-                        obj2.Remove(p);
+                        string cu = p.Descricao;
+                        listaProdutos.Add(p);  
                     }
                 }
             }
 
-            List<Models.Produto> listaProdutoFila = (from Models.Produto prod in listaProdutos where prod.Fila_id == idFila select prod).ToList();
+            List<Models.Produto> listaProdutoFila = new List<Models.Produto>();
+            foreach(Models.Produto p in listaProdutos)
+            {
+                int x = p.Id;
+                string c = p.Descricao;
+                if(p.Fila_id == idFila)
+                {
+                    listaProdutoFila.Add(p);
+                }
+            }
+                //(from Models.Produto prod in listaProdutos where prod.Fila_id == idFila select prod).ToList();
 
-
-            var response3 = await httpClient.GetAsync("20131011110061/api/itempedido");
+            var response3 = await httpClient.GetAsync("/20131011110061/api/itempedido");
             var str3 = response.Content.ReadAsStringAsync().Result;
             List<Models.ItemPedido> obj3 = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str3);
 
@@ -87,12 +97,9 @@ namespace RestauranteWeb
                     if(ip.Produto_Id == p.Id)
                     {
                         listaItemPedidos.Add(ip);
-                        obj3.Remove(ip);
                     }
                 }
             }
-
-
 
             Table1.Rows.Clear();
 

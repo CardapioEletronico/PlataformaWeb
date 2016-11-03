@@ -127,6 +127,7 @@
     <Content Include="LoginCaixa.aspx" />
     <Content Include="LoginGarcom.aspx" />
     <Content Include="LoginGerentePedido.aspx" />
+    <Content Include="WebAlterarFila.aspx" />
     <Content Include="WebCRUDAdminSistema.aspx" />
     <Content Include="WebCRUDGerentePedidos.aspx" />
     <Content Include="WebCRUDProduto.aspx" />
@@ -155,6 +156,7 @@
     <Content Include="AdminSistema.Master" />
     <Content Include="GerentePedidos.Master" />
     <Content Include="PaginaLogin.Master" />
+    <Content Include="WebPedidosAbertos.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -229,6 +231,8 @@
     </Compile>
     <Compile Include="Models\AdminSistema.cs" />
     <Compile Include="Models\GerentePedido.cs" />
+    <Compile Include="Models\ItemPedido.cs" />
+    <Compile Include="Models\Pedido.cs" />
     <Compile Include="PaginaLogin.Master.cs">
       <DependentUpon>PaginaLogin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -242,6 +246,13 @@
     </Compile>
     <Compile Include="RestAdm.Master.designer.cs">
       <DependentUpon>RestAdm.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebAlterarFila.aspx.cs">
+      <DependentUpon>WebAlterarFila.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebAlterarFila.aspx.designer.cs">
+      <DependentUpon>WebAlterarFila.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebCRUDAdminSistema.aspx.cs">
       <DependentUpon>WebCRUDAdminSistema.aspx</DependentUpon>
@@ -333,6 +344,13 @@
     </Compile>
     <Compile Include="WebFormSair.aspx.designer.cs">
       <DependentUpon>WebFormSair.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPedidosAbertos.aspx.cs">
+      <DependentUpon>WebPedidosAbertos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPedidosAbertos.aspx.designer.cs">
+      <DependentUpon>WebPedidosAbertos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

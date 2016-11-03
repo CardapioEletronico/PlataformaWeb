@@ -14,7 +14,7 @@
                     
                         <td class="auto-style1">&nbsp;</td>
                         <td>
-                            <asp:Button ID="btnAtender"  CssClass="ls-btn-primary" runat="server" Text="Atender Pedido" OnClick="btnAtender_Click" />
+                            <asp:Button ID="btnAtender"  CssClass="ls-btn-primary" runat="server" Text="Atender Pedido"/>
                         </td>
                     </tr>
 

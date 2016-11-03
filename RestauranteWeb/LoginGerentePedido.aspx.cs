@@ -44,11 +44,18 @@ namespace RestauranteWeb
                     List<Models.Fila> fil = JsonConvert.DeserializeObject<List<Models.Fila>>(str2);
 
                     List<Models.Fila> listafila = new List<Models.Fila>();
-                    foreach (Models.Cardapio c1 in listaCardapio) { 
-                         listafila = (from Models.Fila f in fil where f.Cardapio_id == c1.Id select f).ToList();
+                    foreach (Models.Cardapio c1 in listaCardapio)
+                    { 
+                        foreach(Models.Fila f1 in fil)
+                        {
+                            if(f1.Cardapio_id == c1.Id)
+                            {
+                                listafila.Add(f1);
+                            }
+                        }
                     }
 
-                    if (listafila != null)
+                    if (listafila.Count>0)
                     {
                         Models.Fila fila = (from Models.Fila f in listafila select f).First();
                         Session["Fila"] = fila.Id;

@@ -19,7 +19,7 @@ namespace RestauranteWeb
             {
                 Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginGerentePedido.aspx';</script>)");
             }
-            else if ("GerentePedidos" == Session["Permissao"])
+            else if (Session["Permissao"] == "GerentePedidos")
             {
                 Label titulo = Master.FindControl("titulo") as Label;
                 titulo.Text = "Alterar Fila";
@@ -35,17 +35,24 @@ namespace RestauranteWeb
 
         protected async void Page_Load(object sender, EventArgs e)
         {
-            int idFila = Convert.ToInt16(Session["Fila"]);
-            DropFila();
+            
+            if (!IsPostBack) DropFila();
 
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(ip);
-            var response3 = await httpClient.GetAsync("/20131011110061/api/fila");
-            var str3 = response3.Content.ReadAsStringAsync().Result;
-            List<Models.Fila> c = JsonConvert.DeserializeObject<List<Models.Fila>>(str3);
-            var listafila = (from Models.Fila card in c where card.Id == idFila select card).Single();
+            if(Session["Fila"]!=null) {
+                int idFila = Convert.ToInt16(Session["Fila"]);
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                var response3 = await httpClient.GetAsync("/20131011110061/api/fila");
+                var str3 = response3.Content.ReadAsStringAsync().Result;
+                List<Models.Fila> c = JsonConvert.DeserializeObject<List<Models.Fila>>(str3);
+                var listafila = (from Models.Fila fila in c where fila.Id == idFila select fila).Single();
 
-            FilaLabel.Text = listafila.Descricao.ToString();
+                FilaLabel.Text = listafila.Descricao.ToString();
+            }
+            else
+            {
+                FilaLabel.Text = "O Restaurante nao possui filas, fale com o Administrador";
+            }
         }
 
         public async void DropFila()
@@ -65,7 +72,13 @@ namespace RestauranteWeb
             List<Models.Fila> listafila = new List<Models.Fila>();
             foreach (Models.Cardapio c1 in listaCardapio)
             {
-                listafila = (from Models.Fila f in fil where f.Cardapio_id == c1.Id select f).ToList();
+                foreach(Models.Fila f1 in fil)
+                {
+                    if(f1.Cardapio_id == c1.Id)
+                    {
+                        listafila.Add(f1);
+                    }
+                }
             }
 
             Filas.DataSource = listafila;
@@ -79,6 +92,5 @@ namespace RestauranteWeb
             Session["Fila"] = Filas.SelectedValue;
             FilaLabel.Text = Filas.SelectedItem.Text;
         }
-
     }
 }

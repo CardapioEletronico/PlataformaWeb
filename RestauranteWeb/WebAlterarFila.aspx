@@ -4,9 +4,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             
             
-            <asp:DropDownList CssClass="ls-dropdown-nav" ID="Filas" runat="server" AutoPostBack="True"></asp:DropDownList>
+            <asp:DropDownList CssClass="ls-dropdown-nav" ID="Filas" runat="server" AutoPostBack="true" Width="200"></asp:DropDownList>
             <asp:Button ID="btnTrocar"  CssClass="ls-btn-primary" runat="server" Text="Trocar Fila" OnClick="btnTrocar_Click" />
-            <asp:Label ID="FilaLabel" runat="server" Text=""></asp:Label>      
+            Fila atual: <asp:Label ID="FilaLabel" runat="server" Text=""></asp:Label>      
 
 
             <link href="css/locastyle.css" rel="stylesheet" type="text/css"/>
