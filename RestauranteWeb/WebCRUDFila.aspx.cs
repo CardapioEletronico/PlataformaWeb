@@ -41,15 +41,18 @@ namespace RestauranteWeb
 
         public async void DropRest()
         {
+            int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
 
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
+            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
 
-            Cardapios.DataSource = obj;
+            List<Models.Cardapio> obj2 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
+
+            Cardapios.DataSource = obj2;
             Cardapios.DataTextField = "Descricao";
             Cardapios.DataValueField = "Id";
             Cardapios.DataBind();

@@ -149,15 +149,11 @@ namespace RestauranteWeb
             TableHeaderCell thc1 = new TableHeaderCell();
             thc1.Text = "Numero";
 
-            TableHeaderCell thc2 = new TableHeaderCell();
-            thc2.Text = "Restaurante";
-
             TableHeaderCell thc3 = new TableHeaderCell();
             thc3.Text = "Disponível";
 
             th.Cells.Add(thc);
             th.Cells.Add(thc1);
-            th.Cells.Add(thc2);
             th.Cells.Add(thc3);
 
             Table1.Rows.Add(th);
@@ -172,15 +168,12 @@ namespace RestauranteWeb
                 tc.Text = x.Id.ToString();
                 TableCell tc2 = new TableCell();
                 tc2.Text = x.Numero.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Restaurante_id.ToString();
                 TableCell tc4 = new TableCell();
                 //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
                 tc4.Text = x.Disponivel.ToString();
 
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
                 tRow.Cells.Add(tc4);
                 Table1.Rows.Add(tRow);
             }

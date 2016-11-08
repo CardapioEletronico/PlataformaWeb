@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -142,7 +143,10 @@ namespace RestauranteWeb
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Hora.ToString();
                 TableCell tc4 = new TableCell();
-                tc4.Text = x.Situacao.ToString();
+                if (Convert.ToBoolean(x.Situacao))
+                    tc4.Text = "Aberto";
+                else
+                    tc4.Text = "Fechado";
                 TableCell tc5 = new TableCell();
                 tc5.Text = x.Produto_Id.ToString();
                 TableCell tc6 = new TableCell();
@@ -161,6 +165,25 @@ namespace RestauranteWeb
                 Table1.Rows.Add(tRow);
             }
             //if (!IsPostBack) DropRest();
+        }
+
+        protected async void btnAtender_Click(object sender, EventArgs e)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/20131011110061/api/itempedido");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
+
+            Models.ItemPedido item = (from Models.ItemPedido f in obj where f.Id == int.Parse(textBoxId.Text) select f).Single();
+            item.Situacao = false;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/itempedido/" + item.Id, content);
+
+            Reload();
         }
     }
 }

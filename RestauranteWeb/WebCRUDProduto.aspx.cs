@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -46,14 +47,17 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
 
+            var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
             {
                 Descricao = textBoxDesc.Text,
                 NomeDescricao = textBoxNomeDescr.Text,
                 Cardapio_id = int.Parse(Cardapios.SelectedItem.Value),
+                Fila_id = int.Parse(Filas.SelectedItem.Value),
+                Foto = base64String,
                 Preco = double.Parse(textBoxPreco.Text),
             };
 
@@ -108,16 +112,16 @@ namespace RestauranteWeb
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str2);
 
-            List<Models.Cardapio> Cardapios = new List<Models.Cardapio>();
-            foreach (Models.Cardapio car in obj2)
-                if (car.Restaurante_id == idRest)
-                    Cardapios.Add(car);
-
-            List<Models.Produto> Produtos = new List<Models.Produto>();
-            foreach (Models.Produto prod in obj)
-                foreach(Models.Cardapio card in Cardapios)
-                    if(prod.Cardapio_id == card.Id)
-                        Produtos.Add(prod);
+            List<Models.Cardapio> Cardapios = (from Models.Cardapio f in obj2 where f.Restaurante_id == idRest select f).ToList();
+           List<Models.Produto> Produtos = new List<Models.Produto>();
+            foreach (Models.Cardapio c in Cardapios)
+            {
+               foreach (Models.Produto p in obj)
+                {
+                    if (p.Cardapio_id == c.Id)
+                        Produtos.Add(p);
+                }
+            }
 
             Table1.Rows.Clear();
 
@@ -126,15 +130,28 @@ namespace RestauranteWeb
             thc.Text = "ID";
             thc.Width = 100;
 
+            TableHeaderCell thc0 = new TableHeaderCell();
+            thc0.Text = "Nome";
+
             TableHeaderCell thc1 = new TableHeaderCell();
             thc1.Text = "Descricao";
 
             TableHeaderCell thc2 = new TableHeaderCell();
             thc2.Text = "Cardapio";
 
+            TableHeaderCell thc3 = new TableHeaderCell();
+            thc3.Text = "Fila";
+
+            TableHeaderCell thc4 = new TableHeaderCell();
+            thc4.Text = "Preco";
+
             th.Cells.Add(thc);
+            th.Cells.Add(thc0);
+
             th.Cells.Add(thc1);
             th.Cells.Add(thc2);
+            th.Cells.Add(thc3);
+            th.Cells.Add(thc4);
             Table1.Rows.Add(th);
 
             foreach (Models.Produto x in Produtos)
@@ -145,20 +162,31 @@ namespace RestauranteWeb
 
                 TableCell tc = new TableCell();
                 tc.Text = x.Id.ToString();
+                TableCell tc0 = new TableCell();
+                tc0.Text = x.NomeDescricao.ToString();
                 TableCell tc2 = new TableCell();
                 tc2.Text = x.Descricao.ToString();
                 TableCell tc3 = new TableCell();
                 tc3.Text = x.Cardapio_id.ToString();
+                TableCell tc4 = new TableCell();
+                tc4.Text = x.Fila_id.ToString();
+                TableCell tc5 = new TableCell();
+                tc5.Text = x.Preco.ToString();
                 tRow.Cells.Add(tc);
+                tRow.Cells.Add(tc0);
                 tRow.Cells.Add(tc2);
                 tRow.Cells.Add(tc3);
+                tRow.Cells.Add(tc4);
+                tRow.Cells.Add(tc5);
                 Table1.Rows.Add(tRow);
             }
             if (!IsPostBack) DropRest();
+            if (!IsPostBack) DropFilas();
         }
 
         public async void DropRest()
         {
+            int idRest = Convert.ToInt32(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
@@ -167,11 +195,48 @@ namespace RestauranteWeb
 
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
 
-            Cardapios.DataSource = obj;
+            List<Models.Cardapio> obj2 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
+
+            Cardapios.DataSource = obj2;
             Cardapios.DataTextField = "Descricao";
             Cardapios.DataValueField = "Id";
             Cardapios.DataBind();
 
+        }
+
+        public async void DropFilas()
+        {
+            HttpClient httpClient = new HttpClient();
+
+            int idRest = Convert.ToInt16(Session["idRest"]);
+
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("20131011110061/api/fila");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Fila> filalista = JsonConvert.DeserializeObject<List<Models.Fila>>(str);
+
+            var responseCard = await httpClient.GetAsync("20131011110061/api/cardapio");
+            var str1 = responseCard.Content.ReadAsStringAsync().Result;
+            List<Models.Cardapio> cardapiolista = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str1);
+
+            List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
+            List<Models.Fila> obj4 = new List<Models.Fila>();
+
+            foreach (Models.Cardapio x in cardapiolista)
+                if (x.Restaurante_id == idRest)
+                    obj3.Add(x);
+
+            foreach (Models.Fila y in filalista)
+            {
+                foreach (Models.Cardapio o in obj3)
+                    if (y.Cardapio_id == o.Id)
+                        obj4.Add(y);
+            }
+
+            Filas.DataSource = obj4;
+            Filas.DataTextField = "Descricao";
+            Filas.DataValueField = "Id";
+            Filas.DataBind();
         }
     }
 }
