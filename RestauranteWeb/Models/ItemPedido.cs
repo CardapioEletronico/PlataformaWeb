@@ -10,7 +10,7 @@ namespace RestauranteWeb.Models
         public int Id { get; set; }
         public int Quantidade { get; set; }
         public DateTime Hora { get; set; }
-        public bool Situacao { get; set; }
+        public int Situacao { get; set; }
         public int Produto_Id { get; set; }
         public int Pedido_Id { get; set; }
     }

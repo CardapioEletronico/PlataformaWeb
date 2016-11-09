@@ -518,3 +518,43 @@ C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.cs
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\ApplicationInsights.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\csc.exe
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\vbc.exe
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.xml
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb

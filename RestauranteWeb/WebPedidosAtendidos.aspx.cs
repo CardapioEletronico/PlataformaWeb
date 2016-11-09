@@ -10,8 +10,14 @@ using System.Web.UI.WebControls;
 
 namespace RestauranteWeb
 {
-    public partial class WebPedidosAbertos : System.Web.UI.Page
+    public partial class WebPedidosAtendidos : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Table1.Rows.Clear();
+            Reload();
+        }
+
         private string ip = "http://10.21.0.137";
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -23,7 +29,7 @@ namespace RestauranteWeb
             else if ("GerentePedidos" == Session["Permissao"])
             {
                 Label titulo = Master.FindControl("titulo") as Label;
-                titulo.Text = "Visualizar Pedidos Abertos";
+                titulo.Text = "Visualizar Pedidos Atendidos";
                 Label labelu = Master.FindControl("LabelUsuario") as Label;
                 if (Session["Login"] != null) labelu.Text = Session["Login"].ToString();
             }
@@ -32,12 +38,6 @@ namespace RestauranteWeb
                 Session["Login"] = null;
                 Response.Write("<script>window.alert('Você não tem permissão para acessar esse link.'); self.location = 'LoginGerentePedido.aspx';</script>)");
             }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            Table1.Rows.Clear();
-            Reload();
         }
 
         protected async void Reload()
@@ -61,19 +61,19 @@ namespace RestauranteWeb
 
             foreach (Models.Cardapio c in listaCardapios)
             {
-                foreach(Models.Produto p in obj2)
+                foreach (Models.Produto p in obj2)
                 {
                     if (p.Cardapio_id == c.Id)
                     {
-                        listaProdutos.Add(p);  
+                        listaProdutos.Add(p);
                     }
                 }
             }
 
             List<Models.Produto> listaProdutoFila = new List<Models.Produto>();
-            foreach(Models.Produto p in listaProdutos)
+            foreach (Models.Produto p in listaProdutos)
             {
-                if(p.Fila_id == idFila)
+                if (p.Fila_id == idFila)
                 {
                     listaProdutoFila.Add(p);
                 }
@@ -85,14 +85,14 @@ namespace RestauranteWeb
             List<Models.ItemPedido> obj3 = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str3);
 
             //Condicao de estar aberto
-            obj3 = (from Models.ItemPedido ip in obj3 where ip.Situacao == 1 select ip).ToList();
+            obj3 = (from Models.ItemPedido ip in obj3 where ip.Situacao == 2 select ip).ToList();
 
             List<Models.ItemPedido> listaItemPedidos = new List<Models.ItemPedido>();
             foreach (Models.Produto p in listaProdutoFila)
             {
                 foreach (Models.ItemPedido ip in obj3)
                 {
-                    if(ip.Produto_Id == p.Id)
+                    if (ip.Produto_Id == p.Id)
                     {
                         listaItemPedidos.Add(ip);
                     }
@@ -181,7 +181,7 @@ namespace RestauranteWeb
             List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
 
             Models.ItemPedido item = (from Models.ItemPedido f in obj where f.Id == int.Parse(textBoxId.Text) select f).Single();
-            item.Situacao = 2;
+            item.Situacao = 1;
 
             var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/itempedido/" + item.Id, content);

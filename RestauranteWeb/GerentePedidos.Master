@@ -71,7 +71,7 @@
                     <li><a href="WebCRUDPedidos.aspx" class="ls-ico-list">Gerenciamento de Pedidos</a></li>
                     <li><a href="WebAlterarFila.aspx" class="ls-ico-list">Alterar Fila de Produtos</a></li>
                     <li><a href="WebPedidosAbertos.aspx" class="ls-ico-list">Visualizar Pedidos Abertos</a></li>
-                    <li><a href="WebPedidosFechados.aspx" class="ls-ico-list">Visualizar Pedidos Atendidos</a></li>    
+                    <li><a href="WebPedidosAtendidos.aspx" class="ls-ico-list">Visualizar Pedidos Atendidos</a></li>    
                 </ul>
               </nav>
             </aside>

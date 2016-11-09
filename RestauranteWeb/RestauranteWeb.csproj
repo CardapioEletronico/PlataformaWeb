@@ -157,6 +157,7 @@
     <Content Include="GerentePedidos.Master" />
     <Content Include="PaginaLogin.Master" />
     <Content Include="WebPedidosAbertos.aspx" />
+    <Content Include="WebPedidosAtendidos.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -351,6 +352,13 @@
     </Compile>
     <Compile Include="WebPedidosAbertos.aspx.designer.cs">
       <DependentUpon>WebPedidosAbertos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPedidosAtendidos.aspx.cs">
+      <DependentUpon>WebPedidosAtendidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPedidosAtendidos.aspx.designer.cs">
+      <DependentUpon>WebPedidosAtendidos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
