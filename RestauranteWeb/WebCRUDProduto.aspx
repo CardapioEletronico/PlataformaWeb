@@ -1,5 +1,6 @@
 ﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/RestAdm.Master" AutoEventWireup="true" CodeBehind="WebCRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
@@ -8,7 +9,9 @@
                 <td>
                     <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                     <asp:TextBox ID="textBoxPreco" PlaceHolder="Preço" runat="server"></asp:TextBox>
-                    <asp:FileUpload ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" />
+
+                    <asp:FileUpload ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
+
                     <asp:TextBox ID="textBoxNomeDescr" PlaceHolder="Nome" runat="server"></asp:TextBox>
                     <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
                     <asp:DropDownList ID="Cardapios" style="height: 33px;" runat="server" AutoPostBack="True"></asp:DropDownList>
@@ -33,8 +36,6 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-
-
     </div>
     <link href="css/locastyle.css" rel="stylesheet" type="text/css"/>
             <link href="css/style.css" rel="stylesheet" type="text/css" />

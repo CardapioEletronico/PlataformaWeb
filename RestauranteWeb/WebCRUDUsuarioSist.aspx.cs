@@ -30,7 +30,6 @@ namespace RestauranteWeb
             }
             else
             {
-                Session["Login"] = null;
                 Response.Write("<script>window.alert('Você não tem permissão para acessar esse link.'); self.location = 'LoginAdminSist.aspx';</script>)");
             }
         }

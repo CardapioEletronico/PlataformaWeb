@@ -2,8 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
             <div>
                 <table style="width:100%;">
                     <tr style="float:left">
@@ -15,6 +13,9 @@
                         <td class="auto-style1">&nbsp;</td>
                         <td>
                             <asp:Button ID="btnAtender"  CssClass="ls-btn-primary" runat="server" OnClick="btnAtender_Click" Text="Atender Pedido"/>
+                        </td>
+                        <td>
+                            <asp:Button ID="btnCancelar"  CssClass="ls-btn-danger" runat="server" OnClick="btnCancelar_Click" Text="Cancelar Pedido"/>
                         </td>
                     </tr>
 

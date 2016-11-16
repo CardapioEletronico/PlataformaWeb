@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web;
+using System.Web.Management;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace RestauranteWeb
 {
@@ -47,8 +49,10 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
-
             var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
+
+            
+
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
@@ -60,6 +64,8 @@ namespace RestauranteWeb
                 Foto = base64String,
                 Preco = double.Parse(textBoxPreco.Text),
             };
+
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + FileUpload1.FileName));
 
             string s = JsonConvert.SerializeObject(f);
 
@@ -113,7 +119,7 @@ namespace RestauranteWeb
             List<Models.Cardapio> obj2 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str2);
 
             List<Models.Cardapio> Cardapios = (from Models.Cardapio f in obj2 where f.Restaurante_id == idRest select f).ToList();
-           List<Models.Produto> Produtos = new List<Models.Produto>();
+            List<Models.Produto> Produtos = new List<Models.Produto>();
             foreach (Models.Cardapio c in Cardapios)
             {
                foreach (Models.Produto p in obj)
@@ -124,6 +130,8 @@ namespace RestauranteWeb
             }
 
             Table1.Rows.Clear();
+
+            List<Models.Produto> produtinhos = (from Models.Produto p in obj orderby p.Id select p).ToList();
 
             TableHeaderRow th = new TableHeaderRow();
             TableHeaderCell thc = new TableHeaderCell();
@@ -154,7 +162,7 @@ namespace RestauranteWeb
             th.Cells.Add(thc4);
             Table1.Rows.Add(th);
 
-            foreach (Models.Produto x in Produtos)
+            foreach (Models.Produto x in produtinhos)
             {
                 Label lb2 = new Label();
                 lb2.Text = x.ToString();
@@ -237,6 +245,16 @@ namespace RestauranteWeb
             Filas.DataTextField = "Descricao";
             Filas.DataValueField = "Id";
             Filas.DataBind();
+        }
+
+        public System.Drawing.Image Base64ToImage(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream ms = new MemoryStream(imageBytes, 0,
+              imageBytes.Length);
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            return image;
         }
     }
 }

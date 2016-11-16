@@ -188,5 +188,22 @@ namespace RestauranteWeb
 
             Reload();
         }
+
+        protected async void btnCancelar_Click(object sender, EventArgs e)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/20131011110061/api/itempedido");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
+
+            Models.ItemPedido item = (from Models.ItemPedido f in obj where f.Id == int.Parse(textBoxId.Text) select f).Single();
+
+            await httpClient.DeleteAsync("/20131011110061/api/itempedido/" + item.Id);
+
+            Reload();
+        }
     }
 }

@@ -112,7 +112,8 @@
 
         <div class="login-page">
           <div class="form">
-                <asp:Label ID="Label1" CssClass="logo" runat="server" Text="LOGO" Font-Names="verdana"></asp:Label>
+               <a style="text-decoration: none;" href="WebFormLogins.aspx"> <asp:Label ID="Label1" CssClass="logo" runat="server" Text="LOGO" Font-Names="verdana"></asp:Label></a>
+              <br />
                 <asp:TextBox ID="TextBoxUsuario" placeholder="Usuário" runat="server" CssClass="ls-login-bg-user ls-field-lg"></asp:TextBox>
                 <asp:TextBox ID="TextBoxSenha"  placeholder="Senha" runat="server" CssClass="ls-login-bg-password ls-field-lg" TextMode="Password"></asp:TextBox>
                 <button runat="server" onServerClick="login_click">login</button>
