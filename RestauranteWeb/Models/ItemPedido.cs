@@ -13,5 +13,13 @@ namespace RestauranteWeb.Models
         public int Situacao { get; set; }
         public int Produto_Id { get; set; }
         public int Pedido_Id { get; set; }
+
+        public Produto Produto { get; set; }
+
+        public ItemPedido ComProduto(Produto p)
+        {
+            this.Produto = p;
+            return this;
+        }
     }
 }
