@@ -156,6 +156,7 @@
     <Content Include="AdminSistema.Master" />
     <Content Include="GerentePedidos.Master" />
     <Content Include="PaginaLogin.Master" />
+    <Content Include="WebGridPedidos.aspx" />
     <Content Include="WebPedidosAbertos.aspx" />
     <Content Include="WebPedidosAtendidos.aspx" />
     <None Include="Web.Debug.config">
@@ -345,6 +346,13 @@
     </Compile>
     <Compile Include="WebFormSair.aspx.designer.cs">
       <DependentUpon>WebFormSair.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebGridPedidos.aspx.cs">
+      <DependentUpon>WebGridPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebGridPedidos.aspx.designer.cs">
+      <DependentUpon>WebGridPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPedidosAbertos.aspx.cs">
       <DependentUpon>WebPedidosAbertos.aspx</DependentUpon>

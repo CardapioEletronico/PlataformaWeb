@@ -50,9 +50,6 @@ namespace RestauranteWeb
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
             var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
-
-            
-
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
