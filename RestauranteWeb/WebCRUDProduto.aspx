@@ -1,6 +1,30 @@
 ﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/RestAdm.Master" AutoEventWireup="true" CodeBehind="WebCRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+
+    <script type="text/javascript">
+        function setUploadButtonState(x) {
+            var maxFileSize = 4194304; // 4MB -> 4 * 1024 * 1024
+            var fileUpload = $("FileUpload1");
+            
+
+            console.log(x);
+
+
+            if (fileUpload.val() == '') {
+                return false;
+            }
+            else {
+                if (x < maxFileSize) {
+                    $('#button_fileUpload').prop('enabled', true);
+                    return true;
+                } else {
+                    $('#lbl_uploadMessage').text('File too big !')
+                    return false;
+                }
+            }
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
@@ -10,7 +34,14 @@
                     <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                     <asp:TextBox ID="textBoxPreco" PlaceHolder="Preço" runat="server"></asp:TextBox>
 
-                    <asp:FileUpload ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
+
+
+                    <asp:FileUpload ID="FileUpload1" AutoPostBack="True" runat="server" onchange="alert(this.files[0].size); setUploadButtonState(this.files[0].size);" Height="33" ValidateRequestMode="Inherit" />
+                    <asp:CustomValidator ID="customValidatorUpload" runat="server" ErrorMessage="Deu ruim" ControlToValidate="FileUpload1" ClientValidationFunction="setUploadButtonState();" />
+                    <asp:Button ID="button_fileUpload" runat="server" Text="Upload File" OnClick="btnInsert_Click" Enabled="false" />
+                    <asp:Label ID="lbl_uploadMessage" runat="server" Text="" />
+
+
 
                     <asp:TextBox ID="textBoxNomeDescr" PlaceHolder="Nome" runat="server"></asp:TextBox>
                     <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
