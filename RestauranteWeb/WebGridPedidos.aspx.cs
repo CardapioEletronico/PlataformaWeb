@@ -60,7 +60,6 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
 
-            httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/itempedido");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
@@ -101,6 +100,34 @@ namespace RestauranteWeb
             await httpClient.DeleteAsync("/20131011110061/api/itempedido/" + item.Id);
 
             getPedidos();
+        }
+
+
+        protected async void GridView1_RowCommand1(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AtenderPedido")
+            {
+                int itemPedidoId = (int)GridView1.DataKeys[Convert.ToInt32(e.CommandArgument)].Value;
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+
+                var response = await httpClient.GetAsync("/20131011110061/api/itempedido");
+                var str = response.Content.ReadAsStringAsync().Result;
+                List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
+                Models.ItemPedido item = (from Models.ItemPedido f in obj where f.Id == itemPedidoId select f).Single();
+
+                item.Situacao = 2;
+
+                var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+                await httpClient.PutAsync("/20131011110061/api/itempedido/" + item.Id, content);
+
+                GridView1.EditIndex = -1;
+                GridView1.DataBind();
+
+                getPedidos();
+
+            }
         }
 
         /*protected void OnRowDataBound(object sender, GridViewRowEventArgs e)

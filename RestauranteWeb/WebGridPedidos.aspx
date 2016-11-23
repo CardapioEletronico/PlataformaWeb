@@ -5,7 +5,7 @@
     <asp:GridView cssClass="ls-table ls-bg-header" ID="GridView1" runat="server" 
         AutoGenerateColumns="false" DataKeyNames="Id"
  OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
- OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum pedido foi feito.">
+ OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" OnRowCommand="GridView1_RowCommand1" EmptyDataText="Nenhum pedido foi feito.">
     <Columns>
         <asp:TemplateField HeaderText="Id" SortExpression="Id">
             <HeaderStyle />
@@ -41,7 +41,7 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        <asp:TemplateField HeaderText="Situacao" SortExpression="Numero">
+        <asp:TemplateField HeaderText="Situação" SortExpression="Numero">
 
             <EditItemTemplate>
                 <asp:TextBox ID="txtSituacao" runat="server" Text='<%# Eval("Situacao") %>'></asp:TextBox>
@@ -54,7 +54,8 @@
 
         </asp:TemplateField>
 
-        <asp:CommandField ButtonType="Link" ShowEditButton="true" edittext="Atender" ShowDeleteButton="true" ItemStyle-Width="100"/>
+        <asp:CommandField ButtonType="Link" ShowEditButton="true" edittext="Editar" ShowDeleteButton="true" ItemStyle-Width="100"/>
+        <asp:ButtonField ControlStyle-CssClass="ls-btn-primary" CommandName="AtenderPedido" Text="Atender" ButtonType="Button"></asp:ButtonField>
     </Columns>
 </asp:GridView>
     <link href="css/locastyle.css" rel="stylesheet" type="text/css" />
