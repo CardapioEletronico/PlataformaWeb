@@ -128,6 +128,25 @@ namespace RestauranteWeb
                 getPedidos();
 
             }
+
+            if(e.CommandName == "CancelarPedido")
+            {
+                int itemPedidoId = (int)GridView1.DataKeys[Convert.ToInt32(e.CommandArgument)].Value;
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+
+                httpClient.BaseAddress = new Uri(ip);
+                var response = await httpClient.GetAsync("/20131011110061/api/itempedido");
+                var str = response.Content.ReadAsStringAsync().Result;
+                List<Models.ItemPedido> obj = JsonConvert.DeserializeObject<List<Models.ItemPedido>>(str);
+
+                Models.ItemPedido item = (from Models.ItemPedido f in obj where f.Id == itemPedidoId select f).Single();
+
+                await httpClient.DeleteAsync("/20131011110061/api/itempedido/" + item.Id);
+
+                getPedidos();
+            }
         }
 
         /*protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
