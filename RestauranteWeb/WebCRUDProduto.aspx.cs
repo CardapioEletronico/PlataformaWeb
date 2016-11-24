@@ -61,10 +61,10 @@ namespace RestauranteWeb
                 Fila_id = int.Parse(Filas.SelectedItem.Value),
                 Foto = base64String,
                 Preco = double.Parse(textBoxPreco.Text),
-                ArquivoFoto = "Imagens/" + DateTime.Now.Hour.ToString() + FileUpload1.FileName,
+                ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName,
             };
 
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.Hour.ToString() + FileUpload1.FileName));
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName));
 
             string s = JsonConvert.SerializeObject(f);
 
@@ -77,14 +77,39 @@ namespace RestauranteWeb
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
         {
+            var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
             HttpClient httpClient = new HttpClient();
 
             httpClient.BaseAddress = new Uri(ip);
             Models.Produto f = new Models.Produto
             {
+                Id = int.Parse(textBoxId.Text),
                 Descricao = textBoxDesc.Text,
-                Cardapio_id = int.Parse(Cardapios.SelectedValue)
+                Cardapio_id = int.Parse(Cardapios.SelectedValue),
+                ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName,
+                Foto = base64String,
+                NomeDescricao = textBoxNomeDescr.Text,
+                Fila_id = int.Parse(Filas.SelectedItem.Value),
+                Preco = double.Parse(textBoxPreco.Text),
             };
+
+            int idRest = Convert.ToInt16(Session["idRest"]);
+
+            var response = await httpClient.GetAsync("/20131011110061/api/produto");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+            var deletarFoto = (from Models.Produto p in obj where p.Id == f.Id select p).Single();
+
+            string strPhysicalFolder = Server.MapPath("~/" + deletarFoto.ArquivoFoto);
+            string strFileFullPath = strPhysicalFolder;
+            if (System.IO.File.Exists(strFileFullPath))
+            {
+                System.IO.File.Delete(strFileFullPath);
+            }
+
+
+
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName));
 
             var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/produto/" + f.Id, content);
@@ -186,8 +211,6 @@ namespace RestauranteWeb
                 TableCell tc5 = new TableCell();
                 tc5.Text = x.Preco.ToString();
 
-                
-
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc0);
                 tRow.Cells.Add(tc2);
@@ -206,9 +229,6 @@ namespace RestauranteWeb
                     cell11.Text = "Sem imagem";
                     tRow.Cells.Add(cell11);
                 }
-
-
-
                 Table1.Rows.Add(tRow);
             }
             if (!IsPostBack) DropRest();
