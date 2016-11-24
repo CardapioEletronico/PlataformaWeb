@@ -48,21 +48,23 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
-            HttpClient httpClient = new HttpClient();
+            if (Page.IsValid) { 
+                HttpClient httpClient = new HttpClient();
 
-            httpClient.BaseAddress = new Uri(ip);
-            Models.Restaurante f = new Models.Restaurante
-            {
-                Descricao = textBoxDesc.Text
-            };
+                httpClient.BaseAddress = new Uri(ip);
+                Models.Restaurante f = new Models.Restaurante
+                {
+                    Descricao = textBoxDesc.Text
+                };
            
-            string s = JsonConvert.SerializeObject(f);
+                string s = JsonConvert.SerializeObject(f);
 
-            var content = new StringContent(s, Encoding.UTF8, "application/json");
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            await httpClient.PostAsync("/20131011110061/api/restaurante", content);
+                await httpClient.PostAsync("/20131011110061/api/restaurante", content);
 
-            Reload();
+                Reload();
+            }
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)

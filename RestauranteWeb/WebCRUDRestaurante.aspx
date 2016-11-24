@@ -5,6 +5,14 @@
             <div>
                 <table style="width:100%;">
                     <tr style="float:left">
+
+                        <td>
+                            <ul style="list-style-type: none;">
+                            <li><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="É necessário preencher o campo ID" ControlToValidate="textBoxId"></asp:RequiredFieldValidator></li>
+                            <li><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo Descrição" ControlToValidate="textBoxDesc"></asp:RequiredFieldValidator></li>
+                            </ul>
+                        </td>
+
                         <td>
                             <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                             <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
@@ -24,7 +32,7 @@
                         <td class="auto-style1">
                             <asp:Table  ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
                             </asp:Table>
-                        </td>
+                        </td> 
                         <td>&nbsp;</td>
                     </tr>
                 </table>
