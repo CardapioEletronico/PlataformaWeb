@@ -109,6 +109,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="Imagens\carne.jpg" />
     <Content Include="LoginAdminSist.aspx" />
     <Content Include="LoginAdmRest.aspx" />
@@ -190,6 +191,9 @@
     </Compile>
     <Compile Include="GerentePedidos.Master.designer.cs">
       <DependentUpon>GerentePedidos.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LoginAdminSist.aspx.cs">
       <DependentUpon>LoginAdminSist.aspx</DependentUpon>

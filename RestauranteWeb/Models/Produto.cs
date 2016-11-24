@@ -14,5 +14,6 @@ namespace RestauranteWeb.Models
         public int Fila_id { get; set; }
         public string Foto { get; set; }
         public string NomeDescricao { get; set; }
+        public string ArquivoFoto { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Page  Async="true" Language="C#" MasterPageFile="~/RestAdm.Master" AutoEventWireup="true" CodeBehind="WebCRUDProduto.aspx.cs" Inherits="RestauranteWeb.CRUDProduto" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
     <script type="text/javascript">
         function setUploadButtonState(x, y) {
@@ -41,6 +41,12 @@
                 }
             }
         }
+
+        $(function () {
+            $('input[type=file]').bind('change', function () {
+                setUploadButtonState(this.files[0].size, this.files[0]);
+            });
+        });
     </script>
 
 </asp:Content>
@@ -54,8 +60,8 @@
                     <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                     <asp:TextBox ID="textBoxPreco" PlaceHolder="Preço" runat="server"></asp:TextBox>
 
-                    <asp:FileUpload ID="FileUpload1" AutoPostBack="True" runat="server" onchange="setUploadButtonState(this.files[0].size, this.files[0]);" Height="33" ValidateRequestMode="Inherit" />
-                    <asp:CustomValidator ID="customValidatorUpload" runat="server" ErrorMessage="Deu ruim" ControlToValidate="FileUpload1" ClientValidationFunction="setUploadButtonState();" />
+                    <asp:FileUpload accept=".png,.jpg,.jpeg,.gif" ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
+                    <asp:CustomValidator ID="customValidatorUpload" runat="server" ErrorMessage="Deu ruim" ControlToValidate="FileUpload1" />
 
                     <asp:TextBox ID="textBoxNomeDescr" PlaceHolder="Nome" runat="server"></asp:TextBox>
                     <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>

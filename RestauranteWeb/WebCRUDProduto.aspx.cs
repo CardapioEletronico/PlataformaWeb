@@ -10,6 +10,7 @@ using System.Web.Management;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.Web.UI.HtmlControls;
 
 namespace RestauranteWeb
 {
@@ -60,9 +61,10 @@ namespace RestauranteWeb
                 Fila_id = int.Parse(Filas.SelectedItem.Value),
                 Foto = base64String,
                 Preco = double.Parse(textBoxPreco.Text),
+                ArquivoFoto = "Imagens/" + DateTime.Now.Hour.ToString() + FileUpload1.FileName,
             };
 
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + textBoxDesc.Text + FileUpload1.FileName));
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.Hour.ToString() + FileUpload1.FileName));
 
             string s = JsonConvert.SerializeObject(f);
 
@@ -150,6 +152,9 @@ namespace RestauranteWeb
             TableHeaderCell thc4 = new TableHeaderCell();
             thc4.Text = "Preco";
 
+            TableHeaderCell thcIMAGEM = new TableHeaderCell();
+            thcIMAGEM.Text = "Imagem";
+
             th.Cells.Add(thc);
             th.Cells.Add(thc0);
 
@@ -157,6 +162,9 @@ namespace RestauranteWeb
             th.Cells.Add(thc2);
             th.Cells.Add(thc3);
             th.Cells.Add(thc4);
+
+            th.Cells.Add(thcIMAGEM);
+
             Table1.Rows.Add(th);
 
             foreach (Models.Produto x in produtinhos)
@@ -177,12 +185,30 @@ namespace RestauranteWeb
                 tc4.Text = x.Fila_id.ToString();
                 TableCell tc5 = new TableCell();
                 tc5.Text = x.Preco.ToString();
+
+                
+
                 tRow.Cells.Add(tc);
                 tRow.Cells.Add(tc0);
                 tRow.Cells.Add(tc2);
                 tRow.Cells.Add(tc3);
                 tRow.Cells.Add(tc4);
                 tRow.Cells.Add(tc5);
+                if (x.ArquivoFoto != null)
+                {
+                    TableCell cell11 = new TableCell();
+                    cell11.Text = string.Format("<img style='width:50px; height:50px;' src='" + x.ArquivoFoto.ToString() + "' />");
+                    tRow.Cells.Add(cell11);
+                }
+                else
+                {
+                    TableCell cell11 = new TableCell();
+                    cell11.Text = "Sem imagem";
+                    tRow.Cells.Add(cell11);
+                }
+
+
+
                 Table1.Rows.Add(tRow);
             }
             if (!IsPostBack) DropRest();
