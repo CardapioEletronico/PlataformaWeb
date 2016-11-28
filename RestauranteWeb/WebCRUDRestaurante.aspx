@@ -4,34 +4,51 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div>
                 <table style="width:100%;">
-                    <tr style="float:left">
+                    
+                    <tr class="col-lg-12" style="float:left">
+                        <td class="col-lg-12">
+                            <asp:TextBox CssClass="col-lg-6" ID="textBoxDesc" runat="server" PlaceHolder="Nome" style="margin-left: -29px"></asp:TextBox>
+                            <asp:RequiredFieldValidator style="margin-top: 10px" CssClass="col-lg-6" ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo para inserir o restaurante" ControlToValidate="textBoxDesc"></asp:RequiredFieldValidator>
+                        </td>
 
                         <td>
                             <ul style="list-style-type: none;">
-                            <li><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="É necessário preencher o campo ID" ControlToValidate="textBoxId"></asp:RequiredFieldValidator></li>
-                            <li><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo Descrição" ControlToValidate="textBoxDesc"></asp:RequiredFieldValidator></li>
                             </ul>
                         </td>
 
+                    </tr>
+
+                    <tr>
                         <td>
-                            <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
-                            <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
-                            <!--<asp:DropDownList CssClass="ls-dropdown-nav" ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>-->
-                        </td>
-                    
-                        <td class="auto-style1">&nbsp;</td>
-                        <td>
+                            <asp:Button ID="btnInsert"  CssClass="ls-btn-primary  ls-ico-plus" runat="server" Text="Inserir Restaurante" OnClick="btnInsert_Click" />
                             <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
-                            <asp:Button ID="btnInsert"  CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
-                            <asp:Button ID="btnUpdate"  CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
                         </td>
                     </tr>
 
                     <tr style="width:100%">
                         <td class="auto-style1">
-                            <asp:Table  ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
-                            </asp:Table>
+                            <asp:GridView GridLines="Horizontal" CssClass="ls-table ls-bg-header" ID="GridView1" runat="server"
+                            AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
+                            OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum restaurante foi adicionado.">
+                            <Columns>
+            
+                                <asp:TemplateField HeaderText="Restaurante" SortExpression="Descricao" >
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtDescricao" runat="server" Text='<%# Eval("Descricao") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label2" runat="server"
+                                            Text='<%# Eval("Descricao") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:CommandField ButtonType="Link" ShowEditButton="true" edittext="Editar" ItemStyle-Width="100"/>
+                                <asp:CommandField ShowDeleteButton="true" ButtonType="Link" deletetext="Excluir" ItemStyle-Width="100"/>  
+
+                            </Columns>
+                        </asp:GridView>
+
                         </td> 
                         <td>&nbsp;</td>
                     </tr>

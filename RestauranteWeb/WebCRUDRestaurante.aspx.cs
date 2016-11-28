@@ -17,6 +17,7 @@ namespace RestauranteWeb
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+
             if (Session["Login"] == null)
             {
                 Response.Write("<script>window.alert('Faça seu login para acessar esse link.'); self.location = 'LoginAdminSistema.aspx';</script>)");
@@ -37,14 +38,68 @@ namespace RestauranteWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Table1.Rows.Clear();
-            Reload();
+            if (!this.IsPostBack)
+            {
+                Reload();
+            }
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             Reload();
         }
+
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Reload();
+            GridView1.DataBind();
+        }
+
+        protected async void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
+            Models.Restaurante item = (from Models.Restaurante f in obj where f.Id == Id select f).Single();
+
+            string x = (row.FindControl("txtDescricao") as TextBox).Text;
+            item.Descricao = (row.FindControl("txtDescricao") as TextBox).Text;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/restaurante/" + item.Id, content);
+
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+
+            Reload();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Reload();
+            GridView1.DataBind();  
+        }
+
+
+        protected async void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + Id);
+
+            Reload();
+        }
+
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
@@ -67,35 +122,6 @@ namespace RestauranteWeb
             }
         }
 
-        protected async void btnUpdate_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            Models.Restaurante f = new Models.Restaurante
-            {
-                Id = int.Parse(textBoxId.Text),
-                Descricao = textBoxDesc.Text
-            };
-
-            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8,"application/json");
-
-            await httpClient.PutAsync("/20131011110061/api/restaurante/" + f.Id, content);
-
-            Reload();
-        }
-
-        protected async void btnDelete_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-
-            await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + textBoxId.Text);
-
-            Reload();
-        }
-
         protected async void Reload()
         {
             HttpClient httpClient = new HttpClient();
@@ -105,42 +131,10 @@ namespace RestauranteWeb
             var response2 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.Restaurante> obj2 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str2);
+            var obj = (from Models.Restaurante r in obj2 orderby r.Descricao select r).ToList();
 
-            Table1.Rows.Clear();
-
-            TableHeaderRow th = new TableHeaderRow();
-            TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "ID";
-            thc.Width = 150;
-
-            TableHeaderCell thc1 = new TableHeaderCell();
-            thc1.Text = "Descricao";
-
-            th.Cells.Add(thc);
-            th.Cells.Add(thc1);
-
-            Table1.Rows.Add(th);
-
-            foreach (Models.Restaurante x in obj2)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString();
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao;
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-
-                tRow.BorderStyle = BorderStyle.Ridge;
-                tRow.BorderWidth = 1;
-
-                Table1.Rows.Add(tRow);
-            }
-            //if (!IsPostBack) DropRest();
+            GridView1.DataSource = obj;
+            GridView1.DataBind();
         }
     }
 }

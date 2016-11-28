@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Icones\editar.png" />
     <Content Include="Imagens\carne.jpg" />
     <Content Include="LoginAdminSist.aspx" />
     <Content Include="LoginAdmRest.aspx" />

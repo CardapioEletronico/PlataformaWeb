@@ -20,7 +20,6 @@ namespace RestauranteWeb
             {
                 getPedidos();
             }
-
         }
 
         public async void getPedidos()
