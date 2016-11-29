@@ -57,11 +57,38 @@ namespace RestauranteWeb
             Restaurantes.DataValueField = "Id";
             Restaurantes.DataBind();
 
+
+            RestaurantesSelect.DataSource = obj;
+            RestaurantesSelect.DataTextField = "Descricao";
+            RestaurantesSelect.DataValueField = "Id";
+            RestaurantesSelect.DataBind();
+
         }
 
-        protected void btnSelect_Click(object sender, EventArgs e)
+        protected async void btnSelect_Click(object sender, EventArgs e)
         {
-            Reload();
+            HttpClient httpClient = new HttpClient();
+
+            httpClient.BaseAddress = new Uri(ip);
+
+            var response2 = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.UsuarioSistema> obj2 = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str2);
+
+            var obj = (from Models.UsuarioSistema r in obj2 where r.Restaurante_id == int.Parse(RestaurantesSelect.SelectedValue) orderby r.Usuario select r).ToList();
+
+            var response3 = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var str3 = response3.Content.ReadAsStringAsync().Result;
+            List<Models.Restaurante> obj3 = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str3);
+
+            var result = from Models.UsuarioSistema us in obj
+                         join Models.Restaurante p in obj3
+                         on us.Restaurante_id equals p.Id
+                         select us.ComRestaurante(p);
+
+            GridView1.DataSource = result.ToList();
+            GridView1.DataBind();
+            DropRest();
         }
 
         public const int SaltByteSize = 24;
@@ -135,7 +162,6 @@ namespace RestauranteWeb
             List<Models.UsuarioSistema> obj2 = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str2);
 
             var obj = (from Models.UsuarioSistema r in obj2 orderby r.Usuario select r).ToList();
-
 
             var response3 = await httpClient.GetAsync("/20131011110061/api/restaurante");
             var str3 = response3.Content.ReadAsStringAsync().Result;

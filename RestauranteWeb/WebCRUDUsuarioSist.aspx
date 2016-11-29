@@ -45,8 +45,10 @@
             
                 <tr class="col-lg-12" style="float:left; margin-top:10px; margin-left:-17px;">
                     <td>
-                        <asp:Button ID="btnInsert" ValidationGroup="valGroup1"  CssClass="ls-btn-primary" runat="server" Text="Inserir Usuário" OnClick="btnInsert_Click" /> 
-                        <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
+                        <asp:Button ID="btnInsert" ValidationGroup="valGroup1" style="margin-right:30px;" CssClass="ls-btn-primary" runat="server" Text="Inserir Usuário" OnClick="btnInsert_Click" /> 
+                        
+                        <asp:DropDownList ID="RestaurantesSelect" runat="server" style=" height:30px; font-family: Verdana" AutoPostBack="True"></asp:DropDownList>
+                        <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Consultar Lista" OnClick="btnSelect_Click" />
                     </td>
                 </tr>
 
