@@ -14,5 +14,13 @@ namespace RestauranteWeb.Models
         public bool AdminRest { get; set; }
         public bool Caixa { get; set; }
         public string Senha { get; set; }
+
+        public Restaurante restaurante { get; set; }
+
+        public UsuarioSistema ComRestaurante (Restaurante r)
+        {
+            this.restaurante = r;
+            return this;
+        }
     }
 }

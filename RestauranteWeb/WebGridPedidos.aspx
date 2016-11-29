@@ -48,7 +48,7 @@
                 </EditItemTemplate>
 
                 <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server"
+                    <asp:Label ID="Label6" runat="server"
                         Text='<%# Eval("Situacao").ToString() == "1" ? "Aberto" : "Atendido"  %>'></asp:Label>
                 </ItemTemplate>
 
