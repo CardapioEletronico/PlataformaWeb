@@ -37,8 +37,11 @@ namespace RestauranteWeb
 
         protected async void Page_Load(object sender, EventArgs e)
         {
-            Table1.Rows.Clear();
-            Reload();
+            if (!this.IsPostBack)
+            {
+                Reload();
+            }
+            Label1.Text = "";
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
@@ -76,59 +79,37 @@ namespace RestauranteWeb
         {
             HttpClient httpClient = new HttpClient();
 
-            string cu = HashPassword(textBoxSenha.Text);
-
             httpClient.BaseAddress = new Uri(ip);
-            Models.AdminSistema f = new Models.AdminSistema
+
+            var response2 = await httpClient.GetAsync("/20131011110061/api/adminsistema");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.AdminSistema> obj2 = JsonConvert.DeserializeObject<List<Models.AdminSistema>>(str2);
+            var obj = (from Models.AdminSistema a in obj2 orderby a.Usuario select a).ToList();
+
+            if (obj.Any(x => x.Usuario.Contains(textBoxUsuario.Text)))
             {
-                Usuario = textBoxUsuario.Text,
-                Senha = cu,
-            };
+                Label1.Text = "Esse usuário já existe.";
+            }
 
-            List<Models.AdminSistema> fl = new List<Models.AdminSistema>();
-
-            fl.Add(f);
-
-            string s = "=" + JsonConvert.SerializeObject(fl, Newtonsoft.Json.Formatting.None,
-                            new JsonSerializerSettings
-                            {
-                                NullValueHandling = NullValueHandling.Ignore
-                            });
-
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/adminsistema", content);
-
-            
-        }
-
-        protected async void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            Models.AdminSistema f = new Models.AdminSistema
+            else
             {
-                Usuario = textBoxUsuario.Text,
-                Senha = textBoxSenha.Text,
-            };
+                string senha = HashPassword(textBoxSenha.Text);
+                Models.AdminSistema f = new Models.AdminSistema
+                {
+                    Usuario = textBoxUsuario.Text,
+                    Senha = senha,
+                };
 
-            string s = "=" + JsonConvert.SerializeObject(f);
+                string s = JsonConvert.SerializeObject(f);
 
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            await httpClient.PutAsync("/20131011110061/api/adminsistema/" + textBoxUsuario.Text, content);
+                await httpClient.PostAsync("/20131011110061/api/adminsistema", content);
 
-        }
+                Label1.Text = "";
 
-        protected async void btnDelete_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-
-            await httpClient.DeleteAsync("/20131011110061/api/adminsistema/" + textBoxUsuario.Text);
+                Reload();
+            }
         }
 
         public async void Reload()
@@ -140,32 +121,84 @@ namespace RestauranteWeb
             var response2 = await httpClient.GetAsync("/20131011110061/api/adminsistema");
             var str2 = response2.Content.ReadAsStringAsync().Result;
             List<Models.AdminSistema> obj2 = JsonConvert.DeserializeObject<List<Models.AdminSistema>>(str2);
+            var obj = (from Models.AdminSistema a in obj2 orderby a.Usuario select a).ToList();
 
-            Table1.Rows.Clear();
+            GridView1.DataSource = obj2;
+            GridView1.DataBind();
+        }
 
-            TableHeaderRow th = new TableHeaderRow();
-            TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "Gerentes do Sistema";
 
-            th.Cells.Add(thc);
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Reload();
+            GridView1.DataBind();
+        }
 
-            Table1.Rows.Add(th);
+        protected async void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            string Id = Convert.ToString(GridView1.DataKeys[e.RowIndex].Values[0]);
 
-            foreach (Models.AdminSistema x in obj2)
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            var response = await httpClient.GetAsync("/20131011110061/api/adminsistema");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.AdminSistema> obj = JsonConvert.DeserializeObject<List<Models.AdminSistema>>(str);
+            Models.AdminSistema item = (from Models.AdminSistema f in obj where f.Usuario == Id select f).Single();
+
+            item.Usuario = (row.FindControl("txtUsuario") as TextBox).Text;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/adminsistema/" + Id, content);
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+
+            Reload();
+
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Reload();
+            GridView1.DataBind();
+        }
+
+
+        protected async void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string Id = Convert.ToString(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/20131011110061/api/adminsistema/" + Id);
+
+            Reload();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
+                LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1");
+                l.Attributes.Add("onclick", "javascript:return " + "confirm('Deseja deletar " +
+                DataBinder.Eval(e.Row.DataItem, "Usuario") + "'?)");
+            }
+        }
 
-                TableCell tc = new TableCell();
-                tc.Text = x.Usuario.ToString();
+        protected async void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Deletar")
+            {
+                string Id = Convert.ToString(e.CommandArgument);
 
-                tRow.Cells.Add(tc);
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                await httpClient.DeleteAsync("/20131011110061/api/adminsistema/" + Id);
 
-                tRow.BorderStyle = BorderStyle.Ridge;
-                tRow.BorderWidth = 1;
-
-                Table1.Rows.Add(tRow);
+                Reload();
             }
         }
     }

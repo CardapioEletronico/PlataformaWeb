@@ -10,6 +10,7 @@
                     <td class="col-lg-12">
                         <asp:TextBox ID="textBoxUsuario" cssClass="col-lg-6" runat="server" PlaceHolder="Usuario" style="margin-left: -29px" ></asp:TextBox>
                         <asp:RequiredFieldValidator ValidationGroup="valGroup1" style="margin-top: 10px" CssClass="col-lg-6" ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo para inserir o Usuário" ControlToValidate="textBoxUsuario"></asp:RequiredFieldValidator>
+                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
                 

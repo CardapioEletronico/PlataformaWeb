@@ -40,6 +40,7 @@ namespace RestauranteWeb
             {
                 Reload();
             }
+            Label1.Text = "";
         }
 
         public async void DropRest()
@@ -123,31 +124,36 @@ namespace RestauranteWeb
             string cu = HashPassword(textBoxSenha.Text);
             httpClient.BaseAddress = new Uri(ip);
 
-            Models.UsuarioSistema f = new Models.UsuarioSistema
+            var response2 = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.UsuarioSistema> obj2 = JsonConvert.DeserializeObject<List<Models.UsuarioSistema>>(str2);
+            var obj = (from Models.UsuarioSistema a in obj2 orderby a.Usuario select a).ToList();
+
+            if (obj.Any(x => x.Usuario.Contains(textBoxUsuario.Text)))
             {
-                Usuario = textBoxUsuario.Text.ToString(),
-                Senha = cu,
-                Garcom = Convert.ToBoolean(Garçom.Checked),
-                AdminRest = Convert.ToBoolean(AdminRest.Checked),
-                GerentePedidos = Convert.ToBoolean(GerentePedidos.Checked),
-                Caixa = Convert.ToBoolean(Caixa.Checked),
-                Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
-            };
+                Label1.Text = "Esse usuário já existe.";
+            }
 
-            List<Models.UsuarioSistema> fl = new List<Models.UsuarioSistema>();
+            else { 
+                Models.UsuarioSistema f = new Models.UsuarioSistema
+                {
+                    Usuario = textBoxUsuario.Text.ToString(),
+                    Senha = cu,
+                    Garcom = Convert.ToBoolean(Garçom.Checked),
+                    AdminRest = Convert.ToBoolean(AdminRest.Checked),
+                    GerentePedidos = Convert.ToBoolean(GerentePedidos.Checked),
+                    Caixa = Convert.ToBoolean(Caixa.Checked),
+                    Restaurante_id = int.Parse(Restaurantes.SelectedItem.Value)
+                };
 
-            fl.Add(f);
 
-            string s = "=" + JsonConvert.SerializeObject(fl, Newtonsoft.Json.Formatting.None,
-                            new JsonSerializerSettings
-                            {
-                                NullValueHandling = NullValueHandling.Ignore
-                            });
+                string s = JsonConvert.SerializeObject(f);
 
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage message = await httpClient.PostAsync("/20131011110061/api/usuariosistema", content);
-
+                await httpClient.PostAsync("/20131011110061/api/usuariosistema", content);
+                Label1.Text = "";
+            }
             Reload();
         }
 

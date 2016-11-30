@@ -36,30 +36,14 @@ namespace RestauranteWeb
 
         protected async void Page_Load(object sender, EventArgs e)
         {
-            Table1.Rows.Clear();
-            Reload();
+            if (!this.IsPostBack)
+            {
+                Reload();
+            }
         }
-
-        /*public async void DropRest()
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
-
-            Restaurantes.DataSource = obj;
-            Restaurantes.DataTextField = "Descricao";
-            Restaurantes.DataValueField = "Id";
-            Restaurantes.DataBind();
-        }*/
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
-            Table1.Rows.Clear();
             Reload();
         }
 
@@ -67,7 +51,6 @@ namespace RestauranteWeb
         {
             int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
-
 
             if(textBoxDesc.Text != "") { 
 
@@ -84,7 +67,6 @@ namespace RestauranteWeb
 
                 await httpClient.PostAsync("/20131011110061/api/cardapio", content);
 
-                Table1.Rows.Clear();
             }
 
             Reload();
@@ -140,61 +122,117 @@ namespace RestauranteWeb
             List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
 
             List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
-            foreach (Models.Cardapio x in obj)
+            
+            /*foreach (Models.Cardapio x in obj)
             {
                 if (x.Restaurante_id == idRest)
                 {
                     obj3.Add(x);
                 }
-            }
+            }*/
 
-            Table1.Rows.Clear();
+            obj3 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
 
-            TableHeaderRow th = new TableHeaderRow();
-            TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "ID";
-            thc.Width = 150;
+            GridView1.DataSource = obj3;
+            GridView1.DataBind();
+        }
 
-            TableHeaderCell thc1 = new TableHeaderCell();
-            thc1.Text = "Descricao";
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Reload();
+            GridView1.DataBind();
+        }
 
-            TableHeaderCell thc2 = new TableHeaderCell();
-            thc2.Text = "Restaurante";
+        protected async void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
 
-            th.Cells.Add(thc);
-            th.Cells.Add(thc1);
-            th.Cells.Add(thc2);
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
 
-            Table1.Rows.Add(th);
+            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
+            Models.Restaurante item = (from Models.Restaurante f in obj where f.Id == Id select f).Single();
 
-            foreach (Models.Cardapio x in obj3)
+            string x = (row.FindControl("txtDescricao") as TextBox).Text;
+            item.Descricao = (row.FindControl("txtDescricao") as TextBox).Text;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/restaurante/" + item.Id, content);
+
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+
+            Reload();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Reload();
+            GridView1.DataBind();
+        }
+
+
+        protected async void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + Id);
+
+            Reload();
+        }
+
+
+        protected async void btnInsert_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
             {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
+                HttpClient httpClient = new HttpClient();
 
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString();
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao;
-                TableCell tc3 = new TableCell();
-
-                foreach (Models.Restaurante y in obj2)
+                httpClient.BaseAddress = new Uri(ip);
+                Models.Restaurante f = new Models.Restaurante
                 {
-                    if (y.Id == x.Restaurante_id)
-                        tc3.Text = y.Descricao.ToString();
-                }
+                    Descricao = textBoxDesc.Text
+                };
 
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
+                string s = JsonConvert.SerializeObject(f);
 
-                tRow.BorderStyle = BorderStyle.Ridge;
-                tRow.BorderWidth = 1;
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-                Table1.Rows.Add(tRow);
+                await httpClient.PostAsync("/20131011110061/api/restaurante", content);
+
+                Reload();
             }
-            //if (!IsPostBack) DropRest();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1");
+                l.Attributes.Add("onclick", "javascript:return " + "confirm('Deseja deletar " +
+                DataBinder.Eval(e.Row.DataItem, "Descricao") + "'?)");
+            }
+        }
+
+        protected async void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Deletar")
+            {
+                int Id = Convert.ToInt32(e.CommandArgument);
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + Id);
+
+                Reload();
+            }
         }
     }
 }
