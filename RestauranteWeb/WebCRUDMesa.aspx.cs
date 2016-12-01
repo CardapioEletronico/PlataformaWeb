@@ -35,36 +35,12 @@ namespace RestauranteWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Carregar();
+            Reload();
         }
-
-        /*public async void DropRest()
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            //var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
-
-            /*foreach (Models.Restaurante x in obj)
-            {
-                //ID
-                //Restaurantes.Items.Add(x.Id.ToString());
-                Restaurantes.Items.Add(x.Descricao.ToString());
-            }
-            Restaurantes.DataSource = obj;
-            Restaurantes.DataTextField = "Descricao";
-            Restaurantes.DataValueField = "Id";
-            Restaurantes.DataBind();
-
-        }*/
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
-            Carregar();
+            Reload();
         }
 
         protected async void btnInsert_Click(object sender, EventArgs e)
@@ -89,7 +65,7 @@ namespace RestauranteWeb
             string s = JsonConvert.SerializeObject(f);
             var content = new StringContent(s, Encoding.UTF8, "application/json");
             await httpClient.PostAsync("/20131011110061/api/mesa", content);
-            Carregar();
+            Reload();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
@@ -114,7 +90,7 @@ namespace RestauranteWeb
             var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/mesa/" + f.Id, content);
       
-            Carregar();
+            Reload();
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
@@ -125,10 +101,10 @@ namespace RestauranteWeb
 
             await httpClient.DeleteAsync("/20131011110061/api/mesa/" + textBoxId.Text);
 
-            Carregar();
+            Reload();
         }
 
-        protected async void Carregar()
+        protected async void Reload()
         {
             Table1.Rows.Clear();
             int idRest = Convert.ToInt16(Session["idRest"]);
