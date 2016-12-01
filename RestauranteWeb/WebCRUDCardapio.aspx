@@ -6,18 +6,20 @@
                 <table style="width:100%;">
                     <tr style="float:left">
                         <td>
-                            <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
                             <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
                         </td>
-                    
-                        <td class="auto-style1">&nbsp;</td>
                         <td>
-                            <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
-                            <asp:Button ID="btnInsert"  CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
-                            <asp:Button ID="btnUpdate"  CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
+                            <asp:RequiredFieldValidator Width="500px" ValidationGroup="valGroup1" style="margin-top: 10px" CssClass="col-lg-6" ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo para inserir o cardápio" ControlToValidate="textBoxDesc"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
+                            <asp:Button ID="btnInsert" ValidationGroup="valGroup1" CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
+                        </td>
+                    </tr>
+                    
 
                     <tr style="width:100%">
                         <td class="auto-style1">

@@ -49,10 +49,9 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
-            int idRest = Convert.ToInt16(Session["idRest"]);
-            HttpClient httpClient = new HttpClient();
-
-            if(textBoxDesc.Text != "") { 
+            if (Page.IsValid) { 
+                int idRest = Convert.ToInt16(Session["idRest"]);
+                HttpClient httpClient = new HttpClient();
 
                 httpClient.BaseAddress = new Uri(ip);
                 Models.Cardapio f = new Models.Cardapio
@@ -62,47 +61,11 @@ namespace RestauranteWeb
                 };
 
                 string s = JsonConvert.SerializeObject(f);
-
                 var content = new StringContent(s, Encoding.UTF8, "application/json");
-
                 await httpClient.PostAsync("/20131011110061/api/cardapio", content);
 
+                Reload();
             }
-
-            Reload();
-        }
-
-        protected async void btnUpdate_Click(object sender, EventArgs e)
-        {
-            int idRest = Convert.ToInt16(Session["idRest"]);
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-            Models.Cardapio f = new Models.Cardapio
-            {
-                Id = int.Parse(textBoxId.Text),
-                Descricao = textBoxDesc.Text,
-                Restaurante_id = idRest
-            };
-
-            var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
-
-            await httpClient.PutAsync("/20131011110061/api/cardapio/" + f.Id, content);
-
-            Table1.Rows.Clear();
-
-            Reload();
-        }
-
-        protected async void btnDelete_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-
-            await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + textBoxId.Text);
-
-            Reload();
         }
 
         public async void Reload()
@@ -131,7 +94,7 @@ namespace RestauranteWeb
                 }
             }*/
 
-            obj3 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
+            obj3 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest orderby c.Descricao select c).ToList();
 
             GridView1.DataSource = obj3;
             GridView1.DataBind();
@@ -152,16 +115,15 @@ namespace RestauranteWeb
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
 
-            var response = await httpClient.GetAsync("/20131011110061/api/restaurante");
+            var response = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Restaurante> obj = JsonConvert.DeserializeObject<List<Models.Restaurante>>(str);
-            Models.Restaurante item = (from Models.Restaurante f in obj where f.Id == Id select f).Single();
+            List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            Models.Cardapio item = (from Models.Cardapio f in obj where f.Id == Id select f).Single();
 
-            string x = (row.FindControl("txtDescricao") as TextBox).Text;
             item.Descricao = (row.FindControl("txtDescricao") as TextBox).Text;
 
             var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-            await httpClient.PutAsync("/20131011110061/api/restaurante/" + item.Id, content);
+            await httpClient.PutAsync("/20131011110061/api/cardapio/" + item.Id, content);
 
             GridView1.EditIndex = -1;
             GridView1.DataBind();
@@ -183,32 +145,9 @@ namespace RestauranteWeb
 
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + Id);
+            await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + Id);
 
             Reload();
-        }
-
-
-        protected async void btnInsert_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                HttpClient httpClient = new HttpClient();
-
-                httpClient.BaseAddress = new Uri(ip);
-                Models.Restaurante f = new Models.Restaurante
-                {
-                    Descricao = textBoxDesc.Text
-                };
-
-                string s = JsonConvert.SerializeObject(f);
-
-                var content = new StringContent(s, Encoding.UTF8, "application/json");
-
-                await httpClient.PostAsync("/20131011110061/api/restaurante", content);
-
-                Reload();
-            }
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -229,7 +168,7 @@ namespace RestauranteWeb
 
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(ip);
-                await httpClient.DeleteAsync("/20131011110061/api/restaurante/" + Id);
+                await httpClient.DeleteAsync("/20131011110061/api/cardapio/" + Id);
 
                 Reload();
             }
