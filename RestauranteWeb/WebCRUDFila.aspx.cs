@@ -119,6 +119,8 @@ namespace RestauranteWeb
                          on fila.Cardapio_id equals c.Id
                          select fila.ComCardapio(c);
 
+            result = (from Models.Fila f in result orderby f.Descricao select f).ToList();
+
             GridView1.DataSource = result;
             GridView1.DataBind();
             DropRest();
