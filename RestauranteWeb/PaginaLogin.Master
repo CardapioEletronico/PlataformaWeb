@@ -40,9 +40,7 @@
             <main class="ls-main ">
               <div class="container-fluid">
                 <h3 class="ls-title-intro ls-ico-list"> <asp:Label ID="titulo" runat="server" Text="Sistema de Cardápios Eletrônicos" ></asp:Label></h3>
-                  <br />
-                  <br />
-                
+
             <div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             

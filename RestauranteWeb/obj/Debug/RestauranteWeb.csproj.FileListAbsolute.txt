@@ -518,6 +518,7 @@ C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.cs
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\Arthur\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\ApplicationInsights.config
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\csc.exe
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -554,7 +555,6 @@ C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWe
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.xml
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.xml
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.xml
-C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
-C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
+C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache

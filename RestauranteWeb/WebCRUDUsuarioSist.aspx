@@ -84,7 +84,6 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-
                                 <asp:TemplateField HeaderText="Garçom" SortExpression="Garcom" >
                                     <EditItemTemplate>
                                         <asp:CheckBox ID="GarcomCheck" runat="server" Checked='<%# Convert.ToBoolean(Eval("Garcom")) %>' />                                    

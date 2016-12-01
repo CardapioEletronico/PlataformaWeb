@@ -4,23 +4,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div>
                 <table style="width:100%;">
-                    <tr style="float:left">
-                        <td>
-                            <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
+                    <tr style="float:left" class="col-lg-12">
+                        <td class="col-lg-6">
+                            <asp:TextBox CssClass="col-lg-12" ID="textBoxDesc" runat="server" PlaceHolder="Descrição"  style="margin-left: -29px; margin-top: 0px;" ></asp:TextBox>
                         </td>
-                        <td>
+                        <td class="col-lg-6">
                             <asp:RequiredFieldValidator Width="500px" ValidationGroup="valGroup1" style="margin-top: 10px" CssClass="col-lg-6" ID="RequiredFieldValidator2" runat="server" ErrorMessage="É necessário preencher o campo para inserir o cardápio" ControlToValidate="textBoxDesc"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="margin-top: -100px;">
                             <asp:Button ID="btnSelect"  CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
                             <asp:Button ID="btnInsert" ValidationGroup="valGroup1" CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
                         </td>
                     </tr>
                     
-
                     <tr style="width:100%">
                         <td class="auto-style1">
                             
@@ -53,7 +52,6 @@
                                         Excluir</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField> 
-        
                             </Columns>
                         </asp:GridView>
 
