@@ -151,6 +151,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="RestAdm.Master" />
+    <Content Include="WebCRUDUsuarioSistAdmRest.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebFormLogins.aspx" />
     <Content Include="WebFormSair.aspx" />
@@ -322,6 +323,13 @@
     </Compile>
     <Compile Include="WebCRUDRestaurante.aspx.designer.cs">
       <DependentUpon>WebCRUDRestaurante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebCRUDUsuarioSistAdmRest.aspx.cs">
+      <DependentUpon>WebCRUDUsuarioSistAdmRest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCRUDUsuarioSistAdmRest.aspx.designer.cs">
+      <DependentUpon>WebCRUDUsuarioSistAdmRest.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
