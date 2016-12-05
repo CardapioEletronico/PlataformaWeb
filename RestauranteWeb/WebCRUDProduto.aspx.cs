@@ -40,12 +40,15 @@ namespace RestauranteWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Carregar();
+            if (!this.IsPostBack)
+            {
+                Reload();
+            }
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
-            Carregar();
+            Reload();
         }
 
         protected async void btnInsert_Click(object sender, EventArgs e)
@@ -72,7 +75,7 @@ namespace RestauranteWeb
 
             await httpClient.PostAsync("/20131011110061/api/produto", content);
 
-            Carregar();
+            Reload();
         }
 
         protected async void btnUpdate_Click(object sender, EventArgs e)
@@ -107,14 +110,12 @@ namespace RestauranteWeb
                 System.IO.File.Delete(strFileFullPath);
             }
 
-
-
             FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName));
 
             var content = new StringContent(JsonConvert.SerializeObject(f), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/produto/" + f.Id, content);
 
-            Carregar();
+            Reload();
         }
 
         protected async void btnDelete_Click(object sender, EventArgs e)
@@ -125,10 +126,10 @@ namespace RestauranteWeb
 
             await httpClient.DeleteAsync("/20131011110061/api/produto/" + textBoxId.Text);
 
-            Carregar();
+            Reload();
         }
 
-        protected async void Carregar()
+        protected async void Reload()
         {
             int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
@@ -153,84 +154,9 @@ namespace RestauranteWeb
                 }
             }
 
-            Table1.Rows.Clear();
+            GridView1.DataSource = Produtos;
+            GridView1.DataBind();
 
-            List<Models.Produto> produtinhos = (from Models.Produto p in obj orderby p.Id select p).ToList();
-
-            TableHeaderRow th = new TableHeaderRow();
-            TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "ID";
-            thc.Width = 100;
-
-            TableHeaderCell thc0 = new TableHeaderCell();
-            thc0.Text = "Nome";
-
-            TableHeaderCell thc1 = new TableHeaderCell();
-            thc1.Text = "Descricao";
-
-            TableHeaderCell thc2 = new TableHeaderCell();
-            thc2.Text = "Cardapio";
-
-            TableHeaderCell thc3 = new TableHeaderCell();
-            thc3.Text = "Fila";
-
-            TableHeaderCell thc4 = new TableHeaderCell();
-            thc4.Text = "Preco";
-
-            TableHeaderCell thcIMAGEM = new TableHeaderCell();
-            thcIMAGEM.Text = "Imagem";
-
-            th.Cells.Add(thc);
-            th.Cells.Add(thc0);
-
-            th.Cells.Add(thc1);
-            th.Cells.Add(thc2);
-            th.Cells.Add(thc3);
-            th.Cells.Add(thc4);
-
-            th.Cells.Add(thcIMAGEM);
-
-            Table1.Rows.Add(th);
-
-            foreach (Models.Produto x in produtinhos)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString();
-                TableCell tc0 = new TableCell();
-                tc0.Text = x.NomeDescricao.ToString();
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Descricao.ToString();
-                TableCell tc3 = new TableCell();
-                tc3.Text = x.Cardapio_id.ToString();
-                TableCell tc4 = new TableCell();
-                tc4.Text = x.Fila_id.ToString();
-                TableCell tc5 = new TableCell();
-                tc5.Text = x.Preco.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc0);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc3);
-                tRow.Cells.Add(tc4);
-                tRow.Cells.Add(tc5);
-                if (x.ArquivoFoto != null)
-                {
-                    TableCell cell11 = new TableCell();
-                    cell11.Text = string.Format("<img style='width:50px; height:50px;' src='" + x.ArquivoFoto.ToString() + "' />");
-                    tRow.Cells.Add(cell11);
-                }
-                else
-                {
-                    TableCell cell11 = new TableCell();
-                    cell11.Text = "Sem imagem";
-                    tRow.Cells.Add(cell11);
-                }
-                Table1.Rows.Add(tRow);
-            }
             if (!IsPostBack) DropRest();
             if (!IsPostBack) DropFilas();
         }
@@ -298,6 +224,81 @@ namespace RestauranteWeb
             ms.Write(imageBytes, 0, imageBytes.Length);
             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
             return image;
+        }
+
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Reload();
+            GridView1.DataBind();
+        }
+
+        protected async void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            var response = await httpClient.GetAsync("/20131011110061/api/produto");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Produto> obj = JsonConvert.DeserializeObject<List<Models.Produto>>(str);
+            Models.Produto item = (from Models.Produto f in obj where f.Id == Id select f).Single();
+
+            item.Descricao = (row.FindControl("txtDescricao") as TextBox).Text;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/produto/" + item.Id, content);
+
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+
+            Reload();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Reload();
+            GridView1.DataBind();
+        }
+
+
+        protected async void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/20131011110061/api/produto/" + Id);
+
+            Reload();
+        }
+
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1");
+                l.Attributes.Add("onclick", "javascript:return " + "confirm('Deseja deletar " +
+                DataBinder.Eval(e.Row.DataItem, "NomeDescricao") + "'?)");
+            }
+        }
+
+        protected async void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Deletar")
+            {
+                int Id = Convert.ToInt32(e.CommandArgument);
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                await httpClient.DeleteAsync("/20131011110061/api/produto/" + Id);
+
+                Reload();
+            }
         }
     }
 }
