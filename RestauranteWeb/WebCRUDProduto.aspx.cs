@@ -154,6 +154,8 @@ namespace RestauranteWeb
                 }
             }
 
+            Produtos = (from Models.Produto p in Produtos orderby p.NomeDescricao select p).ToList();
+
             GridView1.DataSource = Produtos;
             GridView1.DataBind();
 

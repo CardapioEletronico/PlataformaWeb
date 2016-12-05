@@ -116,7 +116,7 @@
 
                                     <ItemTemplate>
                                         <asp:Label ID="Label4" runat="server"
-                                            Text='<%# Eval("Preco") %>'></asp:Label>
+                                            Text='<%# Eval("Preco","{0:n}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
