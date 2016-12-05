@@ -13,15 +13,6 @@ namespace RestauranteWeb {
     public partial class WebCRUDMesa {
         
         /// <summary>
-        /// textBoxId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxId;
-        
-        /// <summary>
         /// textBoxNum control.
         /// </summary>
         /// <remarks>
@@ -29,15 +20,6 @@ namespace RestauranteWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxNum;
-        
-        /// <summary>
-        /// Restaurantes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Restaurantes;
         
         /// <summary>
         /// Label2 control.
@@ -76,30 +58,12 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.Button btnInsert;
         
         /// <summary>
-        /// btnUpdate control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

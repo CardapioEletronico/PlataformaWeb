@@ -52,17 +52,21 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" edittext="Editar" ItemStyle-Width="100"/>
-                                
-                                 <%--<asp:CommandField ShowDeleteButton="true" ItemStyle-CssClass="pull-right" ButtonType="Link" deletetext="Excluir" ItemStyle-Width="100"/>--%>
-                                
+                                <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" edittext="Editar" ItemStyle-Width="100">
+                                    <HeaderStyle Width="100px"></HeaderStyle>
+
+                                </asp:CommandField>
+
+                                <%--<asp:CommandField ShowDeleteButton="true" ItemStyle-CssClass="pull-right" ButtonType="Link" deletetext="Excluir" ItemStyle-Width="100"/>--%>
+
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                    <asp:LinkButton ID="LinkButton1" 
-                                        CommandArgument='<%# Eval("Id") %>' 
-                                        CommandName="Deletar" runat="server">
+                                        <asp:LinkButton ID="LinkButton1"
+                                            CommandArgument='<%# Eval("Id") %>'
+                                            CommandName="Deletar" runat="server">
                                         Excluir</asp:LinkButton>
                                     </ItemTemplate>
+                                    <HeaderStyle Width="100px"></HeaderStyle>
                                 </asp:TemplateField> 
         
                             </Columns>

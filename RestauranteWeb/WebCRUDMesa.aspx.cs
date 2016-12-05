@@ -35,7 +35,10 @@ namespace RestauranteWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Reload();
+            if (!this.IsPostBack)
+            {
+                Reload();
+            }
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
@@ -54,13 +57,14 @@ namespace RestauranteWeb
                 Numero = textBoxNum.Text,
                 Restaurante_id = idRest,
                 Disponivel = true        
-             };
+                };
 
             if (CheckBoxList1.SelectedItem.Text == "Sim")
                 f.Disponivel = true;
-
-            else
+            else if (CheckBoxList1.SelectedItem.Text == "Não")
                 f.Disponivel = false;
+            else
+                f.Disponivel = true;
 
             string s = JsonConvert.SerializeObject(f);
             var content = new StringContent(s, Encoding.UTF8, "application/json");
@@ -68,7 +72,7 @@ namespace RestauranteWeb
             Reload();
         }
 
-        protected async void btnUpdate_Click(object sender, EventArgs e)
+        /*protected async void btnUpdate_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
 
@@ -91,22 +95,11 @@ namespace RestauranteWeb
             await httpClient.PutAsync("/20131011110061/api/mesa/" + f.Id, content);
       
             Reload();
-        }
+        }*/
 
-        protected async void btnDelete_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-
-            await httpClient.DeleteAsync("/20131011110061/api/mesa/" + textBoxId.Text);
-
-            Reload();
-        }
 
         protected async void Reload()
         {
-            Table1.Rows.Clear();
             int idRest = Convert.ToInt16(Session["idRest"]);
             HttpClient httpClient = new HttpClient();
 
@@ -115,46 +108,115 @@ namespace RestauranteWeb
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
 
-            var ListMesas = from mesa in obj where mesa.Restaurante_id == idRest select mesa;
+            var ListMesas = from mesa in obj where mesa.Restaurante_id == idRest orderby mesa.Disponivel descending select mesa;
 
-            TableHeaderRow th = new TableHeaderRow();
-            TableHeaderCell thc = new TableHeaderCell();
-            thc.Text = "ID";
-            thc.Width = 100;
-
-            TableHeaderCell thc1 = new TableHeaderCell();
-            thc1.Text = "Numero";
-
-            TableHeaderCell thc3 = new TableHeaderCell();
-            thc3.Text = "Disponível";
-
-            th.Cells.Add(thc);
-            th.Cells.Add(thc1);
-            th.Cells.Add(thc3);
-
-            Table1.Rows.Add(th);
-
-            foreach (Models.Mesa x in ListMesas)
-            {
-                Label lb2 = new Label();
-                lb2.Text = x.ToString();
-                TableRow tRow = new TableRow();
-
-                TableCell tc = new TableCell();
-                tc.Text = x.Id.ToString();
-                TableCell tc2 = new TableCell();
-                tc2.Text = x.Numero.ToString();
-                TableCell tc4 = new TableCell();
-                //CheckBoxList1.SelectedItem.Text = x.Disponivel.ToString();
-                tc4.Text = x.Disponivel.ToString();
-
-                tRow.Cells.Add(tc);
-                tRow.Cells.Add(tc2);
-                tRow.Cells.Add(tc4);
-                Table1.Rows.Add(tRow);
-            }
-            //if (!IsPostBack) DropRest();
+            GridView1.DataSource = ListMesas;
+            GridView1.DataBind();
 
         }
+
+
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Reload();
+            GridView1.DataBind();
+        }
+
+        protected async void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+
+            var response = await httpClient.GetAsync("/20131011110061/api/mesa");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
+            Models.Mesa item = (from Models.Mesa f in obj where f.Id == Id select f).Single();
+
+            item.Numero = (row.FindControl("txtNumero") as TextBox).Text;
+
+            var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+            await httpClient.PutAsync("/20131011110061/api/mesa/" + item.Id, content);
+
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+
+            Reload();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Reload();
+            GridView1.DataBind();
+        }
+
+
+        protected async void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/20131011110061/api/mesa/" + Id);
+
+            Reload();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1");
+                l.Attributes.Add("onclick", "javascript:return " + "confirm('Deseja deletar " +
+                DataBinder.Eval(e.Row.DataItem, "Numero") + "'?)");
+            }
+        }
+
+        protected async void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Deletar")
+            {
+                int Id = Convert.ToInt32(e.CommandArgument);
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                await httpClient.DeleteAsync("/20131011110061/api/mesa/" + Id);
+
+                Reload();
+            }
+
+            else if (e.CommandName == "Situacao")
+            {
+                int Id = Convert.ToInt32(e.CommandArgument);
+
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+
+                Reload();
+
+                var response = await httpClient.GetAsync("/20131011110061/api/mesa");
+                var str = response.Content.ReadAsStringAsync().Result;
+                List<Models.Mesa> obj = JsonConvert.DeserializeObject<List<Models.Mesa>>(str);
+                Models.Mesa item = (from Models.Mesa f in obj where f.Id == Id select f).Single();
+
+                if (item.Disponivel)
+                    item.Disponivel = false;
+                else
+                    item.Disponivel = true;
+
+                var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+                await httpClient.PutAsync("/20131011110061/api/mesa/" + item.Id, content);
+
+                GridView1.EditIndex = -1;
+                GridView1.DataBind();
+
+                Reload();
+            }
+        }
+
     }
 }

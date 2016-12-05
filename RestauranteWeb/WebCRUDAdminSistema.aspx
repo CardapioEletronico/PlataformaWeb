@@ -9,8 +9,6 @@
                     <td>
                         <asp:TextBox ID="textBoxUsuario" required="required" runat="server" PlaceHolder="Usuario" style="margin-top: 0px" CssClass="textbox"></asp:TextBox>
                         <asp:TextBox ID="textBoxSenha" required="required" runat="server" PlaceHolder="Senha" style="margin-top: 0px" TextMode="Password"></asp:TextBox>
-                        
-
                     </td>
                 
                     <td class="auto-style1">&nbsp;</td>
@@ -41,17 +39,21 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" edittext="Editar" ItemStyle-Width="100"/>
-                                
-                                 <%--<asp:CommandField ShowDeleteButton="true" ItemStyle-CssClass="pull-right" ButtonType="Link" deletetext="Excluir" ItemStyle-Width="100"/> --%>
-                                
+                                <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" edittext="Editar" ItemStyle-Width="100">
+                                    <HeaderStyle Width="100px"></HeaderStyle>
+
+                                </asp:CommandField>
+
+                                <%--<asp:CommandField ShowDeleteButton="true" ItemStyle-CssClass="pull-right" ButtonType="Link" deletetext="Excluir" ItemStyle-Width="100"/> --%>
+
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                    <asp:LinkButton ID="LinkButton1" 
-                                        CommandArgument='<%# Eval("Usuario") %>' 
-                                        CommandName="Deletar" runat="server">
+                                        <asp:LinkButton ID="LinkButton1"
+                                            CommandArgument='<%# Eval("Usuario") %>'
+                                            CommandName="Deletar" runat="server">
                                         Excluir</asp:LinkButton>
                                     </ItemTemplate>
+                                    <HeaderStyle Width="100px"></HeaderStyle>
                                 </asp:TemplateField> 
         
                             </Columns>
