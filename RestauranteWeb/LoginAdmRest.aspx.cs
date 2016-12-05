@@ -25,7 +25,6 @@ namespace RestauranteWeb.AdmRest
         protected async void login_click(object Source, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();
-
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/20131011110061/api/usuariosistema");
 

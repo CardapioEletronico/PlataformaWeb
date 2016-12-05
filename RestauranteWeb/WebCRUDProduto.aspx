@@ -81,60 +81,85 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:GridView GridLines="Horizontal" CssClass="ls-table ls-bg-header bg-customer-support col-md-12" ID="GridView1" runat="server"
-                            AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
-                            OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum restaurante foi adicionado." 
-                            OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand">
-                            <Columns>
-            
-                                <asp:TemplateField HeaderText="Produto" SortExpression="NomeDescricao" >
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtNomeDescricao" runat="server" Text='<%# Eval("NomeDescricao") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                    <asp:GridView CssClass="ls-table ls-bg-header bg-customer-support col-md-12" ID="GridView1" runat="server"
+                        AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
+                        OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum restaurante foi adicionado."
+                        OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand">
+                        <Columns>
 
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label2" runat="server"
-                                            Text='<%# Eval("NomeDescricao") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Produto" SortExpression="NomeDescricao">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtNomeDescricao" runat="server" Text='<%# Eval("NomeDescricao") %>'></asp:TextBox>
+                                </EditItemTemplate>
 
-                                <asp:TemplateField HeaderText="Descrição" SortExpression="Descricao" >
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtDescricao" runat="server" Text='<%# Eval("Descricao") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label2" runat="server"
+                                        Text='<%# Eval("NomeDescricao") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label3" runat="server"
-                                            Text='<%# Eval("Descricao") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Descrição" SortExpression="Descricao">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescricao" runat="server" Text='<%# Eval("Descricao") %>'></asp:TextBox>
+                                </EditItemTemplate>
 
-                                <asp:TemplateField HeaderText="Preço" SortExpression="Preco" >
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtPreço" runat="server" Text='<%# Eval("Preco") %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label3" runat="server"
+                                        Text='<%# Eval("Descricao") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label4" runat="server"
-                                            Text='<%# Eval("Preco","{0:n}") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Preço" SortExpression="Preco">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtPreço" runat="server" Text='<%# Eval("Preco") %>'></asp:TextBox>
+                                </EditItemTemplate>
 
-                                <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" EditText="Editar" ItemStyle-Width="100" >
-                                    <HeaderStyle Width="100px"></HeaderStyle>
-                                </asp:CommandField>                         
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                    <asp:LinkButton ID="LinkButton1" 
-                                        CommandArgument='<%# Eval("Id") %>' 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label4" runat="server"
+                                        Text='<%# Eval("Preco","{0:n}") %>'></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle Width="100px"></HeaderStyle>
+                            </asp:TemplateField>
+
+
+
+                            <asp:TemplateField HeaderText="Cardápio" SortExpression="Preco">
+                                <ItemTemplate>
+                                    <asp:Label ID="Label5" runat="server"
+                                        Text='<%# Eval("Cardapio.Descricao") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+
+                            <asp:TemplateField HeaderText="Fila" SortExpression="Preco">
+
+                                <ItemTemplate>
+                                    <asp:Label ID="Label6" runat="server"
+                                        Text='<%# Eval("Fila.Descricao") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+                            <asp:ImageField DataImageUrlField="ArquivoFoto" ControlStyle-Width="100" ControlStyle-Height="100" HeaderText="Imagem" HeaderStyle-Width="100px"/>
+
+
+
+                            <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" EditText="Editar" ItemStyle-Width="100">
+                                <HeaderStyle Width="100px"></HeaderStyle>
+                            </asp:CommandField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton1"
+                                        CommandArgument='<%# Eval("Id") %>'
                                         CommandName="Deletar" runat="server">
                                         Excluir</asp:LinkButton>
-                                    </ItemTemplate>
-                                    <HeaderStyle Width="100px"></HeaderStyle>
-                                </asp:TemplateField> 
-        
-                            </Columns>
-                        </asp:GridView>
+                                </ItemTemplate>
+                                <HeaderStyle Width="100px"></HeaderStyle>
+                            </asp:TemplateField>
+
+                        </Columns>
+                    </asp:GridView>
                 </td>
                 <td>&nbsp;</td>
             </tr>

@@ -156,7 +156,23 @@ namespace RestauranteWeb
 
             Produtos = (from Models.Produto p in Produtos orderby p.NomeDescricao select p).ToList();
 
-            GridView1.DataSource = Produtos;
+            var response3 = await httpClient.GetAsync("/20131011110061/api/cardapio");
+            var str3 = response3.Content.ReadAsStringAsync().Result;
+            List<Models.Cardapio> obj3 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+
+            var response4 = await httpClient.GetAsync("/20131011110061/api/fila");
+            var str4 = response4.Content.ReadAsStringAsync().Result;
+            List<Models.Fila> obj4 = JsonConvert.DeserializeObject<List<Models.Fila>>(str4);
+
+
+            var result = from Models.Produto prod in Produtos
+                         join Models.Cardapio c in obj3
+                         on prod.Cardapio_id equals c.Id
+                         join Models.Fila f in obj4
+                         on prod.Fila_id equals f.Id
+                         select prod.comCardapioFila(c, f);
+
+            GridView1.DataSource = result.ToList();
             GridView1.DataBind();
 
             if (!IsPostBack) DropRest();

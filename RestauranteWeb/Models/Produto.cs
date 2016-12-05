@@ -15,5 +15,15 @@ namespace RestauranteWeb.Models
         public string Foto { get; set; }
         public string NomeDescricao { get; set; }
         public string ArquivoFoto { get; set; }
+
+        public Cardapio cardapio { get; set; }
+        public Fila fila { get; set; }
+
+        public Produto comCardapioFila(Cardapio c, Fila f)
+        {
+            this.cardapio = c;
+            this.fila = f;
+            return this;
+        }
     }
 }
