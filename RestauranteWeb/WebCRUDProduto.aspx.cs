@@ -145,6 +145,7 @@ namespace RestauranteWeb
 
             List<Models.Cardapio> Cardapios = (from Models.Cardapio f in obj2 where f.Restaurante_id == idRest select f).ToList();
             List<Models.Produto> Produtos = new List<Models.Produto>();
+
             foreach (Models.Cardapio c in Cardapios)
             {
                foreach (Models.Produto p in obj)
@@ -156,9 +157,11 @@ namespace RestauranteWeb
 
             Produtos = (from Models.Produto p in Produtos orderby p.NomeDescricao select p).ToList();
 
+
+
             var response3 = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str3 = response3.Content.ReadAsStringAsync().Result;
-            List<Models.Cardapio> obj3 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str);
+            List<Models.Cardapio> obj3 = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str3);
 
             var response4 = await httpClient.GetAsync("/20131011110061/api/fila");
             var str4 = response4.Content.ReadAsStringAsync().Result;
@@ -232,6 +235,7 @@ namespace RestauranteWeb
             Filas.DataTextField = "Descricao";
             Filas.DataValueField = "Id";
             Filas.DataBind();
+
         }
 
         public System.Drawing.Image Base64ToImage(string base64String)
@@ -265,6 +269,14 @@ namespace RestauranteWeb
             Models.Produto item = (from Models.Produto f in obj where f.Id == Id select f).Single();
 
             item.Descricao = (row.FindControl("txtDescricao") as TextBox).Text;
+            item.NomeDescricao = (row.FindControl("txtNomeDescricao") as TextBox).Text;
+            item.Preco = Convert.ToInt32((row.FindControl("txtPreço") as TextBox).Text);
+            item.Cardapio_id = Convert.ToInt32((row.FindControl("CardapioDrop") as DropDownList).SelectedValue);
+            item.Fila_id = Convert.ToInt32((row.FindControl("FilaDrop") as DropDownList).SelectedValue);
+
+            var base64String = Convert.ToBase64String((row.FindControl("FileUpload2") as FileUpload).FileBytes);
+            item.Foto = base64String;
+            item.ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + (row.FindControl("FileUpload2") as FileUpload).FileName;
 
             var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/produto/" + item.Id, content);
@@ -295,8 +307,58 @@ namespace RestauranteWeb
         }
 
 
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected async void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+            if (e.Row.RowType == DataControlRowType.DataRow && GridView1.EditIndex == e.Row.RowIndex)
+            {
+
+                HttpClient httpClient = new HttpClient();
+
+                int idRest = Convert.ToInt16(Session["idRest"]);
+
+                httpClient.BaseAddress = new Uri(ip);
+                var response = await httpClient.GetAsync("20131011110061/api/fila");
+                var str = response.Content.ReadAsStringAsync().Result;
+                List<Models.Fila> filalista = JsonConvert.DeserializeObject<List<Models.Fila>>(str);
+
+                var responseCard = await httpClient.GetAsync("20131011110061/api/cardapio");
+                var str1 = responseCard.Content.ReadAsStringAsync().Result;
+                List<Models.Cardapio> cardapiolista = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str1);
+
+                List<Models.Cardapio> obj3 = new List<Models.Cardapio>();
+                List<Models.Fila> obj4 = new List<Models.Fila>();
+
+                foreach (Models.Cardapio x in cardapiolista)
+                    if (x.Restaurante_id == idRest)
+                        obj3.Add(x);
+
+                foreach (Models.Fila y in filalista)
+                {
+                    foreach (Models.Cardapio o in obj3)
+                        if (y.Cardapio_id == o.Id)
+                            obj4.Add(y);
+                }
+
+                DropDownList FilaDropDown = (DropDownList)e.Row.FindControl("FilaDrop");
+                FilaDropDown.DataSource = obj4;
+                FilaDropDown.DataTextField = "Descricao";
+                FilaDropDown.DataValueField = "Id";
+                FilaDropDown.DataBind();
+
+
+                var response2 = await httpClient.GetAsync("/20131011110061/api/cardapio");
+                var str2 = response2.Content.ReadAsStringAsync().Result;
+                List<Models.Cardapio> obj = JsonConvert.DeserializeObject<List<Models.Cardapio>>(str2);
+                List<Models.Cardapio> obj2 = (from Models.Cardapio c in obj where c.Restaurante_id == idRest select c).ToList();
+                DropDownList CardapioDropDown = (DropDownList)e.Row.FindControl("CardapioDrop");
+         
+                CardapioDropDown.DataSource = obj2;
+                CardapioDropDown.DataTextField = "Descricao";
+                CardapioDropDown.DataValueField = "Id";
+                CardapioDropDown.DataBind();
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1");

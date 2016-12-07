@@ -82,7 +82,7 @@
             <tr>
                 <td class="auto-style1">
                     <asp:GridView CssClass="ls-table ls-bg-header bg-customer-support col-md-12" ID="GridView1" runat="server"
-                        AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
+                        AutoGenerateColumns="false" GridLines="Horizontal" DataKeyNames="Id" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
                         OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum restaurante foi adicionado."
                         OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand">
                         <Columns>
@@ -111,7 +111,7 @@
 
                             <asp:TemplateField HeaderText="Preço" SortExpression="Preco">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtPreço" runat="server" Text='<%# Eval("Preco") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtPreço" runat="server" Width="90px" Text='<%# Eval("Preco") %>'></asp:TextBox>
                                 </EditItemTemplate>
 
                                 <ItemTemplate>
@@ -121,30 +121,42 @@
                                 <HeaderStyle Width="100px"></HeaderStyle>
                             </asp:TemplateField>
 
-
-
                             <asp:TemplateField HeaderText="Cardápio" SortExpression="Preco">
+                                <EditItemTemplate>
+                                        <asp:Label ID="lblCardapio" runat="server" Text='<%# Eval("Cardapio_Id")%>' Visible = "false"></asp:Label>
+                                        <asp:DropDownList ID="CardapioDrop" runat = "server" AutoPostBack="true"/>              
+                                    </EditItemTemplate>
+
                                 <ItemTemplate>
                                     <asp:Label ID="Label5" runat="server"
                                         Text='<%# Eval("Cardapio.Descricao") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
-
                             <asp:TemplateField HeaderText="Fila" SortExpression="Preco">
+
+                                <EditItemTemplate>
+                                        <asp:Label ID="lblFila" runat="server" Text='<%# Eval("Fila_Id")%>' Visible = "false"></asp:Label>
+                                        <asp:DropDownList ID="FilaDrop" runat = "server" AutoPostBack="true"/>              
+                                    </EditItemTemplate>
 
                                 <ItemTemplate>
                                     <asp:Label ID="Label6" runat="server"
                                         Text='<%# Eval("Fila.Descricao") %>'></asp:Label>
                                 </ItemTemplate>
+                                <HeaderStyle Width="150px"></HeaderStyle>
                             </asp:TemplateField>
 
 
-                            <asp:ImageField DataImageUrlField="ArquivoFoto" ControlStyle-Width="100" ControlStyle-Height="100" HeaderText="Imagem" HeaderStyle-Width="100px"/>
-
-
-
+                            <asp:TemplateField HeaderText="Imagem">
+                                <EditItemTemplate>
+                                    <asp:FileUpload accept=".png,.jpg,.jpeg,.gif" ID="FileUpload2" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                       <asp:Image ID="imgCover" runat="server" Height="100" Width="100" AlternateText="Image Cover" ImageUrl='<%# Eval("ArquivoFoto") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                             
                             <asp:CommandField ButtonType="Link" ItemStyle-CssClass="pull-right" ShowEditButton="true" EditText="Editar" ItemStyle-Width="100">
                                 <HeaderStyle Width="100px"></HeaderStyle>
                             </asp:CommandField>
@@ -155,7 +167,7 @@
                                         CommandName="Deletar" runat="server">
                                         Excluir</asp:LinkButton>
                                 </ItemTemplate>
-                                <HeaderStyle Width="100px"></HeaderStyle>
+                                <HeaderStyle Width="75px"></HeaderStyle>
                             </asp:TemplateField>
 
                         </Columns>
