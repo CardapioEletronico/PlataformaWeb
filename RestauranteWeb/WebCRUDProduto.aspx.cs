@@ -274,9 +274,15 @@ namespace RestauranteWeb
             item.Cardapio_id = Convert.ToInt32((row.FindControl("CardapioDrop") as DropDownList).SelectedValue);
             item.Fila_id = Convert.ToInt32((row.FindControl("FilaDrop") as DropDownList).SelectedValue);
 
-            var base64String = Convert.ToBase64String((row.FindControl("FileUpload2") as FileUpload).FileBytes);
-            item.Foto = base64String;
-            item.ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + (row.FindControl("FileUpload2") as FileUpload).FileName;
+            FileUpload FileUpload2 = (row.FindControl("FileUpload2") as FileUpload);
+            if (FileUpload2.HasFile) { 
+                (row.FindControl("FileUpload2") as FileUpload).PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload2.FileName)); ;
+
+                var base64String = Convert.ToBase64String((row.FindControl("FileUpload2") as FileUpload).FileBytes);
+                item.Foto = base64String;
+                item.ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + (row.FindControl("FileUpload2") as FileUpload).FileName;
+            }
+
 
             var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
             await httpClient.PutAsync("/20131011110061/api/produto/" + item.Id, content);

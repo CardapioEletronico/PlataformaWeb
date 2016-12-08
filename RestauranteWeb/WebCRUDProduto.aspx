@@ -87,6 +87,8 @@
                         OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand">
                         <Columns>
 
+
+
                             <asp:TemplateField HeaderText="Produto" SortExpression="NomeDescricao">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtNomeDescricao" runat="server" Text='<%# Eval("NomeDescricao") %>'></asp:TextBox>
@@ -108,6 +110,8 @@
                                         Text='<%# Eval("Descricao") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
+
 
                             <asp:TemplateField HeaderText="Preço" SortExpression="Preco">
                                 <EditItemTemplate>
