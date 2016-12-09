@@ -7,15 +7,11 @@
             var fileUpload = $("FileUpload1");
 
             var butao1 = document.getElementById("<%= btnInsert.ClientID %>");
-            var butao2 = document.getElementById("<%= btnUpdate.ClientID %>");
-            var butao3 = document.getElementById("<%= btnDelete.ClientID %>");
             var butao4 = document.getElementById("<%= btnSelect.ClientID %>");
 
             var label = document.getElementById("<%= Label1.ClientID %>");
             
             butao1.disabled = true;
-            butao2.disabled = true;
-            butao3.disabled = true;
             butao4.disabled = true;
 
             if (y == '') {
@@ -27,8 +23,6 @@
                 {
                     label.innerHTML = '';
                     butao1.disabled = false;
-                    butao2.disabled = false;
-                    butao3.disabled = false;
                     butao4.disabled = false;
                     return true;
                 }
@@ -54,31 +48,37 @@
     <div>
              <asp:Label CssClass="" ID="Label1" runat="server"/>
         <table style="width:100%;">
-            <tr style="float:left">
-                <td>
-                    
-                    <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
-                    <asp:TextBox ID="textBoxPreco" PlaceHolder="Preço" runat="server"></asp:TextBox>
-
-                    <asp:FileUpload accept=".png,.jpg,.jpeg,.gif" ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
-                    <asp:CustomValidator ID="customValidatorUpload" runat="server" ErrorMessage="Deu ruim" ControlToValidate="FileUpload1" />
-
-                    <asp:TextBox ID="textBoxNomeDescr" PlaceHolder="Nome" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px"></asp:TextBox>
-                    <asp:DropDownList ID="Cardapios" style="height: 33px;" runat="server" AutoPostBack="True"></asp:DropDownList>
-                    <asp:DropDownList ID="Filas" style="height: 33px;" runat="server" AutoPostBack="True"></asp:DropDownList>
+            <tr style="float:left" class="col-lg-12">
+                <td class="col-lg-12">
+                    <asp:TextBox required="required" cssClass="col-lg-6" style="margin-left:-30px" ID="textBoxNomeDescr" PlaceHolder="Nome" runat="server"></asp:TextBox>
+                    <asp:TextBox required="required" cssClass="col-lg-6" ID="textBoxDesc" runat="server" PlaceHolder="Descrição" style="margin-top: 0px; margin-left: 10px"></asp:TextBox>
                 </td>
+
+                <td class="col-lg-12">
+                    <asp:TextBox required="required" CssClass="col-lg-4" style="margin-left:-30px; margin-top:10px;" ID="textBoxPreco" PlaceHolder="Preço" runat="server"></asp:TextBox>
+                    <label class="col-lg-1" style="margin-top:20px">Imagem: </label>
+                    <asp:FileUpload CssClass="col-lg-6" style="margin-top:18px" accept=".png,.jpg,.jpeg,.gif" ID="FileUpload1" AutoPostBack="True" runat="server" Height="33" ValidateRequestMode="Inherit" />
+                </td>
+
+                <td class="col-lg-12">
+                    <asp:CustomValidator ID="customValidatorUpload" runat="server" ErrorMessage="Deu ruim" ControlToValidate="FileUpload1" />
+                    <label class="col-lg-1" style="margin-top:20px; margin-left:-43px">Cardápio: </label>
+                    <asp:DropDownList CssClass="col-lg-5" ID="Cardapios" style="height: 33px; margin-top: 10px" runat="server" AutoPostBack="True"></asp:DropDownList>
+
+                    <label class="col-lg-1" style="margin-top:20px">Fila: </label>
+                    <asp:DropDownList CssClass="col-lg-5" ID="Filas" style="height: 33px; margin-top: -5px" runat="server" AutoPostBack="True"></asp:DropDownList>
+                </td>
+
                 <td class="auto-style1">&nbsp;</td>
+            </tr>
+
+            <tr>
                 <td>
-                    <asp:Button ID="btnSelect" CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
-               
-                    <asp:Button ID="btnInsert" CssClass="ls-btn-primary" runat="server" Text="Inserir" OnClick="btnInsert_Click" />
-                   
-                    <asp:Button ID="btnUpdate" CssClass="ls-btn-primary" runat="server" Text="Alterar" OnClick="btnUpdate_Click" />
-                    
-                    <asp:Button ID="btnDelete" CssClass="ls-btn-danger" runat="server" Text="Deletar" OnClick="btnDelete_Click" />
+                   <asp:Button ID="btnInsert" CssClass="ls-btn-primary" runat="server" Text="Inserir Produto" OnClick="btnInsert_Click" />
+                   <asp:Button ID="btnSelect" CssClass="ls-btn-primary" runat="server" Text="Atualizar Lista" OnClick="btnSelect_Click" />
                 </td>
             </tr>
+
             <tr>
                 <td class="auto-style1">
                     <asp:GridView CssClass="ls-table ls-bg-header bg-customer-support col-md-12" ID="GridView1" runat="server"
@@ -86,9 +86,6 @@
                         OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" EmptyDataText="Nenhum restaurante foi adicionado."
                         OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand">
                         <Columns>
-
-
-
                             <asp:TemplateField HeaderText="Produto" SortExpression="NomeDescricao">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtNomeDescricao" runat="server" Text='<%# Eval("NomeDescricao") %>'></asp:TextBox>

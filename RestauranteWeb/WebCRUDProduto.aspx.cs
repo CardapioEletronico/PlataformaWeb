@@ -53,32 +53,34 @@ namespace RestauranteWeb
 
         protected async void btnInsert_Click(object sender, EventArgs e)
         {
-            var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(ip);
-            Models.Produto f = new Models.Produto
-            {
-                Descricao = textBoxDesc.Text,
-                NomeDescricao = textBoxNomeDescr.Text,
-                Cardapio_id = int.Parse(Cardapios.SelectedItem.Value),
-                Fila_id = int.Parse(Filas.SelectedItem.Value),
-                Foto = base64String,
-                Preco = double.Parse(textBoxPreco.Text),
-                ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName,
-            };
+            if (Page.IsValid) { 
+                var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(ip);
+                Models.Produto f = new Models.Produto
+                {
+                    Descricao = textBoxDesc.Text,
+                    NomeDescricao = textBoxNomeDescr.Text,
+                    Cardapio_id = int.Parse(Cardapios.SelectedItem.Value),
+                    Fila_id = int.Parse(Filas.SelectedItem.Value),
+                    Foto = base64String,
+                    Preco = double.Parse(textBoxPreco.Text),
+                    ArquivoFoto = "Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName,
+                };
 
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName));
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagens/" + DateTime.Now.ToString("yyyyMMddHHmmss") + FileUpload1.FileName));
 
-            string s = JsonConvert.SerializeObject(f);
+                string s = JsonConvert.SerializeObject(f);
 
-            var content = new StringContent(s, Encoding.UTF8, "application/json");
+                var content = new StringContent(s, Encoding.UTF8, "application/json");
 
-            await httpClient.PostAsync("/20131011110061/api/produto", content);
+                await httpClient.PostAsync("/20131011110061/api/produto", content);
 
-            Reload();
+                Reload();
+            }
         }
 
-        protected async void btnUpdate_Click(object sender, EventArgs e)
+        /*protected async void btnUpdate_Click(object sender, EventArgs e)
         {
             var base64String = Convert.ToBase64String(FileUpload1.FileBytes);
             HttpClient httpClient = new HttpClient();
@@ -116,18 +118,7 @@ namespace RestauranteWeb
             await httpClient.PutAsync("/20131011110061/api/produto/" + f.Id, content);
 
             Reload();
-        }
-
-        protected async void btnDelete_Click(object sender, EventArgs e)
-        {
-            HttpClient httpClient = new HttpClient();
-
-            httpClient.BaseAddress = new Uri(ip);
-
-            await httpClient.DeleteAsync("/20131011110061/api/produto/" + textBoxId.Text);
-
-            Reload();
-        }
+        }*/
 
         protected async void Reload()
         {
@@ -156,8 +147,6 @@ namespace RestauranteWeb
             }
 
             Produtos = (from Models.Produto p in Produtos orderby p.NomeDescricao select p).ToList();
-
-
 
             var response3 = await httpClient.GetAsync("/20131011110061/api/cardapio");
             var str3 = response3.Content.ReadAsStringAsync().Result;

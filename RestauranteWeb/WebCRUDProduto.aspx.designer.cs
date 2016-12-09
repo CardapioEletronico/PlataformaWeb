@@ -22,13 +22,22 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// textBoxId control.
+        /// textBoxNomeDescr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxId;
+        protected global::System.Web.UI.WebControls.TextBox textBoxNomeDescr;
+        
+        /// <summary>
+        /// textBoxDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxDesc;
         
         /// <summary>
         /// textBoxPreco control.
@@ -58,24 +67,6 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.CustomValidator customValidatorUpload;
         
         /// <summary>
-        /// textBoxNomeDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxNomeDescr;
-        
-        /// <summary>
-        /// textBoxDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxDesc;
-        
-        /// <summary>
         /// Cardapios control.
         /// </summary>
         /// <remarks>
@@ -94,15 +85,6 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.DropDownList Filas;
         
         /// <summary>
-        /// btnSelect control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSelect;
-        
-        /// <summary>
         /// btnInsert control.
         /// </summary>
         /// <remarks>
@@ -112,22 +94,13 @@ namespace RestauranteWeb {
         protected global::System.Web.UI.WebControls.Button btnInsert;
         
         /// <summary>
-        /// btnUpdate control.
+        /// btnSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.Button btnSelect;
         
         /// <summary>
         /// GridView1 control.
