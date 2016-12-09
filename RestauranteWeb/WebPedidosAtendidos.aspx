@@ -2,26 +2,71 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-
+   
             <div>
                 <table style="width:100%;">
                     <tr style="float:left">
-                        <td>
-                            <asp:TextBox ID="textBoxId" runat="server" PlaceHolder="Id" style="margin-top: 0px"></asp:TextBox>
-                            <!--<asp:DropDownList CssClass="ls-dropdown-nav" ID="Restaurantes" runat="server" AutoPostBack="True"></asp:DropDownList>-->
-                        </td>
-                    
-                        <td class="auto-style1">&nbsp;</td>
-                        <td>
-                            <asp:Button ID="btnAtender"  CssClass="ls-btn-primary" runat="server" OnClick="btnAtender_Click" Text="Mudar situação"/>
-                        </td>
+                        
                     </tr>
 
                     <tr style="width:100%">
                         <td class="auto-style1">
-                            <asp:Table  ID="Table1" cssClass="ls-table ls-bg-header" width="100%" BorderWidth="1px" BorderStyle="Ridge" runat="server" style="margin-left: 0px">
-                            </asp:Table>
+                            <asp:GridView GridLines="Horizontal" CssClass="ls-table ls-bg-header" ID="GridView1" runat="server"
+                            AutoGenerateColumns="false" DataKeyNames="Id"
+                            OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit"
+                            OnRowUpdating="OnRowUpdating" OnRowDeleting="OnRowDeleting" OnRowCommand="GridView1_RowCommand1" EmptyDataText="Nenhum pedido foi feito.">
+                            <Columns>
+    
+                                <asp:TemplateField HeaderText="Quantidade" SortExpression="Disponivel">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label2" runat="server"
+                                            Text='<%# Eval("Quantidade") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Hora" SortExpression="Numero">
+                                    <HeaderStyle />
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label3" runat="server"
+                                            Text='<%# Eval("Hora") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Produto" SortExpression="Numero">
+                                    <HeaderStyle />
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label5" runat="server"
+                                            Text='<%# Eval("Produto.Descricao") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Situação" SortExpression="Numero">
+
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtSituacao" runat="server" Text='<%# Eval("Situacao") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label6" runat="server"
+                                            Text='<%# Eval("Situacao").ToString() == "1" ? "Aberto" : "Atendido"  %>'></asp:Label>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
+                                <%-- <asp:CommandField ButtonType="Link" ShowEditButton="true" edittext="Editar" ShowDeleteButton="true" ItemStyle-Width="100"/> --%>
+
+
+                                <asp:ButtonField ControlStyle-CssClass="ls-btn-primary" CommandName="AtenderPedido" Text="Voltar para cozinha" ButtonType="Button">
+                                    <HeaderStyle Width="200px" />
+                                </asp:ButtonField>
+                                <asp:ButtonField ControlStyle-CssClass="ls-btn-danger" CommandName="CancelarPedido" Text="Cancelar" ButtonType="Button">
+                                    <HeaderStyle Width="100px" />
+                                </asp:ButtonField>
+
+                            </Columns>
+                        </asp:GridView>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
