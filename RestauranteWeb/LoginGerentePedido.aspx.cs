@@ -65,7 +65,7 @@ namespace RestauranteWeb
 
 
                     Session["Permissao"] = "GerentePedidos";
-                    Response.Write("<script>self.location='WebAlterarFila.aspx'; </script>");
+                    Response.Write("<script>self.location='WebPedidosAbertos.aspx'; </script>");
                     return;
                 }
             }
