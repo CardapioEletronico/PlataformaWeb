@@ -558,3 +558,43 @@ C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWe
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb
 C:\Users\gilson\Desktop\Projeto Cardápio - Arquivos\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\ApplicationInsights.config
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\csc.exe
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\vbc.exe
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll.config
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\RestauranteWeb.pdb
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.Web.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\Newtonsoft.Json.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Extensions.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\bin\System.Net.Http.Primitives.xml
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csproj.App.config
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.dll
+C:\Users\Nudes\Desktop\PlataformaWeb\RestauranteWeb\obj\Debug\RestauranteWeb.pdb

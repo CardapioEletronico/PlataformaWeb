@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -208,8 +209,51 @@ namespace RestauranteWeb
                 var content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
                 await httpClient.PutAsync("/20131011110061/api/itempedido/" + item.Id, content);
 
+
+                var response5 = await httpClient.GetAsync("/20131011110061/api/produto");
+                var str5 = response5.Content.ReadAsStringAsync().Result;
+                List<Models.Produto> obj5 = JsonConvert.DeserializeObject<List<Models.Produto>>(str5);
+                Models.Produto p = (from Models.Produto f in obj5 where f.Id == item.Produto_Id select f).Single();
+
+                item.ComProduto(p);
+
                 GridView1.EditIndex = -1;
                 GridView1.DataBind();
+
+                //Pegar a mesa
+                //Pedidos
+                var response3 = await httpClient.GetAsync("/20131011110061/api/pedido");
+                var str3 = response3.Content.ReadAsStringAsync().Result;
+                List<Models.Pedido> obj3 = JsonConvert.DeserializeObject<List<Models.Pedido>>(str3);
+                Models.Pedido ped = (from Models.Pedido c in obj3 where c.Id == item.Pedido_Id select c).Single();
+
+                //Mesas
+                var response2 = await httpClient.GetAsync("/20131011110061/api/mesa");
+                var str2 = response2.Content.ReadAsStringAsync().Result;
+                List<Models.Mesa> obj2 = JsonConvert.DeserializeObject<List<Models.Mesa>>(str2);
+                Models.Mesa mesa = (from Models.Mesa c in obj2 where c.Id == ped.Mesa_Id select c).Single();
+
+
+                // get a temporary file name so we don't conflict with concurrent user
+                string fileName = Path.GetRandomFileName();
+                fileName = Path.ChangeExtension(fileName, "txt");
+
+                // Now map the file to a path within the host directory
+                string outputFileName = MapPath(fileName);
+
+                // write some data to the file
+                FileStream fs = new FileStream(outputFileName, FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter writer = new StreamWriter(fs);
+
+                writer.WriteLine("Pedido: " + item.Produto.NomeDescricao);
+                writer.WriteLine("Quantidade: " + item.Quantidade);
+                writer.WriteLine("Mesa: " + mesa.Numero);
+                writer.WriteLine(string.Empty);
+                writer.WriteLine(DateTime.Now.ToLongTimeString());
+                writer.Close();
+
+                // now open the url in another browser tab
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "windowKey", "window.open('" + fileName + "');", true);
 
                 Reload();
 
@@ -290,5 +334,6 @@ namespace RestauranteWeb
 
             Reload();
         }
+
     }
 }

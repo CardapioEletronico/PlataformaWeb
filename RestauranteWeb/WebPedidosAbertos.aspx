@@ -38,7 +38,7 @@
 
                                     <ItemTemplate>
                                         <asp:Label ID="Label5" runat="server"
-                                            Text='<%# Eval("Produto.Descricao") %>'></asp:Label>
+                                            Text='<%# Eval("Produto.NomeDescricao") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -61,6 +61,7 @@
                                 <asp:ButtonField ControlStyle-CssClass="ls-btn-primary" CommandName="AtenderPedido" Text="Atender" ButtonType="Button">
                                     <HeaderStyle Width="100px" />
                                 </asp:ButtonField>
+
                                 <asp:ButtonField ControlStyle-CssClass="ls-btn-danger" CommandName="CancelarPedido" Text="Cancelar" ButtonType="Button">
                                     <HeaderStyle Width="100px" />
                                 </asp:ButtonField>

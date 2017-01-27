@@ -1,0 +1,5 @@
+Pedido: Coca-Cola
+Quantidade: 1
+Mesa: 34
+
+08:20:19
