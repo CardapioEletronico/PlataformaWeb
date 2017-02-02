@@ -159,8 +159,10 @@
     <Content Include="GerentePedidos.Master" />
     <Content Include="PaginaLogin.Master" />
     <Content Include="WebGridPedidos.aspx" />
+    <Content Include="WebMesasSituacao.aspx" />
     <Content Include="WebPedidosAbertos.aspx" />
     <Content Include="WebPedidosAtendidos.aspx" />
+    <Content Include="Caixa.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -185,6 +187,13 @@
     </Compile>
     <Compile Include="AdminSistema.Master.designer.cs">
       <DependentUpon>AdminSistema.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Caixa.Master.cs">
+      <DependentUpon>Caixa.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Caixa.Master.designer.cs">
+      <DependentUpon>Caixa.Master</DependentUpon>
     </Compile>
     <Compile Include="GerentePedidos.Master.cs">
       <DependentUpon>GerentePedidos.Master</DependentUpon>
@@ -358,6 +367,13 @@
     </Compile>
     <Compile Include="WebGridPedidos.aspx.designer.cs">
       <DependentUpon>WebGridPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebMesasSituacao.aspx.cs">
+      <DependentUpon>WebMesasSituacao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebMesasSituacao.aspx.designer.cs">
+      <DependentUpon>WebMesasSituacao.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPedidosAbertos.aspx.cs">
       <DependentUpon>WebPedidosAbertos.aspx</DependentUpon>

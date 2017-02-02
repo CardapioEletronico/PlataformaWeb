@@ -36,7 +36,7 @@ namespace RestauranteWeb
                     Session["Login"] = TextBoxUsuario.Text;
                     Session["idRest"] = x.Restaurante_id;
                     Session["Permissao"] = "Caixa";
-                    Response.Write("<script>window.alert('Logado com sucesso!'); self.location='#'; </script>");
+                    Response.Write("<script>window.alert('Logado com sucesso!'); self.location='WebMesasSituacao.aspx'; </script>");
                     return;
                 }
             }

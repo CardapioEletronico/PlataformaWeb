@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="GerentePedidos.master.cs" Inherits="RestauranteWeb.GerentePedidos" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Caixa.master.cs" Inherits="RestauranteWeb.Caixa" %>
 
 <!DOCTYPE html>
 
@@ -66,8 +66,7 @@
 
               <nav class="ls-menu">
                 <ul>
-                    <li><a href="WebPedidosAbertos.aspx" class="ls-ico-list">Visualizar Pedidos Abertos</a></li>
-                    <li><a href="WebPedidosAtendidos.aspx" class="ls-ico-list">Visualizar Pedidos Atendidos</a></li>    
+                    <li><a href="WebMesasSituacao.aspx" class="ls-ico-list">Visualizar Mesas</a></li>
                 </ul>
               </nav>
             </aside>
@@ -81,3 +80,4 @@
  </form>   
 </body>
 </html>
+
