@@ -11,5 +11,13 @@ namespace RestauranteWeb.Models
         public string Numero { get; set; }
         public bool Disponivel { get; set; }
         public int Restaurante_id { get; set; }
+
+        public Pedido pedido { get; set; }
+
+        public Mesa comPedido(Pedido p)
+        {
+            this.pedido = p;
+            return this;
+        }
     }
 }
